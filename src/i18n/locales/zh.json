@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "products": "产品",
+    "education": "教育",
+    "faq": "常见问题",
+    "support": "支持",
+    "aboutUs": "关于我们",
+    "contactUs": "联系我们",
+    "getStarted": "立即开始"
+  },
+  "hero": {
+    "badge": "重新定义教育与交易",
+    "headline": "用4Color System掌控市场",
+    "subheadline": "看透压力，而非模式。专为市场验证打造——专业交易者的终极教育平台。",
+    "ctaPrimary": "探索教育",
+    "ctaSecondary": "查看图表演示"
+  },
+  "languages": {
+    "en": "English",
+    "vi": "Tiếng Việt",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "pt": "Português",
+    "zh": "中文",
+    "ja": "日本語",
+    "ko": "한국어",
+    "id": "Bahasa Indonesia",
+    "th": "ไทย",
+    "ru": "Русский"
+  }
+}

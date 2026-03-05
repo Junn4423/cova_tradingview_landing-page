@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "products": "Produits",
+    "education": "Formation",
+    "faq": "FAQ",
+    "support": "Support",
+    "aboutUs": "À propos",
+    "contactUs": "Nous contacter",
+    "getStarted": "Commencer"
+  },
+  "hero": {
+    "badge": "L'Éducation et le Trading Redéfinis",
+    "headline": "Maîtrisez le Marché avec 4Color System",
+    "subheadline": "Voyez la pression, pas les schémas. Conçu pour la validation du marché — la plateforme éducative ultime pour les traders sérieux.",
+    "ctaPrimary": "Explorer la Formation",
+    "ctaSecondary": "Voir la Démo du Graphique"
+  },
+  "languages": {
+    "en": "English",
+    "vi": "Tiếng Việt",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "pt": "Português",
+    "zh": "中文",
+    "ja": "日本語",
+    "ko": "한국어",
+    "id": "Bahasa Indonesia",
+    "th": "ไทย",
+    "ru": "Русский"
+  }
+}

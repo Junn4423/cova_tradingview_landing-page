@@ -1,0 +1,324 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// HeroLeft — Premium FinTech Left Column
+// ─────────────────────────────────────────────────────────────────────────────
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 600px;
+
+  @media (max-width: 1100px) {
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+// ── Badge ────────────────────────────────────────────────────────────────────
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem 0.5rem 0.75rem;
+  background: rgba(58, 134, 255, 0.08);
+  border: 1px solid rgba(58, 134, 255, 0.25);
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.04em;
+  width: fit-content;
+  backdrop-filter: blur(12px);
+
+  @media (max-width: 1100px) {
+    margin: 0 auto;
+  }
+}
+
+.badgePulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00F5A0;
+  box-shadow: 0 0 0 0 rgba(0, 245, 160, 0.5);
+  animation: pulse-badge 2s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse-badge {
+  0%   { box-shadow: 0 0 0 0 rgba(0, 245, 160, 0.6); }
+  70%  { box-shadow: 0 0 0 8px rgba(0, 245, 160, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 245, 160, 0); }
+}
+
+.badgeText { flex: 1; }
+
+.badgeArrow {
+  color: #3A86FF;
+  flex-shrink: 0;
+}
+
+// ── Headline ─────────────────────────────────────────────────────────────────
+.headline {
+  font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+
+  @media (max-width: 480px) {
+    font-size: 2.1rem;
+    letter-spacing: -0.02em;
+  }
+
+  @media (max-width: 360px) {
+    font-size: 1.85rem;
+  }
+}
+
+.br {
+  @media (max-width: 1100px) {
+    display: none;
+  }
+}
+
+.brandGradient {
+  background: linear-gradient(
+    135deg,
+    #00D4FF 0%,
+    #3A86FF 40%,
+    #7B2CBF 70%,
+    #FF6B6B 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-flow 5s ease infinite;
+  display: inline-block;
+}
+
+@keyframes gradient-flow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+// ── Subheadline ───────────────────────────────────────────────────────────────
+.sub {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.62);
+  max-width: 520px;
+
+  @media (max-width: 1100px) {
+    max-width: 600px;
+  }
+}
+
+// ── CTAs ─────────────────────────────────────────────────────────────────────
+.ctas {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  @media (max-width: 1100px) {
+    justify-content: center;
+  }
+}
+
+// Primary button
+.primaryBtn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 2rem;
+  border-radius: 14px;
+  border: none;
+  cursor: none;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0B132B;
+  background: linear-gradient(135deg, #00D4FF 0%, #3A86FF 60%, #7B2CBF 100%);
+  background-size: 200% 200%;
+  box-shadow:
+    0 4px 30px rgba(58, 134, 255, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow:
+      0 8px 50px rgba(58, 134, 255, 0.65),
+      0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+    animation: gradient-flow 2s ease infinite;
+  }
+}
+
+.btnArrow {
+  display: flex;
+  align-items: center;
+}
+
+// Shimmer sweep
+.shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.28) 50%,
+    transparent 60%
+  );
+  background-size: 200% 100%;
+  animation: shimmer-sweep 2.5s infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer-sweep {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+// Secondary button
+.secondaryBtn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.9rem 1.75rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  cursor: none;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.88);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(0, 212, 255, 0.4);
+    color: #ffffff;
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.12);
+  }
+}
+
+.playRing {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0, 212, 255, 0.35);
+  pointer-events: none;
+}
+
+.playIcon {
+  color: #00D4FF;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+// ── Stats ─────────────────────────────────────────────────────────────────────
+.stats {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+
+  @media (max-width: 1100px) {
+    justify-content: center;
+  }
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.25rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  backdrop-filter: blur(16px);
+  cursor: default;
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+}
+
+.statIcon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--color) 12%, transparent);
+  color: var(--color);
+  flex-shrink: 0;
+}
+
+.statBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.statValue {
+  font-size: 1.1rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+// ── Social Proof ──────────────────────────────────────────────────────────────
+.proof {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+
+  @media (max-width: 1100px) {
+    justify-content: center;
+  }
+}
+
+.avatarStack {
+  display: flex;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid rgba(11, 19, 43, 0.9);
+  margin-left: -8px;
+  flex-shrink: 0;
+  opacity: 0.85;
+
+  &:first-child { margin-left: 0; }
+}
+
+.proofText {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.55);
+
+  strong {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 700;
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "products": "Productos",
+    "education": "Educación",
+    "faq": "Preguntas frecuentes",
+    "support": "Soporte",
+    "aboutUs": "Sobre nosotros",
+    "contactUs": "Contáctanos",
+    "getStarted": "Comenzar"
+  },
+  "hero": {
+    "badge": "Educación y Trading Redefinidos",
+    "headline": "Domina el Mercado con 4Color System",
+    "subheadline": "Observa la presión, no los patrones. Construido para la validación del mercado — la plataforma educativa definitiva para traders serios.",
+    "ctaPrimary": "Explorar Educación",
+    "ctaSecondary": "Ver Demo del Gráfico"
+  },
+  "languages": {
+    "en": "English",
+    "vi": "Tiếng Việt",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "pt": "Português",
+    "zh": "中文",
+    "ja": "日本語",
+    "ko": "한국어",
+    "id": "Bahasa Indonesia",
+    "th": "ไทย",
+    "ru": "Русский"
+  }
+}

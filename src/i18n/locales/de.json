@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "products": "Produkte",
+    "education": "Ausbildung",
+    "faq": "FAQ",
+    "support": "Support",
+    "aboutUs": "Über uns",
+    "contactUs": "Kontakt",
+    "getStarted": "Jetzt starten"
+  },
+  "hero": {
+    "badge": "Bildung & Trading neu definiert",
+    "headline": "Meistern Sie den Markt mit 4Color System",
+    "subheadline": "Sehen Sie den Druck, nicht die Muster. Entwickelt für Marktvalidierung — die ultimative Bildungsplattform für ernsthafte Trader.",
+    "ctaPrimary": "Ausbildung erkunden",
+    "ctaSecondary": "Chart-Demo ansehen"
+  },
+  "languages": {
+    "en": "English",
+    "vi": "Tiếng Việt",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "pt": "Português",
+    "zh": "中文",
+    "ja": "日本語",
+    "ko": "한국어",
+    "id": "Bahasa Indonesia",
+    "th": "ไทย",
+    "ru": "Русский"
+  }
+}

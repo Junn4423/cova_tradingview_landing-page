@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "products": "製品",
+    "education": "教育",
+    "faq": "よくある質問",
+    "support": "サポート",
+    "aboutUs": "会社概要",
+    "contactUs": "お問い合わせ",
+    "getStarted": "始める"
+  },
+  "hero": {
+    "badge": "教育とトレーディングを再定義",
+    "headline": "4Color Systemで市場をマスター",
+    "subheadline": "パターンではなく、プレッシャーを見る。市場検証のために構築された、本格派トレーダーのための究極の教育プラットフォーム。",
+    "ctaPrimary": "教育を探索",
+    "ctaSecondary": "チャートデモを見る"
+  },
+  "languages": {
+    "en": "English",
+    "vi": "Tiếng Việt",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "pt": "Português",
+    "zh": "中文",
+    "ja": "日本語",
+    "ko": "한국어",
+    "id": "Bahasa Indonesia",
+    "th": "ไทย",
+    "ru": "Русский"
+  }
+}

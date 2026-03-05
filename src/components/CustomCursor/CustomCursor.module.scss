@@ -1,0 +1,55 @@
+// CustomCursor — fixed + pointer-events: none so it never blocks clicks
+// Hidden automatically on touch devices via JS, but also via CSS as fallback
+@media (hover: none) and (pointer: coarse) {
+  .dot, .ring { display: none !important; }
+}
+
+.dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0%, #00D4FF 100%);
+  pointer-events: none;
+  z-index: 99999;
+  will-change: transform;
+  mix-blend-mode: screen;
+  box-shadow:
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(58, 134, 255, 0.5);
+}
+
+.ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(58, 134, 255, 0.4);
+  pointer-events: none;
+  z-index: 99998;
+  will-change: transform;
+  // Soft inner glow
+  box-shadow: inset 0 0 12px rgba(0, 212, 255, 0.05);
+}
+
+.blend {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99997;
+  will-change: transform;
+  background: radial-gradient(
+    circle,
+    rgba(0, 212, 255, 0.15) 0%,
+    rgba(58, 134, 255, 0.08) 50%,
+    transparent 100%
+  );
+}

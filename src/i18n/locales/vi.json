@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "products": "Sản phẩm",
+    "education": "Đào tạo",
+    "faq": "Câu hỏi thường gặp",
+    "support": "Hỗ trợ",
+    "aboutUs": "Về chúng tôi",
+    "contactUs": "Liên hệ",
+    "getStarted": "Bắt đầu ngay"
+  },
+  "hero": {
+    "badge": "Định nghĩa lại Giao dịch & Đào tạo",
+    "headline": "Làm chủ Thị trường với Hệ thống 4Color",
+    "subheadline": "Nhìn thấy áp lực, không phải mô hình. Được xây dựng để xác nhận thị trường — nền tảng đào tạo tối ưu dành cho trader chuyên nghiệp.",
+    "ctaPrimary": "Khám phá Khóa học",
+    "ctaSecondary": "Xem Demo Biểu đồ"
+  },
+  "languages": {
+    "en": "English",
+    "vi": "Tiếng Việt",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "pt": "Português",
+    "zh": "中文",
+    "ja": "日本語",
+    "ko": "한국어",
+    "id": "Bahasa Indonesia",
+    "th": "ไทย",
+    "ru": "Русский"
+  }
+}

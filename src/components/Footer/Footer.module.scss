@@ -1,0 +1,338 @@
+.footer {
+  position: relative;
+  padding: 5rem 0 2rem;
+  background: rgba(11, 19, 43, 0.8);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+
+  @media (max-width: 768px) {
+    padding: 4rem 0 2rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 3rem 0 1.5rem;
+  }
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1.25rem;
+  }
+}
+
+.mainContent {
+  display: grid;
+  grid-template-columns: 1.2fr 2fr;
+  gap: 5rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+  @media (max-width: 1000px) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media (max-width: 768px) {
+    padding-bottom: 2.5rem;
+    gap: 2rem;
+  }
+}
+
+// Brand Column
+.brandColumn {
+  max-width: 360px;
+
+  @media (max-width: 1000px) {
+    max-width: 100%;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+.logoIcon {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3px;
+  width: 32px;
+  height: 32px;
+}
+
+.logoSquare {
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+}
+
+.logoText {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.brandDescription {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.75;
+  margin-bottom: 2rem;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #3A86FF;
+  }
+
+  svg {
+    color: #3A86FF;
+  }
+}
+
+.socialLinks {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(58, 134, 255, 0.15);
+    border-color: rgba(58, 134, 255, 0.3);
+    color: #3A86FF;
+  }
+}
+
+// Links Grid
+.linksGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.linksColumn {
+  // Column styles
+}
+
+.columnTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.linksList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: #fff;
+
+    .linkArrow {
+      opacity: 1;
+      transform: translate(2px, -2px);
+    }
+  }
+}
+
+.linkArrow {
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+// Newsletter
+.newsletter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  padding: 3rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+}
+
+.newsletterContent {
+  flex: 1;
+}
+
+.newsletterTitle {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.newsletterDescription {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.newsletterForm {
+  display: flex;
+  gap: 0.75rem;
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.newsletterInput {
+  min-width: 280px;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 0.95rem;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.3s ease;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  &:focus {
+    border-color: rgba(58, 134, 255, 0.5);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  @media (max-width: 500px) {
+    min-width: auto;
+    width: 100%;
+  }
+}
+
+.newsletterButton {
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #3A86FF 0%, #00D4FF 100%);
+  border: none;
+  border-radius: 12px;
+  color: #0B132B;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+
+  &:hover {
+    box-shadow: 0 4px 25px rgba(58, 134, 255, 0.4);
+  }
+
+  @media (max-width: 500px) {
+    width: 100%;
+  }
+}
+
+// Bottom Bar
+.bottomBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2rem;
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+}
+
+.copyright {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.disclaimer {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.35);
+  max-width: 500px;
+  text-align: right;
+
+  @media (max-width: 768px) {
+    text-align: center;
+  }
+}
+
+.poweredBy {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.35);
+  text-align: center;
+  margin-top: 0.75rem;
+  width: 100%;
+}
+
+.poweredByLink {
+  color: rgba(58, 134, 255, 0.75);
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #00D4FF;
+    text-decoration: underline;
+  }
+}

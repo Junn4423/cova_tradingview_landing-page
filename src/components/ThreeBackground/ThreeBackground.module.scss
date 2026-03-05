@@ -1,0 +1,22 @@
+.wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+
+  // subtle vignette so the 3D doesn't overpower text
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 40%, rgba(11, 19, 43, 0.6) 100%);
+    pointer-events: none;
+  }
+
+  canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+  }
+}

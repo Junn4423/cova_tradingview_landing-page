@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "products": "Produk",
+    "education": "Edukasi",
+    "faq": "FAQ",
+    "support": "Dukungan",
+    "aboutUs": "Tentang Kami",
+    "contactUs": "Hubungi Kami",
+    "getStarted": "Mulai Sekarang"
+  },
+  "hero": {
+    "badge": "Edukasi & Trading yang Didefinisikan Ulang",
+    "headline": "Kuasai Pasar dengan 4Color System",
+    "subheadline": "Lihat tekanan, bukan pola. Dibangun untuk validasi pasar — platform edukasi terbaik untuk trader serius.",
+    "ctaPrimary": "Jelajahi Edukasi",
+    "ctaSecondary": "Lihat Demo Chart"
+  },
+  "languages": {
+    "en": "English",
+    "vi": "Tiếng Việt",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "pt": "Português",
+    "zh": "中文",
+    "ja": "日本語",
+    "ko": "한국어",
+    "id": "Bahasa Indonesia",
+    "th": "ไทย",
+    "ru": "Русский"
+  }
+}

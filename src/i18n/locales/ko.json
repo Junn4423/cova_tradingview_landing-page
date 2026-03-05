@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "products": "제품",
+    "education": "교육",
+    "faq": "자주 묻는 질문",
+    "support": "지원",
+    "aboutUs": "회사 소개",
+    "contactUs": "문의하기",
+    "getStarted": "시작하기"
+  },
+  "hero": {
+    "badge": "교육과 트레이딩의 재정의",
+    "headline": "4Color System으로 시장을 마스터하세요",
+    "subheadline": "패턴이 아닌 압력을 보세요. 시장 검증을 위해 구축된 — 진지한 트레이더를 위한 궁극의 교육 플랫폼.",
+    "ctaPrimary": "교육 살펴보기",
+    "ctaSecondary": "차트 데모 보기"
+  },
+  "languages": {
+    "en": "English",
+    "vi": "Tiếng Việt",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "pt": "Português",
+    "zh": "中文",
+    "ja": "日本語",
+    "ko": "한국어",
+    "id": "Bahasa Indonesia",
+    "th": "ไทย",
+    "ru": "Русский"
+  }
+}

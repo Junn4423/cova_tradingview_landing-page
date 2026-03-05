@@ -1,0 +1,350 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1rem 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.scrolled {
+    padding: 0.75rem 0;
+    background: rgba(11, 19, 43, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1.25rem;
+  }
+}
+
+// Logo
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: white;
+}
+
+.logoIcon {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3px;
+  width: 28px;
+  height: 28px;
+}
+
+.logoSquare {
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover .logoSquare {
+  &:nth-child(1) { transform: rotate(5deg); }
+  &:nth-child(2) { transform: rotate(-5deg); }
+  &:nth-child(3) { transform: rotate(-5deg); }
+  &:nth-child(4) { transform: rotate(5deg); }
+}
+
+.logoText {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.8) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+// Navigation Links
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  @media (max-width: 968px) {
+    display: none;
+  }
+}
+
+.navLink {
+  padding: 0.625rem 1.125rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #3A86FF, #00D4FF);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+
+  &:hover {
+    color: #fff;
+    
+    &::after {
+      width: 60%;
+    }
+  }
+}
+
+// Nav Actions
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+// Language Dropdown
+.langDropdown {
+  position: relative;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.langButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.chevron {
+  transition: transform 0.3s ease;
+
+  &.open {
+    transform: rotate(180deg);
+  }
+}
+
+.langMenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 180px;
+  background: rgba(28, 37, 65, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 0.5rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.langOption {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+  }
+
+  &.active {
+    background: rgba(58, 134, 255, 0.15);
+    color: #3A86FF;
+  }
+}
+
+.flag {
+  font-size: 1.25rem;
+}
+
+// CTA Button
+.ctaButton {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #3A86FF 0%, #00D4FF 100%);
+  color: #0B132B;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(58, 134, 255, 0.3);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 6px 30px rgba(58, 134, 255, 0.45);
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+// Mobile Toggle
+.mobileToggle {
+  display: none;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  @media (max-width: 968px) {
+    display: flex;
+  }
+}
+
+// Mobile Menu
+.mobileMenu {
+  display: none;
+  padding: 1.5rem;
+  background: rgba(11, 19, 43, 0.98);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+
+  @media (max-width: 968px) {
+    display: block;
+  }
+}
+
+.mobileLink {
+  display: block;
+  padding: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    padding-left: 1.5rem;
+  }
+}
+
+.mobileLangSection {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mobileLangLabel {
+  display: block;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.mobileLangOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.mobileLangBtn {
+  padding: 0.625rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+
+  &.active {
+    background: rgba(58, 134, 255, 0.15);
+    border-color: rgba(58, 134, 255, 0.3);
+    color: #3A86FF;
+  }
+}
+
+// Mobile CTA
+.mobileCta {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mobileCtaBtn {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, #3A86FF 0%, #00D4FF 100%);
+  border: none;
+  border-radius: 14px;
+  color: #0B132B;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(58, 134, 255, 0.35);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 6px 30px rgba(58, 134, 255, 0.5);
+  }
+}

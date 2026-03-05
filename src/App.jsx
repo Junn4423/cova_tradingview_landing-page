@@ -1,0 +1,131 @@
+import { motion, useScroll, useSpring } from 'framer-motion';
+import Navbar from './components/Navbar/Navbar';
+import Hero from './components/Hero/Hero';
+import Features from './components/Features/Features';
+import ChartShowcase from './components/ChartShowcase/ChartShowcase';
+import LiveStream from './components/LiveStream/LiveStream';
+import Education from './components/Education/Education';
+import Testimonials from './components/Testimonials/Testimonials';
+import FinalCTA from './components/FinalCTA/FinalCTA';
+import Footer from './components/Footer/Footer';
+import ThreeBackground from './components/ThreeBackground/ThreeBackground';
+import MouseSpotlight from './components/MouseSpotlight/MouseSpotlight';
+import { ToastProvider } from './components/Toast/Toast';
+import CustomCursor from './components/CustomCursor/CustomCursor';
+import GoogleTranslateWidget from './utils/GoogleTranslateWidget';
+import './styles/globals.scss';
+
+function App() {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 200, damping: 30, restDelta: 0.001 });
+  return (
+    <ToastProvider>
+    <div className="app">
+      {/* Scroll Progress */}
+      <motion.div id="scroll-progress" style={{ scaleX }} />
+
+      {/* Custom Cursor */}
+      <CustomCursor />
+
+      {/* Mouse Spotlight */}
+      <MouseSpotlight />
+
+      {/* Google Translate Progress Bar */}
+      <GoogleTranslateWidget />
+
+      {/* Three.js 3D Scene */}
+      <ThreeBackground />
+
+      {/* Background Orbs */}
+      <div className="background-orbs">
+        <motion.div
+          className="orb orb-1"
+          animate={{
+            y: [0, -50, 0],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+        <motion.div
+          className="orb orb-2"
+          animate={{
+            y: [0, 40, 0],
+            x: [0, 30, 0],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+        <motion.div
+          className="orb orb-3"
+          animate={{
+            y: [0, -30, 0],
+            scale: [1, 0.95, 1],
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+        <motion.div
+          className="orb orb-4"
+          animate={{
+            y: [0, 25, 0],
+            x: [0, -20, 0],
+          }}
+          transition={{
+            duration: 22,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+      </div>
+
+      {/* Navigation */}
+      <Navbar />
+
+      {/* Main Content */}
+      <main>
+        {/* Hero Section */}
+        <Hero />
+        <div className="section-divider" />
+
+        {/* Features Section */}
+        <Features />
+        <div className="section-divider" />
+
+        {/* Chart Showcase Section */}
+        <ChartShowcase />
+        <div className="section-divider" />
+
+        {/* Live Stream Section */}
+        <LiveStream />
+        <div className="section-divider" />
+
+        {/* Education Section */}
+        <Education />
+        <div className="section-divider" />
+
+        {/* Testimonials Section */}
+        <Testimonials />
+        <div className="section-divider" />
+
+        {/* Final CTA / Pricing Section */}
+        <FinalCTA />
+      </main>
+
+      {/* Footer */}
+      <Footer />
+    </div>
+    </ToastProvider>
+  );
+}
+
+export default App;

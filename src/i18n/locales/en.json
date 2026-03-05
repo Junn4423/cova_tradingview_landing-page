@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "products": "Products",
+    "education": "Education",
+    "faq": "FAQ",
+    "support": "Support",
+    "aboutUs": "About Us",
+    "contactUs": "Contact Us",
+    "getStarted": "Get Started"
+  },
+  "hero": {
+    "badge": "Education & Trading Redefined",
+    "headline": "Master the Market with 4Color System",
+    "subheadline": "See the pressure, not the patterns. Built for market validation — the ultimate education platform for serious traders.",
+    "ctaPrimary": "Explore Education",
+    "ctaSecondary": "View Chart Demo"
+  },
+  "languages": {
+    "en": "English",
+    "vi": "Tiếng Việt",
+    "es": "Español",
+    "fr": "Français",
+    "de": "Deutsch",
+    "pt": "Português",
+    "zh": "中文",
+    "ja": "日本語",
+    "ko": "한국어",
+    "id": "Bahasa Indonesia",
+    "th": "ไทย",
+    "ru": "Русский"
+  }
+}
