@@ -94,6 +94,8 @@ body {
   // Restore cursor on touch-primary devices (mobile/tablet)
   @media (hover: none) and (pointer: coarse) {
     cursor: auto;
+    // background-attachment: fixed is extremely slow on iOS/Android (repaints on scroll)
+    background-attachment: scroll;
   }
 }
 
@@ -156,6 +158,21 @@ body {
       left: 25%;
     }
   }
+
+  // ── Mobile: smaller orbs, lighter blur ────────────────────────────────────
+  @media (hover: none) and (pointer: coarse), (max-width: 768px) {
+    .orb {
+      filter: blur(55px);
+      opacity: 0.18;
+      // Static on mobile – no will-change (no JS animation running)
+      will-change: auto;
+
+      &.orb-1 { width: 380px; height: 380px; top: -160px; right: -100px; }
+      &.orb-2 { width: 320px; height: 320px; bottom: 5%;  left: -120px; }
+      &.orb-3 { width: 280px; height: 280px; }
+      &.orb-4 { width: 240px; height: 240px; }
+    }
+  }
 }
 
 // Container
@@ -181,12 +198,22 @@ body {
   }
 }
 
+// ── Mobile blur helper (reduces backdrop-filter cost on weak GPUs) ──────────
+@function mobile-blur($desktop-blur) {
+  @return #{round($desktop-blur * 0.5)}px;
+}
+
 // Glassmorphism Mixin
 @mixin glass {
   background: var(--glass-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
+
+  @media (hover: none) and (pointer: coarse), (max-width: 768px) {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
 }
 
 @mixin glass-card {
@@ -195,6 +222,12 @@ body {
   -webkit-backdrop-filter: blur(30px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 24px;
+
+  @media (hover: none) and (pointer: coarse), (max-width: 768px) {
+    background: rgba(28, 37, 65, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
 }
 
 @mixin glass-heavy {
@@ -202,6 +235,11 @@ body {
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+
+  @media (hover: none) and (pointer: coarse), (max-width: 768px) {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
 }
 
 // Gradient Text Mixin
@@ -515,6 +553,11 @@ body::before {
   opacity: 0.028;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-size: 200px 200px;
+
+  // Disable SVG-filter grain on mobile (repaints on scroll, burns CPU)
+  @media (hover: none) and (pointer: coarse), (max-width: 768px) {
+    display: none;
+  }
 }
 
 // ── Animated gradient border utility ────────────────────────────────────────
@@ -626,6 +669,11 @@ body::before {
       0 0 0 1px rgba(0, 212, 255, 0.2),
       0 30px 80px rgba(0, 0, 0, 0.4),
       0 0 60px rgba(58, 134, 255, 0.12);
+  }
+
+  // Disable hover lift on touch devices (no hover state anyway)
+  @media (hover: none) and (pointer: coarse) {
+    transition: none;
   }
 }
 

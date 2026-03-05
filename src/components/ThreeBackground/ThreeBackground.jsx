@@ -1,8 +1,24 @@
-import { useRef, useMemo, Suspense } from 'react';
+import { useRef, useMemo, Suspense, useState, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Float, Sphere, Torus, Octahedron, MeshDistortMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 import styles from './ThreeBackground.module.scss';
+
+// ── Mobile detection hook ─────────────────────────────────────────────────────
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined'
+      ? window.matchMedia('(max-width: 768px), (hover: none) and (pointer: coarse)').matches
+      : false
+  );
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px), (hover: none) and (pointer: coarse)');
+    const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+  return isMobile;
+}
 
 // ── Individual floating crystal / shape ──────────────────────────────────────
 const FloatingShape = ({ position, color, type, speed = 1, distort = 0.3, scale = 1 }) => {
@@ -107,9 +123,19 @@ const Ring = ({ position, color, radius = 3.5, speed = 0.3, tilt = 0 }) => {
 };
 
 // ── Scene contents ─────────────────────────────────────────────────────────────
-const Scene = () => {
+const Scene = ({ isMobile }) => {
   const { viewport } = useThree();
   const w = viewport.width;
+
+  if (isMobile) {
+    // Minimal scene: just a small particle field, no heavy shapes or rings
+    return (
+      <>
+        <ambientLight intensity={0.2} />
+        <Particles count={40} />
+      </>
+    );
+  }
 
   return (
     <>
@@ -140,18 +166,26 @@ const Scene = () => {
 };
 
 // ── Exported component ─────────────────────────────────────────────────────────
-const ThreeBackground = () => (
-  <div className={styles.wrapper}>
-    <Canvas
-      camera={{ position: [0, 0, 6], fov: 60 }}
-      gl={{ antialias: true, alpha: true }}
-      dpr={[1, 1.5]}
-    >
-      <Suspense fallback={null}>
-        <Scene />
-      </Suspense>
-    </Canvas>
-  </div>
-);
+const ThreeBackground = () => {
+  const isMobile = useIsMobile();
+
+  // Skip WebGL entirely on mobile — CSS orbs + constellation canvas provide
+  // the visual background without draining battery or causing lag
+  if (isMobile) return null;
+
+  return (
+    <div className={styles.wrapper}>
+      <Canvas
+        camera={{ position: [0, 0, 6], fov: 60 }}
+        gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
+        dpr={[1, 1.5]}
+      >
+        <Suspense fallback={null}>
+          <Scene isMobile={false} />
+        </Suspense>
+      </Canvas>
+    </div>
+  );
+};
 
 export default ThreeBackground;

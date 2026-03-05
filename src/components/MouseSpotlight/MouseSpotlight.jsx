@@ -7,6 +7,8 @@
  *   - Connections near cursor → turn bright cyan
  *   - Extra "ray" lines drawn from cursor to nearby stars
  * Layer 3: Radial torch spotlight following cursor
+ *
+ * Mobile: reduced star count, no cursor interactions, no gradient glows
  */
 import { useEffect, useRef } from 'react';
 
@@ -32,7 +34,8 @@ function makeStars(count, W, H) {
   }));
 }
 
-const LINK_DIST   = 160;   // max px between linked stars
+const LINK_DIST   = 160;   // max px between linked stars (desktop)
+const LINK_DIST_M = 100;   // max px between linked stars (mobile)
 const CURSOR_DIST = 260;   // cursor influence radius
 const PULL_FORCE  = 0.018; // how much cursor attracts stars
 
@@ -49,6 +52,11 @@ const ConstellationBackground = () => {
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
 
+    // ── Detect mobile / touch device ────────────────────────────────────────
+    const isMobile = window.matchMedia('(hover: none) and (pointer: coarse), (max-width: 768px)').matches;
+    const starCount = isMobile ? 38 : 90;
+    const linkDist  = isMobile ? LINK_DIST_M : LINK_DIST;
+
     // ── Size canvas to viewport ─────────────────────────────────────────────
     const resize = () => {
       const w = window.innerWidth;
@@ -56,12 +64,12 @@ const ConstellationBackground = () => {
       canvas.width  = w;
       canvas.height = h;
       sizeRef.current = { w, h };
-      starsRef.current = makeStars(90, w, h);
+      starsRef.current = makeStars(starCount, w, h);
     };
     resize();
     window.addEventListener('resize', resize);
 
-    // ── Track mouse ─────────────────────────────────────────────────────────
+    // ── Track mouse (desktop only) ───────────────────────────────────────────
     const onMove = (e) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
       // Update spotlight overlay
@@ -74,7 +82,9 @@ const ConstellationBackground = () => {
         )`;
       }
     };
-    window.addEventListener('mousemove', onMove, { passive: true });
+    if (!isMobile) {
+      window.addEventListener('mousemove', onMove, { passive: true });
+    }
 
     // ── Animation loop ───────────────────────────────────────────────────────
     const draw = () => {
@@ -84,111 +94,158 @@ const ConstellationBackground = () => {
 
       ctx.clearRect(0, 0, w, h);
 
-      // Update star positions
-      for (const s of stars) {
-        const dx = mouse.x - s.x;
-        const dy = mouse.y - s.y;
-        const dist = Math.hypot(dx, dy);
+      if (isMobile) {
+        // ── Mobile: lightweight draw — no cursor effects ──────────────────
 
-        // Gentle pull toward cursor
-        if (dist < CURSOR_DIST) {
-          const f = (1 - dist / CURSOR_DIST) * PULL_FORCE;
-          s.vx += dx * f;
-          s.vy += dy * f;
-        }
-
-        // Damping
-        s.vx *= 0.96;
-        s.vy *= 0.96;
-
-        s.x += s.vx;
-        s.y += s.vy;
-
-        // Wrap around edges
-        if (s.x < -10) s.x = w + 10;
-        if (s.x > w + 10) s.x = -10;
-        if (s.y < -10) s.y = h + 10;
-        if (s.y > h + 10) s.y = -10;
-
-        // Alpha: brighter near cursor
-        const proximity = Math.max(0, 1 - dist / CURSOR_DIST);
-        const targetAlpha = s.baseAlpha + proximity * 0.38;
-        s.alpha += (targetAlpha - s.alpha) * 0.08;
-      }
-
-      // ── Draw constellation links ──────────────────────────────────────────
-      for (let i = 0; i < stars.length; i++) {
-        for (let j = i + 1; j < stars.length; j++) {
-          const a = stars[i], b = stars[j];
-          const dx = a.x - b.x, dy = a.y - b.y;
-          const d  = Math.hypot(dx, dy);
-          if (d > LINK_DIST) continue;
-
-          // Check if this link is near cursor
-          const midX = (a.x + b.x) / 2, midY = (a.y + b.y) / 2;
-          const mdist = Math.hypot(mouse.x - midX, mouse.y - midY);
-          const nearCursor = mdist < CURSOR_DIST;
-
-          const lineAlpha = (1 - d / LINK_DIST) * (nearCursor ? 0.49 : 0.12);
-          const lineColor  = nearCursor ? `rgba(0,212,255,${lineAlpha})` : `rgba(58,134,255,${lineAlpha})`;
-
-          ctx.beginPath();
-          ctx.moveTo(a.x, a.y);
-          ctx.lineTo(b.x, b.y);
-          ctx.strokeStyle = lineColor;
-          ctx.lineWidth   = nearCursor ? 1.2 : 0.6;
-          ctx.stroke();
-        }
-      }
-
-      // ── Draw cursor rays to nearby stars ──────────────────────────────────
-      if (mouse.x > -1000) {
+        // Update star positions (drift only, no cursor pull)
         for (const s of stars) {
-          const dx = s.x - mouse.x, dy = s.y - mouse.y;
-          const d  = Math.hypot(dx, dy);
-          if (d > CURSOR_DIST * 0.85) continue;
+          s.vx *= 0.98;
+          s.vy *= 0.98;
+          s.x += s.vx;
+          s.y += s.vy;
 
-          const rayAlpha = (1 - d / (CURSOR_DIST * 0.85)) * 0.31;
-          const grad = ctx.createLinearGradient(mouse.x, mouse.y, s.x, s.y);
-          grad.addColorStop(0, `rgba(0,212,255,${rayAlpha * 0.9})`);
-          grad.addColorStop(1, `rgba(58,134,255,0)`);
+          if (s.x < -10) s.x = w + 10;
+          if (s.x > w + 10) s.x = -10;
+          if (s.y < -10) s.y = h + 10;
+          if (s.y > h + 10) s.y = -10;
 
-          ctx.beginPath();
-          ctx.moveTo(mouse.x, mouse.y);
-          ctx.lineTo(s.x, s.y);
-          ctx.strokeStyle = grad;
-          ctx.lineWidth   = 1;
-          ctx.stroke();
+          s.alpha += (s.baseAlpha - s.alpha) * 0.04;
         }
-      }
 
-      // ── Draw stars ────────────────────────────────────────────────────────
-      for (const s of stars) {
-        const dx   = mouse.x - s.x, dy = mouse.y - s.y;
-        const dist = Math.hypot(dx, dy);
-        const nearCursor = dist < CURSOR_DIST;
-        const radius = nearCursor
-          ? s.r * (1 + (1 - dist / CURSOR_DIST) * 2.5)
-          : s.r;
+        // Draw links (simplified: no midpoint cursor check)
+        ctx.lineWidth = 0.5;
+        for (let i = 0; i < stars.length; i++) {
+          for (let j = i + 1; j < stars.length; j++) {
+            const a = stars[i], b = stars[j];
+            const dx = a.x - b.x, dy = a.y - b.y;
+            const d  = Math.hypot(dx, dy);
+            if (d > linkDist) continue;
 
-        // Outer glow
-        if (nearCursor) {
-          const glow = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, radius * 5);
-          glow.addColorStop(0, `rgba(0,212,255,${s.alpha * 0.28})`);
-          glow.addColorStop(1, 'rgba(0,212,255,0)');
+            const lineAlpha = (1 - d / linkDist) * 0.13;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.strokeStyle = `rgba(58,134,255,${lineAlpha})`;
+            ctx.stroke();
+          }
+        }
+
+        // Draw stars (plain dots, no glow gradient)
+        for (const s of stars) {
           ctx.beginPath();
-          ctx.arc(s.x, s.y, radius * 5, 0, Math.PI * 2);
-          ctx.fillStyle = glow;
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fillStyle = s.color.replace(')', `,${s.alpha})`).replace('rgb', 'rgba');
           ctx.fill();
         }
+      } else {
+        // ── Desktop: full-featured draw with cursor interactions ──────────
 
-        // Core dot
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, radius, 0, Math.PI * 2);
-        ctx.fillStyle = nearCursor
-          ? `rgba(0,212,255,${Math.min(0.7, s.alpha + 0.21)})`
-          : s.color.replace(')', `,${s.alpha})`).replace('rgb', 'rgba');
-        ctx.fill();
+        // Update star positions
+        for (const s of stars) {
+          const dx = mouse.x - s.x;
+          const dy = mouse.y - s.y;
+          const dist = Math.hypot(dx, dy);
+
+          // Gentle pull toward cursor
+          if (dist < CURSOR_DIST) {
+            const f = (1 - dist / CURSOR_DIST) * PULL_FORCE;
+            s.vx += dx * f;
+            s.vy += dy * f;
+          }
+
+          // Damping
+          s.vx *= 0.96;
+          s.vy *= 0.96;
+
+          s.x += s.vx;
+          s.y += s.vy;
+
+          // Wrap around edges
+          if (s.x < -10) s.x = w + 10;
+          if (s.x > w + 10) s.x = -10;
+          if (s.y < -10) s.y = h + 10;
+          if (s.y > h + 10) s.y = -10;
+
+          // Alpha: brighter near cursor
+          const proximity = Math.max(0, 1 - dist / CURSOR_DIST);
+          const targetAlpha = s.baseAlpha + proximity * 0.38;
+          s.alpha += (targetAlpha - s.alpha) * 0.08;
+        }
+
+        // ── Draw constellation links ────────────────────────────────────────
+        for (let i = 0; i < stars.length; i++) {
+          for (let j = i + 1; j < stars.length; j++) {
+            const a = stars[i], b = stars[j];
+            const dx = a.x - b.x, dy = a.y - b.y;
+            const d  = Math.hypot(dx, dy);
+            if (d > linkDist) continue;
+
+            // Check if this link is near cursor
+            const midX = (a.x + b.x) / 2, midY = (a.y + b.y) / 2;
+            const mdist = Math.hypot(mouse.x - midX, mouse.y - midY);
+            const nearCursor = mdist < CURSOR_DIST;
+
+            const lineAlpha = (1 - d / linkDist) * (nearCursor ? 0.49 : 0.12);
+            const lineColor  = nearCursor ? `rgba(0,212,255,${lineAlpha})` : `rgba(58,134,255,${lineAlpha})`;
+
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.strokeStyle = lineColor;
+            ctx.lineWidth   = nearCursor ? 1.2 : 0.6;
+            ctx.stroke();
+          }
+        }
+
+        // ── Draw cursor rays to nearby stars ──────────────────────────────
+        if (mouse.x > -1000) {
+          for (const s of stars) {
+            const dx = s.x - mouse.x, dy = s.y - mouse.y;
+            const d  = Math.hypot(dx, dy);
+            if (d > CURSOR_DIST * 0.85) continue;
+
+            const rayAlpha = (1 - d / (CURSOR_DIST * 0.85)) * 0.31;
+            const grad = ctx.createLinearGradient(mouse.x, mouse.y, s.x, s.y);
+            grad.addColorStop(0, `rgba(0,212,255,${rayAlpha * 0.9})`);
+            grad.addColorStop(1, `rgba(58,134,255,0)`);
+
+            ctx.beginPath();
+            ctx.moveTo(mouse.x, mouse.y);
+            ctx.lineTo(s.x, s.y);
+            ctx.strokeStyle = grad;
+            ctx.lineWidth   = 1;
+            ctx.stroke();
+          }
+        }
+
+        // ── Draw stars ──────────────────────────────────────────────────────
+        for (const s of stars) {
+          const dx   = mouse.x - s.x, dy = mouse.y - s.y;
+          const dist = Math.hypot(dx, dy);
+          const nearCursor = dist < CURSOR_DIST;
+          const radius = nearCursor
+            ? s.r * (1 + (1 - dist / CURSOR_DIST) * 2.5)
+            : s.r;
+
+          // Outer glow
+          if (nearCursor) {
+            const glow = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, radius * 5);
+            glow.addColorStop(0, `rgba(0,212,255,${s.alpha * 0.28})`);
+            glow.addColorStop(1, 'rgba(0,212,255,0)');
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, radius * 5, 0, Math.PI * 2);
+            ctx.fillStyle = glow;
+            ctx.fill();
+          }
+
+          // Core dot
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, radius, 0, Math.PI * 2);
+          ctx.fillStyle = nearCursor
+            ? `rgba(0,212,255,${Math.min(0.7, s.alpha + 0.21)})`
+            : s.color.replace(')', `,${s.alpha})`).replace('rgb', 'rgba');
+          ctx.fill();
+        }
       }
 
       rafRef.current = requestAnimationFrame(draw);
@@ -198,7 +255,7 @@ const ConstellationBackground = () => {
     return () => {
       cancelAnimationFrame(rafRef.current);
       window.removeEventListener('resize', resize);
-      window.removeEventListener('mousemove', onMove);
+      if (!isMobile) window.removeEventListener('mousemove', onMove);
     };
   }, []);
 

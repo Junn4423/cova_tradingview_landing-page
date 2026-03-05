@@ -14,6 +14,13 @@
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+
+    @media (hover: none) and (pointer: coarse), (max-width: 768px) {
+      // Lighter blur on mobile — navbar repaints on every scroll tick
+      background: rgba(11, 19, 43, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
   }
 }
 
@@ -249,7 +256,7 @@
   display: none;
   padding: 1.5rem;
   background: rgba(11, 19, 43, 0.98);
-  backdrop-filter: blur(20px);
+  // No backdrop-filter needed here — 98% opacity already covers background fully
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   overflow: hidden;
 

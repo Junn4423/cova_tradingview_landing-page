@@ -101,6 +101,12 @@
   transition: border-color 0.35s ease, box-shadow 0.35s ease;
   cursor: default;
 
+  @media (hover: none) and (pointer: coarse), (max-width: 768px) {
+    background: rgba(28, 37, 65, 0.72);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
   &:hover {
     border-color: rgba(255, 255, 255, 0.14);
     box-shadow:
