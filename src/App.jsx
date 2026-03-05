@@ -1,5 +1,5 @@
 import { motion, useScroll, useSpring } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
 import Features from './components/Features/Features';
@@ -9,7 +9,9 @@ import Education from './components/Education/Education';
 import Testimonials from './components/Testimonials/Testimonials';
 import FinalCTA from './components/FinalCTA/FinalCTA';
 import Footer from './components/Footer/Footer';
-import ThreeBackground from './components/ThreeBackground/ThreeBackground';
+// ThreeBackground pulls in the entire Three.js bundle — lazy load it so it
+// never blocks the initial page paint
+const ThreeBackground = lazy(() => import('./components/ThreeBackground/ThreeBackground'));
 import MouseSpotlight from './components/MouseSpotlight/MouseSpotlight';
 import { ToastProvider } from './components/Toast/Toast';
 import CustomCursor from './components/CustomCursor/CustomCursor';
@@ -47,8 +49,10 @@ function App() {
       {/* Google Translate Progress Bar */}
       <GoogleTranslateWidget />
 
-      {/* Three.js 3D Scene */}
-      <ThreeBackground />
+      {/* Three.js 3D Scene — loaded after initial paint (lazy chunk) */}
+      <Suspense fallback={null}>
+        <ThreeBackground />
+      </Suspense>
 
       {/* Background Orbs — CSS-only on mobile, framer-motion on desktop */}
       <div className="background-orbs">

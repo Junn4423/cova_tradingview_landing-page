@@ -1,6 +1,6 @@
 import { useRef, useMemo, Suspense, useState, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Float, Sphere, Torus, Octahedron, MeshDistortMaterial } from '@react-three/drei';
+import { Float, MeshDistortMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 import styles from './ThreeBackground.module.scss';
 

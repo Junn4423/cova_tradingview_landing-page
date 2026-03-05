@@ -50,7 +50,15 @@ const LiveStream = () => {
   const iframeRef = useRef(null);
   const [muted, setMuted] = useState(true);
   const [loaded, setLoaded] = useState(false);
+  // iframeReady: stays true once section enters view — iframe is never unloaded
+  const [iframeReady, setIframeReady] = useState(false);
   const isInView = useInView(sectionRef, { once: false, margin: '-15%' });
+
+  // Only mount the YouTube iframe (and load its ~800 KB of JS) when the
+  // section is actually in the viewport for the first time.
+  useEffect(() => {
+    if (isInView && !iframeReady) setIframeReady(true);
+  }, [isInView, iframeReady]);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -60,7 +68,7 @@ const LiveStream = () => {
   const y = useTransform(scrollYProgress, [0, 1], [-40, 40]);
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.96, 1, 0.96]);
 
-  // Build embed URL — re-calculated when muted changes
+  // Build embed URL
   const embedSrc = `https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${VIDEO_ID}&controls=1&modestbranding=1&rel=0&iv_load_policy=3&enablejsapi=1&playsinline=1`;
 
   const toggleMute = () => {
@@ -153,9 +161,9 @@ const LiveStream = () => {
                 </div>
               </div>
 
-              {/* Iframe */}
+              {/* Iframe — only mounted once section enters viewport */}
               <div className={styles.videoInner}>
-                {!loaded && (
+                {(!loaded || !iframeReady) && (
                   <div className={styles.skeleton}>
                     <motion.div
                       className={styles.skeletonShimmer}
@@ -168,16 +176,18 @@ const LiveStream = () => {
                     </div>
                   </div>
                 )}
-                <iframe
-                  ref={iframeRef}
-                  src={embedSrc}
-                  title="4Color System Live Trading Stream"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  className={styles.iframe}
-                  onLoad={() => setLoaded(true)}
-                  loading="lazy"
-                />
+                {iframeReady && (
+                  <iframe
+                    ref={iframeRef}
+                    src={embedSrc}
+                    title="4Color System Live Trading Stream"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    className={styles.iframe}
+                    onLoad={() => setLoaded(true)}
+                    loading="lazy"
+                  />
+                )}
               </div>
 
               {/* Corner accents */}

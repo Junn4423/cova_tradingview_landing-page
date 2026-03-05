@@ -81,7 +81,14 @@ export default defineConfig({
         // Split into many small chunks to further obscure structure
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            // Group vendor libs under opaque hashes (no readable package names)
+            // Three.js + React-Three-Fiber/Drei in its own chunk (large, lazy-loaded)
+            if (id.includes('three') || id.includes('@react-three')) return 'three';
+            // Framer-motion in its own chunk
+            if (id.includes('framer-motion') || id.includes('framesync') || id.includes('popmotion') || id.includes('style-value-types')) return 'motion';
+            // i18n only needed after lazy dynamic import — separate so it never
+            // blocks initial render even when bundled with eagerly-loaded vendor
+            if (id.includes('i18next') || id.includes('react-i18next')) return 'i18n';
+            // Rest of vendor
             return 'v';
           }
         },
