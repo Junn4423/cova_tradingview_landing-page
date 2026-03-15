@@ -132,7 +132,7 @@ const TestimonialCard = ({ testimonial, variants }) => {
 };
 
 const Testimonials = () => {
-  const { ref: countRef, display: countDisplay } = useCountUp({ end: 50, decimals: 0, suffix: ',000+' });
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -167,7 +167,7 @@ const Testimonials = () => {
         >
           <span className={styles.label}>Success Stories</span>
           <h2 className={styles.title}>
-            Trusted by <span ref={countRef} className={styles.gradient}>{countDisplay} Traders</span>
+            Trusted by <span className={styles.gradient}>50,000+ Traders</span>
           </h2>
           <p className={styles.subtitle}>
             Real results from real traders who transformed their financial future with the <span className="notranslate">4Color System</span>.

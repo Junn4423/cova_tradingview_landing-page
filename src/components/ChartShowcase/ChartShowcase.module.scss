@@ -180,6 +180,9 @@
   
   @media (max-width: 768px) {
     padding: 1rem 0.5rem;
+    /* Prevent 3d stacking context from clipping the SVG */
+    transform: none !important;
+    transform-style: flat !important;
   }
 }
 
@@ -187,6 +190,11 @@
   width: 100%;
   height: auto;
   display: block;
+
+  @media (max-width: 768px) {
+    /* Minimum height so chart is visible — SVG viewBox is 950×550 (~1.73:1 ratio) */
+    min-height: 200px;
+  }
 }
 
 .legend {
@@ -263,6 +271,13 @@
   border: 1px solid rgba(58, 134, 255, 0.15);
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
   aspect-ratio: 16 / 9;
+  min-height: 320px;
+
+  @media (max-width: 768px) {
+    aspect-ratio: 4 / 3;
+    min-height: 280px;
+    border-radius: 12px;
+  }
 }
 
 .tvWidget {

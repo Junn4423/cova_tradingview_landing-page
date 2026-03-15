@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion';
-import { BookOpen, ChevronRight, ExternalLink, Check, X, Info } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { BookOpen, ChevronRight, ExternalLink, Check, X, Info, ZoomIn } from 'lucide-react';
 import styles from './Education.module.scss';
 import { use3DTilt, useRipple, injectRippleKeyframe } from '../../utils/animations';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const modules = [
   {
@@ -135,7 +135,7 @@ const tiers = [
   },
 ];
 
-const ModuleCard = ({ mod, index }) => {
+const ModuleCard = ({ mod, index, onImageClick }) => {
   const tilt = use3DTilt({ maxTilt: 8, scale: 1.025, glare: 0.1 });
   const { createRipple, Ripples } = useRipple();
   return (
@@ -153,8 +153,14 @@ const ModuleCard = ({ mod, index }) => {
     >
       <div style={tilt.shineStyle} />
       <Ripples />
-      <div className={styles.moduleImage}>
+      <div
+        className={styles.moduleImage}
+        onClick={(e) => { e.stopPropagation(); onImageClick(mod.imgUrl, mod.title); }}
+        style={{ cursor: 'zoom-in' }}
+        title="Click to enlarge"
+      >
         <img src={mod.imgUrl} alt={mod.title} loading="lazy" />
+        <span className={styles.zoomHint}><ZoomIn size={16} /></span>
         <span className={styles.moduleTag} style={{ background: mod.tagColor + '22', color: mod.tagColor, border: `1px solid ${mod.tagColor}44` }}>
           {mod.tag}
         </span>
@@ -238,6 +244,15 @@ const TierCard = ({ tier, index }) => {
 const Education = () => {
   useEffect(() => { injectRippleKeyframe(); }, []);
 
+  const [lightbox, setLightbox] = useState(null); // { src, title }
+
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e) => { if (e.key === 'Escape') setLightbox(null); };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [lightbox]);
+
   return (
     <section id="education" className={styles.education}>
       <div className={styles.container}>
@@ -261,7 +276,7 @@ const Education = () => {
 
         <div className={styles.modulesGrid}>
           {modules.map((mod, i) => (
-            <ModuleCard key={i} mod={mod} index={i} />
+            <ModuleCard key={i} mod={mod} index={i} onImageClick={(src, title) => setLightbox({ src, title })} />
           ))}
         </div>
 
@@ -283,6 +298,41 @@ const Education = () => {
           </div>
         </motion.div>
       </div>
+      {/* Lightbox overlay */}
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            className={styles.lightboxOverlay}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setLightbox(null)}
+          >
+            <motion.img
+              src={lightbox.src}
+              alt={lightbox.title}
+              className={styles.lightboxImage}
+              initial={{ scale: 0.85, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.85, opacity: 0 }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              onClick={(e) => e.stopPropagation()}
+            />
+            <motion.button
+              className={styles.lightboxClose}
+              onClick={() => setLightbox(null)}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.2 }}
+              aria-label="Close image"
+            >
+              <X size={22} />
+            </motion.button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

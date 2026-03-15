@@ -8,13 +8,29 @@ const ChartShowcase = () => {
   const containerRef = useRef(null);
   const svgRef       = useRef(null);
 
+  // Detect mobile / touch device — disable heavy effects
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined'
+      ? window.matchMedia('(hover: none) and (pointer: coarse), (max-width: 768px)').matches
+      : false
+  );
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: none) and (pointer: coarse), (max-width: 768px)');
+    const h = (e) => setIsMobile(e.matches);
+    mq.addEventListener('change', h);
+    return () => mq.removeEventListener('change', h);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start end', 'end start'],
   });
 
-  const y       = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+  // Parallax — disabled on mobile (too GPU-heavy)
+  const yDesktop       = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const opacityDesktop = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+  const y       = isMobile ? 0 : yDesktop;
+  const opacity = isMobile ? 1 : opacityDesktop;
 
   // ── Real Binance OHLCV data ────────────────────────────────────────────
   const [apiCandles, setApiCandles] = useState(null);
@@ -51,13 +67,14 @@ const ChartShowcase = () => {
 
   useEffect(() => { fetchData(activeTab); }, [activeTab, fetchData]);
 
-  // Live price tick (once on mount)
+  // Live price tick — skip WebSocket on mobile to save battery/bandwidth
   useEffect(() => {
+    if (isMobile) return;
     const ws = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@trade');
     ws.onmessage = (e) => { try { setLivePrice(parseFloat(JSON.parse(e.data).p)); } catch {} };
     ws.onerror = () => {};
     return () => ws.close();
-  }, []);
+  }, [isMobile]);
 
   // ── Fallback static data ──────────────────────────────────────────────
   const staticCandles = useMemo(() => {
@@ -79,11 +96,12 @@ const ChartShowcase = () => {
   const candlesticks = apiCandles ?? staticCandles;
 
   // ── SVG layout ────────────────────────────────────────────────────────
-  const SVG_W = 950, SVG_H = 550, PAD_X = 60, PAD_Y = 50, VOL_H = 60;
+  // PAD_LEFT: left gutter for zone labels. PAD_RIGHT: right gutter for price axis + live price badge.
+  const SVG_W = 950, SVG_H = 550, PAD_LEFT = 130, PAD_RIGHT = 72, PAD_Y = 50, VOL_H = 60;
   const chartH = SVG_H - PAD_Y - VOL_H - 20;
 
   const mapped = useMemo(() => {
-    const candleW = (SVG_W - PAD_X * 2) / Math.max(candlesticks.length, 1);
+    const candleW = (SVG_W - PAD_LEFT - PAD_RIGHT) / Math.max(candlesticks.length, 1);
     const prices  = candlesticks.flatMap((c) => [c.high, c.low]);
     const minP = Math.min(...prices);
     const maxP = Math.max(...prices);
@@ -92,7 +110,7 @@ const ChartShowcase = () => {
     const maxVol = Math.max(...candlesticks.map((c) => c.volume));
 
     return candlesticks.map((c, i) => {
-      const cx = PAD_X + i * candleW + candleW / 2;
+      const cx = PAD_LEFT + i * candleW + candleW / 2;
       const bodyTop    = py(Math.max(c.open, c.close));
       const bodyBottom = py(Math.min(c.open, c.close));
       return {
@@ -127,9 +145,9 @@ const ChartShowcase = () => {
   const pct          = (((displayPrice - firstPrice) / firstPrice) * 100).toFixed(2);
   const isPosChange  = parseFloat(pct) >= 0;
 
-  // ── 3D mouse tilt ────────────────────────────────────────────────────
+  // ── 3D mouse tilt — desktop only ────────────────────────────────────
   const handleSvgMouseMove = (e) => {
-    if (!svgRef.current) return;
+    if (isMobile || !svgRef.current) return;
     const r = svgRef.current.getBoundingClientRect();
     const rx =  ((e.clientY - r.top  - r.height / 2) / r.height) * -6;
     const ry =  ((e.clientX - r.left - r.width  / 2) / r.width)  *  6;
@@ -141,11 +159,17 @@ const ChartShowcase = () => {
   };
 
   const handleCandleEnter = (i) => {
-    if (!pinnedCandle) setHoverCandle({ idx: i, m: mapped[i] });
+    if (isMobile || pinnedCandle) return;
+    setHoverCandle({ idx: i, m: mapped[i] });
   };
   const handleCandleClick = (i) => {
     setPinnedCandle((prev) => (prev?.idx === i ? null : { idx: i, m: mapped[i] }));
     setHoverCandle(null);
+  };
+  // Touch: tap candle to pin/unpin tooltip
+  const handleCandleTouch = (i, e) => {
+    e.preventDefault();
+    handleCandleClick(i);
   };
 
   const activeInfo = pinnedCandle ?? hoverCandle;
@@ -214,24 +238,25 @@ const ChartShowcase = () => {
             </div>
           </div>
 
-          {/* 3D Chart Container */}
+          {/* 3D Chart Container — tilt disabled on mobile */}
           <motion.div
             className={styles.chartContainer}
-            animate={{
+            animate={isMobile ? {} : {
               rotateX: tilt.rx,
               rotateY: tilt.ry,
               transformPerspective: 1400,
             }}
             transition={{ type: 'spring', stiffness: 180, damping: 28 }}
-            style={{ transformStyle: 'preserve-3d' }}
+            style={isMobile ? {} : { transformStyle: 'preserve-3d' }}
           >
             <svg
               ref={svgRef}
               viewBox={`0 0 ${SVG_W} ${SVG_H}`}
               className={styles.chartSvg}
               preserveAspectRatio="xMidYMid meet"
-              onMouseMove={handleSvgMouseMove}
-              onMouseLeave={handleSvgMouseLeave}
+              onMouseMove={isMobile ? undefined : handleSvgMouseMove}
+              onMouseLeave={isMobile ? undefined : handleSvgMouseLeave}
+              onTouchEnd={isMobile ? () => { if (!pinnedCandle) setHoverCandle(null); } : undefined}
             >
               <defs>
                 <linearGradient id="showcaseLineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -258,16 +283,19 @@ const ChartShowcase = () => {
               {/* Zone backgrounds */}
               {zones.map((zone, i) => (
                 <g key={i}>
-                  <motion.rect x="50" y={zone.y} width="880" height="90"
+                  <motion.rect x="0" y={zone.y} width={SVG_W} height="90"
                     fill={zone.color} opacity="0.06" rx="8"
-                    initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }}
-                    viewport={{ once: false }}
+                    initial={isMobile ? false : { scaleX: 0 }}
+                    whileInView={isMobile ? undefined : { scaleX: 1 }}
+                    viewport={{ once: true }}
                     transition={{ delay: 0.2 + i * 0.1, duration: 0.8 }}
                     style={{ transformOrigin: 'left' }} />
-                  <motion.text x="65" y={zone.y + 25} fill={zone.color}
+                  <motion.text x="8" y={zone.y + 25} fill={zone.color}
                     fontSize="11" fontWeight="600" opacity="0.8"
-                    initial={{ opacity: 0 }} whileInView={{ opacity: 0.8 }}
-                    viewport={{ once: false }} transition={{ delay: 0.5 + i * 0.1 }}>
+                    initial={isMobile ? false : { opacity: 0 }}
+                    whileInView={isMobile ? undefined : { opacity: 0.8 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5 + i * 0.1 }}>
                     {zone.label.toUpperCase()}
                   </motion.text>
                 </g>
@@ -275,7 +303,7 @@ const ChartShowcase = () => {
 
               {/* Grid lines */}
               {[0, 1, 2, 3, 4, 5].map((i) => (
-                <line key={i} x1="50" y1={80 + i * 80} x2="930" y2={80 + i * 80}
+                <line key={i} x1="0" y1={80 + i * 80} x2={SVG_W - PAD_RIGHT} y2={80 + i * 80}
                   stroke="rgba(255,255,255,0.04)" strokeWidth="1" />
               ))}
 
@@ -285,8 +313,9 @@ const ChartShowcase = () => {
                   x={c.bodyX} y={SVG_H - c.volH - 8} width={c.candleW} height={c.volH}
                   fill={c.isGreen ? 'rgba(0,245,160,0.25)' : 'rgba(255,107,107,0.25)'}
                   rx="2"
-                  initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }}
-                  viewport={{ once: false }}
+                  initial={isMobile ? false : { scaleY: 0 }}
+                  whileInView={isMobile ? undefined : { scaleY: 1 }}
+                  viewport={{ once: true }}
                   transition={{ delay: 0.5 + i * 0.015, duration: 0.3 }}
                   style={{ transformOrigin: 'bottom' }} />
               ))}
@@ -302,9 +331,10 @@ const ChartShowcase = () => {
                     filter={isActive ? 'url(#candleHoverGlow)' : undefined}
                     animate={{ opacity: dim }}
                     transition={{ duration: 0.12 }}
-                    onMouseEnter={() => handleCandleEnter(i)}
-                    onMouseLeave={() => { if (!pinnedCandle) setHoverCandle(null); }}
+                    onMouseEnter={isMobile ? undefined : () => handleCandleEnter(i)}
+                    onMouseLeave={isMobile ? undefined : () => { if (!pinnedCandle) setHoverCandle(null); }}
                     onClick={() => handleCandleClick(i)}
+                    onTouchEnd={isMobile ? (e) => handleCandleTouch(i, e) : undefined}
                     style={{ cursor: 'crosshair' }}
                   >
                     {/* Hover highlight */}
@@ -316,9 +346,9 @@ const ChartShowcase = () => {
                     {/* Wick */}
                     <motion.line x1={c.cx} y1={c.highY} x2={c.cx} y2={c.lowY}
                       stroke={color} strokeWidth={isActive ? '2' : '1.5'}
-                      initial={{ opacity: 0, scaleY: 0 }}
-                      whileInView={{ opacity: 1, scaleY: 1 }}
-                      viewport={{ once: false }}
+                      initial={isMobile ? false : { opacity: 0, scaleY: 0 }}
+                      whileInView={isMobile ? undefined : { opacity: 1, scaleY: 1 }}
+                      viewport={{ once: true }}
                       transition={{ delay: 0.3 + i * 0.02, duration: 0.4 }}
                       style={{ transformOrigin: `${c.cx}px ${c.bodY}px` }} />
                     {/* Body */}
@@ -327,9 +357,9 @@ const ChartShowcase = () => {
                       stroke={color} strokeWidth={c.isGreen ? 0 : isActive ? '1.5' : '1'}
                       fillOpacity={c.isGreen ? (isActive ? 1 : 0.85) : 0}
                       rx="2"
-                      initial={{ opacity: 0, scaleY: 0 }}
-                      whileInView={{ opacity: 1, scaleY: 1 }}
-                      viewport={{ once: false }}
+                      initial={isMobile ? false : { opacity: 0, scaleY: 0 }}
+                      whileInView={isMobile ? undefined : { opacity: 1, scaleY: 1 }}
+                      viewport={{ once: true }}
                       transition={{ delay: 0.3 + i * 0.02, duration: 0.4 }}
                       style={{ transformOrigin: `${c.cx}px ${c.bodyY}px` }} />
                   </motion.g>
@@ -339,15 +369,17 @@ const ChartShowcase = () => {
               {/* MA line */}
               <motion.path d={maLine} fill="none" stroke="url(#showcaseLineGradient)"
                 strokeWidth="2.5" strokeLinecap="round" filter="url(#showcaseGlow)"
-                initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }}
-                viewport={{ once: false }} transition={{ delay: 1, duration: 2, ease: 'easeInOut' }} />
+                initial={isMobile ? false : { pathLength: 0 }}
+                whileInView={isMobile ? undefined : { pathLength: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 1, duration: 2, ease: 'easeInOut' }} />
 
               {/* Crosshair for active candle */}
               <AnimatePresence>
                 {activeInfo && (
                   <motion.line key="cross"
                     x1={activeInfo.m.cx} y1={PAD_Y}
-                    x2={activeInfo.m.cx} y2={SVG_H - VOL_H - 10}
+                    x2={activeInfo.m.cx} y2={PAD_Y + chartH}
                     stroke={pinnedCandle ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.15)'}
                     strokeWidth="1" strokeDasharray="4 4"
                     initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} />
@@ -360,7 +392,7 @@ const ChartShowcase = () => {
                   const m = activeInfo.m;
                   const color = m.isGreen ? '#00F5A0' : '#FF6B6B';
                   const fmt = (n) => n >= 1000 ? `$${(n/1000).toFixed(1)}K` : `$${n.toFixed(1)}`;
-                  const tx = m.cx + 145 > SVG_W - 40 ? m.cx - 155 : m.cx + 14;
+                  const tx = m.cx + 148 > SVG_W - PAD_RIGHT ? m.cx - 155 : m.cx + 14;
                   const ty = Math.max(PAD_Y + 4, Math.min(m.bodyY - 30, SVG_H - 155));
                   return (
                     <motion.g key={activeInfo.idx}
@@ -403,7 +435,7 @@ const ChartShowcase = () => {
                 const p = maxP - (i / 4) * (maxP - minP);
                 const yPos = PAD_Y + (i / 4) * chartH;
                 return (
-                  <text key={i} x="940" y={yPos + 4}
+                    <text key={i} x={SVG_W - 4} y={yPos + 4}
                     fill="rgba(255,255,255,0.3)" fontSize="10" textAnchor="end">
                     {p >= 1000 ? `$${(p/1000).toFixed(1)}K` : `$${p.toFixed(0)}`}
                   </text>
@@ -415,14 +447,19 @@ const ChartShowcase = () => {
                 const prices = mapped.flatMap((c) => [c.high, c.low]);
                 const minP = Math.min(...prices), maxP = Math.max(...prices);
                 const range = maxP - minP || 1;
-                const priceY = PAD_Y + ((maxP - displayPrice) / range) * chartH;
-                return (
-                  <motion.g initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
-                    viewport={{ once: false }} transition={{ delay: 1.5 }}>
-                    <line x1="50" y1={priceY} x2="890" y2={priceY}
-                      stroke="#3A86FF" strokeWidth="1" strokeDasharray="5,5" opacity="0.5" />
-                    <rect x="860" y={priceY - 10} width="68" height="20" fill="#3A86FF" rx="4" />
-                    <text x="894" y={priceY + 4} fill="#0B132B"
+                  // Clamp live price line within chart bounds (WebSocket price may be newer than candlestick range)
+                  const rawPriceY = PAD_Y + ((maxP - displayPrice) / range) * chartH;
+                  const priceY = Math.max(PAD_Y + 12, Math.min(PAD_Y + chartH - 12, rawPriceY));
+                  return (
+                    <motion.g
+                      initial={isMobile ? false : { opacity: 0 }}
+                      whileInView={isMobile ? undefined : { opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 1.5 }}>
+                      <line x1="0" y1={priceY} x2={SVG_W - PAD_RIGHT} y2={priceY}
+                        stroke="#3A86FF" strokeWidth="1" strokeDasharray="5,5" opacity="0.5" />
+                      <rect x={SVG_W - PAD_RIGHT + 2} y={priceY - 10} width={PAD_RIGHT - 8} height="20" fill="#3A86FF" rx="4" />
+                      <text x={SVG_W - PAD_RIGHT / 2 - 1} y={priceY + 4} fill="#0B132B"
                       fontSize="10" fontWeight="700" textAnchor="middle">
                       {displayPrice >= 1000 ? `$${(displayPrice/1000).toFixed(1)}K` : `$${displayPrice.toFixed(0)}`}
                     </text>
@@ -437,7 +474,7 @@ const ChartShowcase = () => {
             {zones.map((zone, i) => (
               <motion.div key={i} className={styles.legendItem}
                 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }} transition={{ delay: 0.8 + i * 0.1 }}>
+                viewport={{ once: true }} transition={{ delay: 0.8 + i * 0.1 }}>
                 <span className={styles.legendDot} style={{ background: zone.color }} />
                 <span className={styles.legendLabel}>{zone.label}</span>
               </motion.div>
@@ -473,7 +510,13 @@ const ChartShowcase = () => {
           <div className={styles.tvWidgetContainer}>
             <iframe
               className={styles.tvWidget}
-              src="https://s.tradingview.com/widgetembed/?hideideas=1&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&locale=en#%7B%22symbol%22%3A%22BINANCE%3ABTCUSDT%22%2C%22frameElementId%22%3A%22tradingview_4color%22%2C%22interval%22%3A%22D%22%2C%22hide_side_toolbar%22%3A%220%22%2C%22allow_symbol_change%22%3A%221%22%2C%22save_image%22%3A%220%22%2C%22studies%22%3A%22%5B%5D%22%2C%22theme%22%3A%22dark%22%2C%22style%22%3A%221%22%2C%22timezone%22%3A%22Etc%2FUTC%22%2C%22studies_overrides%22%3A%22%7B%7D%22%2C%22utm_source%22%3A%224colorsystem.com%22%2C%22utm_medium%22%3A%22widget_new%22%2C%22utm_campaign%22%3A%22chart%22%2C%22utm_term%22%3A%22BINANCE%3ABTCUSDT%22%2C%22page-uri%22%3A%224colorsystem.com%22%7D"
+              src={
+                isMobile
+                  // Mobile: hide sidebar + toolbars to maximise chart area
+                  ? "https://s.tradingview.com/widgetembed/?hideideas=1&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&locale=en#%7B%22symbol%22%3A%22BINANCE%3ABTCUSDT%22%2C%22frameElementId%22%3A%22tradingview_4color_m%22%2C%22interval%22%3A%22D%22%2C%22hide_side_toolbar%22%3A%221%22%2C%22allow_symbol_change%22%3A%221%22%2C%22save_image%22%3A%220%22%2C%22studies%22%3A%22%5B%5D%22%2C%22theme%22%3A%22dark%22%2C%22style%22%3A%221%22%2C%22timezone%22%3A%22Etc%2FUTC%22%2C%22studies_overrides%22%3A%22%7B%7D%22%2C%22utm_source%22%3A%224colorsystem.com%22%2C%22utm_medium%22%3A%22widget_new%22%2C%22utm_campaign%22%3A%22chart%22%2C%22utm_term%22%3A%22BINANCE%3ABTCUSDT%22%2C%22page-uri%22%3A%224colorsystem.com%22%7D"
+                  // Desktop: show sidebar
+                  : "https://s.tradingview.com/widgetembed/?hideideas=1&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&locale=en#%7B%22symbol%22%3A%22BINANCE%3ABTCUSDT%22%2C%22frameElementId%22%3A%22tradingview_4color%22%2C%22interval%22%3A%22D%22%2C%22hide_side_toolbar%22%3A%220%22%2C%22allow_symbol_change%22%3A%221%22%2C%22save_image%22%3A%220%22%2C%22studies%22%3A%22%5B%5D%22%2C%22theme%22%3A%22dark%22%2C%22style%22%3A%221%22%2C%22timezone%22%3A%22Etc%2FUTC%22%2C%22studies_overrides%22%3A%22%7B%7D%22%2C%22utm_source%22%3A%224colorsystem.com%22%2C%22utm_medium%22%3A%22widget_new%22%2C%22utm_campaign%22%3A%22chart%22%2C%22utm_term%22%3A%22BINANCE%3ABTCUSDT%22%2C%22page-uri%22%3A%224colorsystem.com%22%7D"
+              }
               title="TradingView Chart — BTC/USD"
               frameBorder="0"
               allowTransparency="true"

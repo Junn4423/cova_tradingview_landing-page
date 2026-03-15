@@ -1,7 +1,6 @@
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { ArrowRight, PlayCircle, TrendingUp, Shield, Zap, ChevronRight } from 'lucide-react';
 import styles from './HeroLeft.module.scss';
-import { useCountUp } from '../../utils/animations';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -45,11 +44,6 @@ const stats = [
 ];
 
 const StatItem = ({ s }) => {
-  const { ref, display } = useCountUp({
-    end: s.countEnd ?? 0,
-    decimals: s.decimals ?? 0,
-    suffix: s.suffix ?? '',
-  });
   return (
     <motion.div
       className={styles.stat}
@@ -60,8 +54,8 @@ const StatItem = ({ s }) => {
         <s.icon size={18} />
       </div>
       <div className={styles.statBody}>
-        <span ref={s.countEnd != null ? ref : undefined} className={styles.statValue} style={{ color: s.color }}>
-          {s.countEnd != null ? display : s.value}
+        <span className={styles.statValue} style={{ color: s.color }}>
+          {s.value}
         </span>
         <span className={styles.statLabel}>{s.label}</span>
       </div>
