@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, Globe } from 'lucide-react';
 import styles from './Navbar.module.scss';
@@ -25,6 +25,7 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langMenuOpen, setLangMenuOpen]     = useState(false);
   const [currentLang, setCurrentLang]       = useState(languages[0]);
+  const langDropdownRef = useRef(null);
 
 
   useEffect(() => {
@@ -33,10 +34,25 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close language dropdown on click outside
+  useEffect(() => {
+    if (!langMenuOpen) return;
+    const handleClickOutside = (e) => {
+      if (langDropdownRef.current && !langDropdownRef.current.contains(e.target)) {
+        setLangMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [langMenuOpen]);
+
   const handleLanguageChange = (lang) => {
     setCurrentLang(lang);
     setLangMenuOpen(false);
     window.__triggerGoogleTranslate?.(lang.code);
+    // RTL support: set dir attribute on <html> for Arabic
+    document.documentElement.dir = lang.code === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.lang = lang.code;
   };
 
 
@@ -87,7 +103,7 @@ const Navbar = () => {
         {/* Right Side Actions */}
         <div className={styles.navActions}>
           {/* Language Dropdown */}
-          <div className={styles.langDropdown}>
+          <div className={styles.langDropdown} ref={langDropdownRef}>
             <motion.button
               className={styles.langButton}
               onClick={() => setLangMenuOpen(!langMenuOpen)}

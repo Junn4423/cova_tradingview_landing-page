@@ -77,7 +77,7 @@ const Legal = () => (
         viewport={{ once: false }}
         transition={{ delay: 0.4 }}
       >
-        <p>These terms were last updated on March 15, 2026. For questions about these terms, please contact us at <a href="mailto:support@4colorsystem.com">support@4colorsystem.com</a>.</p>
+        <p>These terms were last updated on March 15, 2026. For questions about these terms, please contact us at <a href="mailto:minhptran9@gmail.com">minhptran9@gmail.com</a>.</p>
       </motion.div>
     </div>
   </section>

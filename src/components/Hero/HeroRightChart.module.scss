@@ -231,11 +231,64 @@
   }
 }
 
-.svg {
+// ── Static chart image ───────────────────────────────────────────────────────
+.chartImg {
+  display: block;
   width: 100%;
   height: auto;
-  display: block;
-  // Chart reacts to hover — cursor: crosshair via inline style on candle groups
+  min-height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.chartImgOverlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  background: linear-gradient(
+    135deg,
+    rgba(58, 134, 255, 0.08) 0%,
+    transparent 50%,
+    rgba(0, 245, 160, 0.06) 100%
+  );
+  pointer-events: none;
+}
+
+.chartTag {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(11, 19, 43, 0.82);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 245, 160, 0.2);
+  border-radius: 20px;
+  padding: 3px 10px 3px 7px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+}
+
+.chartTagDot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00F5A0;
+  animation: pulse-dot 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.3; transform: scale(0.7); }
+}
+
+.chartTagText {
+  color: #00F5A0;
 }
 
 // ── Metrics row ───────────────────────────────────────────────────────────────

@@ -832,7 +832,7 @@ const navLinks = [
 - [x] Giảm opacity/blur background orbs + ThreeBackground → clear, không sương mù
 - [x] Hero CTA buttons: "Access Lite version" + "Watch demo on Youtube"
 - [x] Thêm link "Education & Trading" dưới CTA buttons
-- [ ] Hero chart: sử dụng ảnh Lite chart thay vì SVG animation
+- [x] Hero chart: sử dụng ảnh Lite chart thay vì SVG animation
 - [x] Pricing cards: 4 plans (Lite/Pro/Elite/Hubs) thay vì 3 (Starter/Professional/Elite)
 - [x] Pricing cards: thêm ảnh chart mẫu cho mỗi plan
 - [x] Pricing cards: badge PUBLIC/COMING SOON
@@ -856,7 +856,7 @@ const navLinks = [
 
 - [x] Navbar language dropdown: 5 ngôn ngữ (EN, Mandarin, Cantonese, Arab, Spanish)
 - [x] Xóa Vietnamese + French khỏi dropdown
-- [ ] RTL support cho Arabic (nếu cần)
+- [x] RTL support cho Arabic (nếu cần)
 
 ### Trang mới / Section mới:
 

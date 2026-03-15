@@ -116,7 +116,7 @@ const LiveStream = () => {
             Watch the Market <span className={styles.gradient}>Live</span>
           </h2>
           <p className={styles.subtitle}>
-            Real-time market analysis streaming 24/7. Learn from live trades, pattern recognition, and zone identification as they happen.
+            Watch real 4-Color zone mapping, FVG identification, and Orderflow analysis as they happen — live education directly from the chart.
           </p>
         </motion.div>
 

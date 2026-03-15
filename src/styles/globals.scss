@@ -692,3 +692,37 @@ body::before {
   border-radius: 4px;
 }
 
+// ── RTL (Right-to-Left) support for Arabic ───────────────────────────────────
+// Applied when html[dir="rtl"] is set (e.g., when Arabic language is selected)
+html[dir='rtl'] {
+
+  // Flip flex row directions
+  .app,
+  nav,
+  header,
+  footer {
+    direction: rtl;
+  }
+
+  // Text alignment for prose blocks
+  p,
+  h1, h2, h3, h4, h5, h6,
+  li,
+  label,
+  span {
+    text-align: start;
+  }
+
+  // Section dividers stay horizontal
+  .section-divider {
+    transform: none;
+  }
+
+  // Scroll progress bar origin flips
+  #scroll-progress {
+    right: 0;
+    left: auto;
+    transform-origin: right center;
+  }
+}
+

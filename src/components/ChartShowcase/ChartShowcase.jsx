@@ -173,7 +173,7 @@ const ChartShowcase = () => {
             See the <span className={`${styles.gradient} notranslate`}>4Color System</span> in Action
           </h2>
           <p className={styles.subtitle}>
-            Watch how our color-coded zones help identify high-probability trading setups in real-time market conditions.
+            Real-time BTC/USD chart overlaid with 4-Color zone logic — Accumulation, Expansion, Distribution, and Reset phases visible as they form.
           </p>
         </motion.div>
 
@@ -442,6 +442,45 @@ const ChartShowcase = () => {
                 <span className={styles.legendLabel}>{zone.label}</span>
               </motion.div>
             ))}
+          </div>
+        </motion.div>
+
+        {/* TradingView Interactive Chart Widget */}
+        <motion.div
+          className={styles.tvWidgetSection}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.7 }}
+        >
+          <div className={styles.tvWidgetHeader}>
+            <h3 className={styles.tvWidgetTitle}>
+              Interactive <span className={styles.gradient}>TradingView</span> Chart
+            </h3>
+            <p className={styles.tvWidgetSubtitle}>
+              Explore live market data directly on TradingView. Add the{' '}
+              <a
+                href="https://www.tradingview.com/script/dWscMbbP-Four-Color-Order-Flow-System/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.tvLink}
+              >
+                4-Color System™ indicator
+              </a>{' '}
+              to see the full power.
+            </p>
+          </div>
+          <div className={styles.tvWidgetContainer}>
+            <iframe
+              className={styles.tvWidget}
+              src="https://s.tradingview.com/widgetembed/?hideideas=1&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&locale=en#%7B%22symbol%22%3A%22BINANCE%3ABTCUSDT%22%2C%22frameElementId%22%3A%22tradingview_4color%22%2C%22interval%22%3A%22D%22%2C%22hide_side_toolbar%22%3A%220%22%2C%22allow_symbol_change%22%3A%221%22%2C%22save_image%22%3A%220%22%2C%22studies%22%3A%22%5B%5D%22%2C%22theme%22%3A%22dark%22%2C%22style%22%3A%221%22%2C%22timezone%22%3A%22Etc%2FUTC%22%2C%22studies_overrides%22%3A%22%7B%7D%22%2C%22utm_source%22%3A%224colorsystem.com%22%2C%22utm_medium%22%3A%22widget_new%22%2C%22utm_campaign%22%3A%22chart%22%2C%22utm_term%22%3A%22BINANCE%3ABTCUSDT%22%2C%22page-uri%22%3A%224colorsystem.com%22%7D"
+              title="TradingView Chart — BTC/USD"
+              frameBorder="0"
+              allowTransparency="true"
+              scrolling="no"
+              allowFullScreen
+              loading="lazy"
+            />
           </div>
         </motion.div>
       </div>

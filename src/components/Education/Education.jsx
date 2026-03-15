@@ -38,6 +38,22 @@ const modules = [
     tag: 'Essential',
     tagColor: '#FF9F1C',
   },
+  {
+    title: 'Metals & Commodities Analysis',
+    description: 'Apply 4-Color zone logic to Gold, Silver and commodity markets. Understand how macro liquidity flows affect metal pricing.',
+    level: 'Intermediate',
+    imgUrl: '/images/Metal.jpg',
+    tag: 'Asset Class',
+    tagColor: '#FFD700',
+  },
+  {
+    title: 'Stock Market Structure',
+    description: 'Read institutional order flow in equities. Learn how to identify accumulation and distribution phases in stock markets using the 4-Color framework.',
+    level: 'Advanced',
+    imgUrl: '/images/Stock.jpg',
+    tag: 'Equities',
+    tagColor: '#FF6B6B',
+  },
 ];
 
 const tiers = [
@@ -90,8 +106,8 @@ const tiers = [
     ],
     analogy: 'Checking supplier stability and customer demand before ordering inventory.',
     cta: 'Join Pro Waitlist',
-    ctaLink: '#cta',
-    ctaExternal: false,
+    ctaLink: 'https://mail.google.com/mail/?view=cm&fs=1&to=minhptran9@gmail.com&su=Join%20Pro%20Waitlist%20%E2%80%93%204Color%20System&body=Hi%204Color%20System%20Team%2C%0A%0AI%20am%20interested%20in%20joining%20the%20Pro%20Waitlist%20after%20reviewing%20the%20education%20content.%0A%0APlease%20let%20me%20know%20when%20Pro%20is%20available.%0A%0AThank%20you!',
+    ctaExternal: true,
   },
   {
     name: 'Elite',
@@ -114,8 +130,8 @@ const tiers = [
     excluded: [],
     analogy: 'You know exactly when wholesalers stop dumping inventory and buyers start paying higher prices.',
     cta: 'Apply for Elite',
-    ctaLink: '#cta',
-    ctaExternal: false,
+    ctaLink: 'https://mail.google.com/mail/?view=cm&fs=1&to=minhptran9@gmail.com&su=Apply%20for%20Elite%20%E2%80%93%204Color%20System&body=Hi%204Color%20System%20Team%2C%0A%0AI%20would%20like%20to%20apply%20for%20the%20Elite%20version%20after%20reviewing%20the%20education%20content.%0A%0APlease%20send%20me%20more%20details.%0A%0AThank%20you!',
+    ctaExternal: true,
   },
 ];
 
@@ -147,10 +163,15 @@ const ModuleCard = ({ mod, index }) => {
       <div className={styles.moduleContent}>
         <h3 className={styles.moduleTitle}>{mod.title}</h3>
         <p className={styles.moduleDesc}>{mod.description}</p>
-        <button className={styles.moduleBtn}>
+        <a
+          href={`https://mail.google.com/mail/?view=cm&fs=1&to=minhptran9@gmail.com&su=${encodeURIComponent('Education Inquiry – ' + mod.title)}&body=${encodeURIComponent(`Hi 4Color System Team,\n\nI am interested in the "${mod.title}" module (${mod.level}).\n\nPlease send me more details about this self-study content.\n\nThank you!`)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.moduleBtn}
+        >
           <BookOpen size={15} />
           <span>Self-Study Module</span>
-        </button>
+        </a>
       </div>
     </motion.div>
   );
@@ -233,7 +254,7 @@ const Education = () => {
             <span className={styles.gradient}>Your Own Pace</span>
           </h2>
           <p className={styles.subtitle}>
-            4 structured modules designed for independent learners. No live classes, no scheduled sessions —
+            6 structured modules designed for independent learners. No live classes, no scheduled sessions —
             study when you are ready, at the depth you choose.
           </p>
         </motion.div>

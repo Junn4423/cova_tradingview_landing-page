@@ -27,17 +27,17 @@ function makeStars(count, W, H) {
     y:  rng() * H,
     vx: (rng() - 0.5) * 0.25,
     vy: (rng() - 0.5) * 0.25,
-    r:  0.8 + rng() * 1.6,
+    r:  0.8 + rng() * 1.4,
     color: palette[i % palette.length],
-    baseAlpha: 0.25 + rng() * 0.45,
+    baseAlpha: 0.12 + rng() * 0.25,
     alpha: 0,
   }));
 }
 
 const LINK_DIST   = 160;   // max px between linked stars (desktop)
 const LINK_DIST_M = 100;   // max px between linked stars (mobile)
-const CURSOR_DIST = 260;   // cursor influence radius
-const PULL_FORCE  = 0.018; // how much cursor attracts stars
+const CURSOR_DIST = 220;   // cursor influence radius
+const PULL_FORCE  = 0.012; // how much cursor attracts stars
 
 const ConstellationBackground = () => {
   const canvasRef  = useRef(null);
@@ -75,9 +75,9 @@ const ConstellationBackground = () => {
       // Update spotlight overlay
       if (spotRef.current) {
         spotRef.current.style.background = `radial-gradient(
-          600px circle at ${e.clientX}px ${e.clientY}px,
-          rgba(58,134,255,0.07) 0%,
-          rgba(0,212,255,0.035) 30%,
+          500px circle at ${e.clientX}px ${e.clientY}px,
+          rgba(58,134,255,0.04) 0%,
+          rgba(0,212,255,0.018) 30%,
           transparent 70%
         )`;
       }
@@ -121,7 +121,7 @@ const ConstellationBackground = () => {
             const d  = Math.hypot(dx, dy);
             if (d > linkDist) continue;
 
-            const lineAlpha = (1 - d / linkDist) * 0.13;
+            const lineAlpha = (1 - d / linkDist) * 0.07;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
@@ -168,7 +168,7 @@ const ConstellationBackground = () => {
 
           // Alpha: brighter near cursor
           const proximity = Math.max(0, 1 - dist / CURSOR_DIST);
-          const targetAlpha = s.baseAlpha + proximity * 0.38;
+          const targetAlpha = s.baseAlpha + proximity * 0.20;
           s.alpha += (targetAlpha - s.alpha) * 0.08;
         }
 
@@ -185,7 +185,7 @@ const ConstellationBackground = () => {
             const mdist = Math.hypot(mouse.x - midX, mouse.y - midY);
             const nearCursor = mdist < CURSOR_DIST;
 
-            const lineAlpha = (1 - d / linkDist) * (nearCursor ? 0.49 : 0.12);
+            const lineAlpha = (1 - d / linkDist) * (nearCursor ? 0.22 : 0.06);
             const lineColor  = nearCursor ? `rgba(0,212,255,${lineAlpha})` : `rgba(58,134,255,${lineAlpha})`;
 
             ctx.beginPath();
@@ -204,7 +204,7 @@ const ConstellationBackground = () => {
             const d  = Math.hypot(dx, dy);
             if (d > CURSOR_DIST * 0.85) continue;
 
-            const rayAlpha = (1 - d / (CURSOR_DIST * 0.85)) * 0.31;
+            const rayAlpha = (1 - d / (CURSOR_DIST * 0.85)) * 0.14;
             const grad = ctx.createLinearGradient(mouse.x, mouse.y, s.x, s.y);
             grad.addColorStop(0, `rgba(0,212,255,${rayAlpha * 0.9})`);
             grad.addColorStop(1, `rgba(58,134,255,0)`);
@@ -229,11 +229,11 @@ const ConstellationBackground = () => {
 
           // Outer glow
           if (nearCursor) {
-            const glow = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, radius * 5);
-            glow.addColorStop(0, `rgba(0,212,255,${s.alpha * 0.28})`);
+            const glow = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, radius * 4);
+            glow.addColorStop(0, `rgba(0,212,255,${s.alpha * 0.12})`);
             glow.addColorStop(1, 'rgba(0,212,255,0)');
             ctx.beginPath();
-            ctx.arc(s.x, s.y, radius * 5, 0, Math.PI * 2);
+            ctx.arc(s.x, s.y, radius * 4, 0, Math.PI * 2);
             ctx.fillStyle = glow;
             ctx.fill();
           }
@@ -242,7 +242,7 @@ const ConstellationBackground = () => {
           ctx.beginPath();
           ctx.arc(s.x, s.y, radius, 0, Math.PI * 2);
           ctx.fillStyle = nearCursor
-            ? `rgba(0,212,255,${Math.min(0.7, s.alpha + 0.21)})`
+            ? `rgba(0,212,255,${Math.min(0.5, s.alpha + 0.12)})`
             : s.color.replace(')', `,${s.alpha})`).replace('rgb', 'rgba');
           ctx.fill();
         }

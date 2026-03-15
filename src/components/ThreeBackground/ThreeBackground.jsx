@@ -34,13 +34,13 @@ const FloatingShape = ({ position, color, type, speed = 1, distort = 0.3, scale 
     <MeshDistortMaterial
       color={color}
       emissive={color}
-      emissiveIntensity={0.15}
+      emissiveIntensity={0.05}
       distort={distort}
       speed={2}
-      opacity={0.18}
+      opacity={0.07}
       transparent
-      roughness={0.1}
-      metalness={0.8}
+      roughness={0.2}
+      metalness={0.7}
     />
   );
 
@@ -58,7 +58,7 @@ const FloatingShape = ({ position, color, type, speed = 1, distort = 0.3, scale 
 };
 
 // ── Particle field ────────────────────────────────────────────────────────────
-const Particles = ({ count = 180 }) => {
+const Particles = ({ count = 70 }) => {
   const points = useRef();
 
   const [positions, colors] = useMemo(() => {
@@ -99,7 +99,7 @@ const Particles = ({ count = 180 }) => {
         <bufferAttribute attach="attributes-position" array={positions} count={count} itemSize={3} />
         <bufferAttribute attach="attributes-color"    array={colors}    count={count} itemSize={3} />
       </bufferGeometry>
-      <pointsMaterial size={0.05} vertexColors transparent opacity={0.65} sizeAttenuation />
+      <pointsMaterial size={0.045} vertexColors transparent opacity={0.18} sizeAttenuation />
     </points>
   );
 };
@@ -117,7 +117,7 @@ const Ring = ({ position, color, radius = 3.5, speed = 0.3, tilt = 0 }) => {
   return (
     <mesh ref={mesh} position={position}>
       <torusGeometry args={[radius, 0.012, 8, 200]} />
-      <meshBasicMaterial color={color} transparent opacity={0.12} />
+      <meshBasicMaterial color={color} transparent opacity={0.045} />
     </mesh>
   );
 };
@@ -132,7 +132,7 @@ const Scene = ({ isMobile }) => {
     return (
       <>
         <ambientLight intensity={0.2} />
-        <Particles count={40} />
+        <Particles count={12} />
       </>
     );
   }
@@ -140,13 +140,13 @@ const Scene = ({ isMobile }) => {
   return (
     <>
       {/* Ambient + directional lights */}
-      <ambientLight intensity={0.3} />
-      <directionalLight position={[5, 8, 5]} intensity={0.6} color="#3A86FF" />
-      <directionalLight position={[-5, -4, 3]} intensity={0.4} color="#00F5A0" />
-      <pointLight position={[0, 4, 2]} intensity={0.8} color="#7B2CBF" distance={20} />
+      <ambientLight intensity={0.15} />
+      <directionalLight position={[5, 8, 5]} intensity={0.25} color="#3A86FF" />
+      <directionalLight position={[-5, -4, 3]} intensity={0.15} color="#00F5A0" />
+      <pointLight position={[0, 4, 2]} intensity={0.3} color="#7B2CBF" distance={20} />
 
       {/* Particle field — spans the entire scene */}
-      <Particles count={220} />
+      <Particles count={80} />
 
       {/* Floating 3D geometry objects */}
       <FloatingShape position={[-w * 0.32, 1.6, -4]}  color="#3A86FF" type="sphere"      speed={0.7}  distort={0.4}  scale={1.2} />

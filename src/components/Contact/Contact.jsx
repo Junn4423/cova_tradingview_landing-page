@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Youtube, MessageCircle, ExternalLink } from 'lucide-react';
+import { Mail, MapPin, Youtube, MessageCircle, ExternalLink, QrCode } from 'lucide-react';
 import styles from './Contact.module.scss';
 
 const contactItems = [
   {
     icon: Mail,
     label: 'Email Support',
-    value: 'support@4colorsystem.com',
-    href: 'mailto:support@4colorsystem.com',
+    value: 'minhptran9@gmail.com',
+    href: 'mailto:minhptran9@gmail.com',
     color: '#3A86FF',
   },
   {
@@ -22,8 +22,9 @@ const contactItems = [
     icon: MessageCircle,
     label: 'Community',
     value: 'Join our Community',
-    href: '#',
+    href: 'https://mail.google.com/mail/?view=cm&fs=1&to=minhptran9@gmail.com&su=Join%204Color%20System%20Community&body=Hi%204Color%20System%20Team%2C%0A%0AI%20would%20like%20to%20join%20the%204Color%20System%20community.%0A%0APlease%20let%20me%20know%20how%20I%20can%20connect%20with%20other%20traders.%0A%0AThank%20you!',
     color: '#7B2CBF',
+    external: true,
   },
   {
     icon: MapPin,
@@ -31,6 +32,15 @@ const contactItems = [
     value: 'Singapore',
     href: null,
     color: '#00F5A0',
+  },
+  {
+    icon: QrCode,
+    label: 'Scan to Access',
+    value: '4Color System on TradingView',
+    href: 'https://www.tradingview.com/script/dWscMbbP-Four-Color-Order-Flow-System/',
+    color: '#FFD700',
+    external: true,
+    qrImage: '/images/4ColorSystem_QR.jpeg',
   },
 ];
 
@@ -57,7 +67,7 @@ const Contact = () => (
         {contactItems.map((item, i) => (
           <motion.div
             key={i}
-            className={styles.card}
+            className={`${styles.card} ${item.qrImage ? styles.qrCard : ''}`}
             style={{ borderColor: item.color + '30' }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -65,26 +75,41 @@ const Contact = () => (
             transition={{ delay: i * 0.1, duration: 0.5 }}
             whileHover={{ y: -4 }}
           >
-            <div className={styles.iconWrap} style={{ background: item.color + '15', color: item.color }}>
-              <item.icon size={22} />
-            </div>
-            <div className={styles.info}>
-              <span className={styles.infoLabel}>{item.label}</span>
-              {item.href ? (
-                <a
-                  href={item.href}
-                  className={styles.infoValue}
-                  style={{ color: item.color }}
-                  target={item.external ? '_blank' : undefined}
-                  rel={item.external ? 'noopener noreferrer' : undefined}
-                >
-                  {item.value}
-                  {item.external && <ExternalLink size={13} />}
-                </a>
-              ) : (
-                <span className={styles.infoValue} style={{ color: item.color }}>{item.value}</span>
-              )}
-            </div>
+            {item.qrImage ? (
+              <a href={item.href} target="_blank" rel="noopener noreferrer" className={styles.qrLink}>
+                <img src={item.qrImage} alt={item.label} className={styles.qrImg} loading="lazy" />
+                <div className={styles.info}>
+                  <span className={styles.infoLabel}>{item.label}</span>
+                  <span className={styles.infoValue} style={{ color: item.color }}>
+                    {item.value}
+                    <ExternalLink size={13} />
+                  </span>
+                </div>
+              </a>
+            ) : (
+              <>
+                <div className={styles.iconWrap} style={{ background: item.color + '15', color: item.color }}>
+                  <item.icon size={22} />
+                </div>
+                <div className={styles.info}>
+                  <span className={styles.infoLabel}>{item.label}</span>
+                  {item.href ? (
+                    <a
+                      href={item.href}
+                      className={styles.infoValue}
+                      style={{ color: item.color }}
+                      target={item.external ? '_blank' : undefined}
+                      rel={item.external ? 'noopener noreferrer' : undefined}
+                    >
+                      {item.value}
+                      {item.external && <ExternalLink size={13} />}
+                    </a>
+                  ) : (
+                    <span className={styles.infoValue} style={{ color: item.color }}>{item.value}</span>
+                  )}
+                </div>
+              </>
+            )}
           </motion.div>
         ))}
       </div>

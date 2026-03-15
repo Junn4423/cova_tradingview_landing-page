@@ -182,9 +182,9 @@ const HeroLeft = () => {
 
       {/* Waitlist links from DOCX */}
       <motion.div variants={itemVariants} className={styles.waitlistLinks}>
-        <a href="#cta" className={styles.waitlistLink}>Join Pro Waitlist</a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=minhptran9@gmail.com&su=Join%20Pro%20Waitlist%20%E2%80%93%204Color%20System&body=Hi%204Color%20System%20Team%2C%0A%0AI%20am%20interested%20in%20joining%20the%20Pro%20Waitlist.%0A%0APlease%20let%20me%20know%20when%20Pro%20is%20available%20and%20how%20to%20get%20early%20access.%0A%0AThank%20you!" target="_blank" rel="noopener noreferrer" className={styles.waitlistLink}>Join Pro Waitlist</a>
         <span className={styles.waitlistSep}>·</span>
-        <a href="#cta" className={styles.waitlistLink}>Apply for Elite</a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=minhptran9@gmail.com&su=Apply%20for%20Elite%20%E2%80%93%204Color%20System&body=Hi%204Color%20System%20Team%2C%0A%0AI%20would%20like%20to%20apply%20for%20the%20Elite%20version%20with%20FVG%20Lifecycle%20tracking%20and%20execution%20context.%0A%0APlease%20send%20me%20more%20details%20about%20Elite%20access.%0A%0AThank%20you!" target="_blank" rel="noopener noreferrer" className={styles.waitlistLink}>Apply for Elite</a>
       </motion.div>
     </motion.div>
   );
