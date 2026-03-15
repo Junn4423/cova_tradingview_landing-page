@@ -1,70 +1,100 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Check, Sparkles, Lock, CreditCard, CheckCircle2, Globe2 } from 'lucide-react';
+import { ArrowRight, Check, Sparkles, Lock, CreditCard, CheckCircle2, Globe2, ExternalLink } from 'lucide-react';
 import styles from './FinalCTA.module.scss';
-import { useToast } from '../Toast/Toast';
-import { use3DTilt, useRipple, injectRippleKeyframe, useCountUp } from '../../utils/animations';
+
+import { use3DTilt, useRipple, injectRippleKeyframe } from '../../utils/animations';
 import { useEffect } from 'react';
 
 const plans = [
   {
-    name: 'Starter',
-    price: '$97',
-    priceNum: 97,
-    period: 'one-time',
-    description: 'Perfect for beginners starting their trading journey',
+    name: 'Lite',
+    price: 'FREE',
+    priceNum: 0,
+    period: 'Free Forever',
+    description: 'Start reading market context — free on TradingView.',
+    image: '/images/Lite-Sample-Chart.jpg',
     features: [
-      'Foundations Course (24 lessons)',
-      'Basic Color Zone Indicators',
-      'Community Forum Access',
-      '30-Day Email Support',
-      'Mobile App Access',
+      '4-Color Candle Logic (who controls price)',
+      'Prevents emotional trades',
+      'Real-time market state reading',
+      'Available on TradingView — Free',
+      'No BUY/SELL signals — observation only',
     ],
     popular: false,
-    cta: 'Get Started',
+    cta: 'Access Free on TradingView',
+    ctaLink: 'https://www.tradingview.com/script/dWscMbbP-Four-Color-Order-Flow-System/',
+    ctaExternal: true,
+    badge: 'PUBLIC',
+    badgeColor: '#00F5A0',
   },
   {
-    name: 'Professional',
+    name: 'Pro',
     price: '$297',
     priceNum: 297,
     period: 'one-time',
-    description: 'For serious traders ready to level up',
+    description: 'Confirm if the pressure behind a move is real.',
+    image: '/images/Pro-Sample-Chart.jpeg',
     features: [
-      'All Starter Features',
-      'Advanced Strategies Course',
-      'Premium Indicators Suite',
-      'Weekly Live Q&A Sessions',
-      'Private Discord Channel',
-      '6-Month Priority Support',
-      'Trade Journal Template',
+      'All Lite features',
+      'Buying vs selling pressure confirmation',
+      'Absorption behavior detection',
+      'Filters weak market moves',
+      'Priority Support',
     ],
     popular: true,
-    cta: 'Start Pro',
+    cta: 'Join Pro Waitlist',
+    ctaLink: null,
+    ctaExternal: false,
+    badge: 'COMING SOON',
+    badgeColor: '#FFD700',
   },
   {
     name: 'Elite',
     price: '$997',
     priceNum: 997,
     period: 'one-time',
-    description: 'Full access with personal mentorship',
+    description: 'Full execution context with FVG Lifecycle tracking.',
+    image: '/images/Elite-Sample-Chart.jpeg',
     features: [
-      'All Professional Features',
-      '1-on-1 Mentorship Sessions',
-      'Custom Strategy Development',
-      'Lifetime Access & Updates',
-      'Exclusive Elite Community',
-      'VIP Event Invitations',
-      'Done-For-You Setup',
-      'Direct Mentor Hotline',
+      'All Pro features',
+      'Fair Value Gap (FVG) imbalance detection',
+      'FVG Lifecycle tracking',
+      'Trap vs takeover identification',
+      'FVG Execution Logic™ (CFE)',
     ],
     popular: false,
-    cta: 'Go Elite',
+    cta: 'Apply for Elite',
+    ctaLink: null,
+    ctaExternal: false,
+    badge: 'COMING SOON',
+    badgeColor: '#FFD700',
+  },
+  {
+    name: 'Hubs',
+    price: 'Custom',
+    priceNum: 0,
+    period: 'contact us',
+    description: 'FX Terminal Hub — multi-pair Forex & crypto dashboard.',
+    image: '/images/FX.jpg',
+    features: [
+      'All Elite features',
+      'FX Terminal Hub multi-pair dashboard',
+      'Forex & crypto asset coverage',
+      'Advanced orderflow analytics',
+      'Dedicated onboarding support',
+    ],
+    popular: false,
+    cta: 'Contact for Access',
+    ctaLink: '#contact',
+    ctaExternal: false,
+    badge: 'COMING SOON',
+    badgeColor: '#FFD700',
   },
 ];
 
-const PlanCard = ({ plan, index, onDemoClick }) => {
+const PlanCard = ({ plan, index }) => {
   const tilt = use3DTilt({ maxTilt: 8, scale: 1.03, glare: 0.12 });
   const { createRipple, Ripples } = useRipple();
-  const { ref: priceRef, display: priceDisplay } = useCountUp({ end: plan.priceNum, decimals: 0, prefix: '$' });
 
   return (
     <motion.div
@@ -72,7 +102,7 @@ const PlanCard = ({ plan, index, onDemoClick }) => {
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false }}
-      transition={{ delay: index * 0.15, duration: 0.6 }}
+      transition={{ delay: index * 0.12, duration: 0.6 }}
       ref={tilt.ref}
       style={{ ...tilt.style, position: 'relative', overflow: 'hidden' }}
       onMouseMove={tilt.onMouseMove}
@@ -81,10 +111,25 @@ const PlanCard = ({ plan, index, onDemoClick }) => {
       <div style={tilt.shineStyle} />
       {plan.popular && <div className={styles.popularBadge}>Most Popular</div>}
 
+      {/* Status Badge */}
+      <div
+        className={styles.statusBadge}
+        style={{ background: plan.badgeColor + '18', color: plan.badgeColor, border: `1px solid ${plan.badgeColor}35` }}
+      >
+        {plan.badge}
+      </div>
+
+      {/* Chart Image */}
+      {plan.image && (
+        <div className={styles.planImage}>
+          <img src={plan.image} alt={`${plan.name} chart`} loading="lazy" />
+        </div>
+      )}
+
       <div className={styles.planHeader}>
-        <h3 className={styles.planName}>{plan.name}</h3>
+        <h3 className={`${styles.planName} notranslate`}>{plan.name}</h3>
         <div className={styles.planPrice}>
-          <span ref={priceRef} className={styles.price}>{priceDisplay}</span>
+          <span className={styles.price}>{plan.price}</span>
           <span className={styles.period}>{plan.period}</span>
         </div>
         <p className={styles.planDescription}>{plan.description}</p>
@@ -106,29 +151,37 @@ const PlanCard = ({ plan, index, onDemoClick }) => {
         ))}
       </ul>
 
-      <motion.button
-        className={`${styles.planButton} ${plan.popular ? styles.primaryButton : ''}`}
-        onClick={(e) => { createRipple(e); onDemoClick(e); }}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.97 }}
-        style={{ position: 'relative', overflow: 'hidden' }}
-      >
-        <Ripples />
-        <span>{plan.cta}</span>
-        <ArrowRight size={18} />
-      </motion.button>
+      {plan.ctaExternal ? (
+        <a
+          href={plan.ctaLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${styles.planButton} ${plan.popular ? styles.primaryButton : ''}`}
+          style={{ position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', textDecoration: 'none' }}
+        >
+          <Ripples />
+          <span>{plan.cta}</span>
+          <ExternalLink size={16} />
+        </a>
+      ) : (
+        <motion.button
+          className={`${styles.planButton} ${plan.popular ? styles.primaryButton : ''}`}
+          onClick={(e) => { createRipple(e); }}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.97 }}
+          style={{ position: 'relative', overflow: 'hidden' }}
+        >
+          <Ripples />
+          <span>{plan.cta}</span>
+          <ArrowRight size={18} />
+        </motion.button>
+      )}
     </motion.div>
   );
 };
 
 const FinalCTA = () => {
-  const { showToast } = useToast();
   useEffect(() => { injectRippleKeyframe(); }, []);
-
-  const handleDemoClick = (e) => {
-    e.preventDefault();
-    showToast('Đây là bản demo, chức năng này chưa hoạt động', 'info');
-  };
   return (
     <section id="cta" className={styles.cta}>
       <div className={styles.container}>
@@ -142,21 +195,20 @@ const FinalCTA = () => {
         >
           <span className={styles.label}>
             <Sparkles size={14} />
-            Start Your Journey
+            Choose Your Tool
           </span>
           <h2 className={styles.title}>
-            Ready to Transform Your{' '}
-            <span className={styles.gradient}>Trading?</span>
+            The <span className={styles.gradient}>4Color System™</span> Product Suite
           </h2>
           <p className={styles.subtitle}>
-            Choose the plan that fits your goals. All plans include our 30-day money-back guarantee.
+            Lite is free and live now. Pro, Elite, and Hubs are in final testing — join the waitlist to get early access.
           </p>
         </motion.div>
 
         {/* Pricing Cards */}
         <div className={styles.plans}>
           {plans.map((plan, index) => (
-            <PlanCard key={index} plan={plan} index={index} onDemoClick={handleDemoClick} />
+            <PlanCard key={index} plan={plan} index={index} />
           ))}
         </div>
 

@@ -1,0 +1,481 @@
+.section {
+  position: relative;
+  padding: 8rem 0;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    padding: 5rem 0;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1.25rem;
+  }
+}
+
+// ── Header ──────────────────────────────────────────────────────────────
+.header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 5rem;
+}
+
+.label {
+  display: inline-block;
+  padding: 0.45rem 1.1rem;
+  background: rgba(58, 134, 255, 0.1);
+  border: 1px solid rgba(58, 134, 255, 0.25);
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #3A86FF;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1.25rem;
+}
+
+.title {
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.5px;
+}
+
+.gradient {
+  background: linear-gradient(135deg, #3A86FF 0%, #00D4FF 50%, #00F5A0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+
+.quote {
+  display: inline-block;
+  padding: 1rem 2rem;
+  border-left: 3px solid #3A86FF;
+  background: rgba(58, 134, 255, 0.06);
+  border-radius: 0 12px 12px 0;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: left;
+}
+
+// ── Section Headings ────────────────────────────────────────────────────
+.sectionHeading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+// ── Candle Code ─────────────────────────────────────────────────────────
+.candleSection {
+  margin-bottom: 5rem;
+}
+
+.candleIntro {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 2.5rem;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.candleGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.candleCard {
+  padding: 1.75rem 1.5rem;
+  border: 1px solid;
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+}
+
+.candleEmoji {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.candleName {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+}
+
+.candleMeaning {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0.6rem;
+}
+
+.candleTells {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.58);
+  line-height: 1.55;
+  margin-bottom: 0.85rem;
+}
+
+.candleRule {
+  padding: 0.5rem 0.75rem;
+  border-left: 3px solid;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 0 6px 6px 0;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+// ── Beginner Rules ──────────────────────────────────────────────────────
+.beginnerRules {
+  margin-bottom: 5rem;
+}
+
+.rulesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  max-width: 900px;
+  margin: 1.5rem auto 0;
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ruleItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.25rem;
+  border: 1px solid;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ruleEmoji {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.ruleText {
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+// ── Timeline ────────────────────────────────────────────────────────────
+.timelineSection {
+  margin-bottom: 5rem;
+}
+
+.timelineIntro {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 2.5rem;
+  font-size: 0.95rem;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+
+.timelineItem {
+  display: grid;
+  grid-template-columns: 130px 32px 1fr;
+  gap: 0 1.25rem;
+  align-items: flex-start;
+  padding-bottom: 2.5rem;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 100px 20px 1fr;
+    gap: 0 0.75rem;
+  }
+}
+
+.timelineTime {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.45);
+  text-align: right;
+  padding-top: 0.25rem;
+  letter-spacing: 0.5px;
+}
+
+.timelineConnector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.timelineDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3A86FF, #00D4FF);
+  border: 2px solid rgba(58, 134, 255, 0.4);
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+  box-shadow: 0 0 8px rgba(58, 134, 255, 0.4);
+}
+
+.timelineLine {
+  width: 2px;
+  flex: 1;
+  background: linear-gradient(to bottom, rgba(58, 134, 255, 0.3), rgba(58, 134, 255, 0.05));
+  min-height: 40px;
+}
+
+.timelineContent {
+  padding-bottom: 1rem;
+}
+
+.timelineHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.timelineCandles {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+}
+
+.timelineSentiment {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.timelinePhase {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.3rem;
+}
+
+.timelineDesc {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.58);
+  line-height: 1.55;
+}
+
+// ── CFE Sequence ────────────────────────────────────────────────────────
+.cfeSection {
+  margin-bottom: 5rem;
+}
+
+.cfeIntro {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+.cfeFlow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.cfeStep {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cfeBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid;
+  border-radius: 16px;
+  text-align: center;
+  min-width: 150px;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  @media (max-width: 600px) {
+    min-width: 120px;
+    padding: 1rem;
+  }
+}
+
+.cfeEmoji {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.cfeLabel {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.cfeDesc {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.4;
+}
+
+.cfeArrow {
+  flex-shrink: 0;
+}
+
+// ── Key Rule ────────────────────────────────────────────────────────────
+.keyRule {
+  margin-bottom: 5rem;
+}
+
+.keyRuleGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.keyRuleCard {
+  padding: 1.75rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+
+  h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.62);
+    line-height: 1.6;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      font-size: 0.88rem;
+      color: rgba(255, 255, 255, 0.62);
+      padding: 0.3rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+      &:last-child { border-bottom: none; }
+    }
+  }
+}
+
+.sequenceText {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 1rem !important;
+  letter-spacing: 0;
+  margin-bottom: 0.75rem !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.seqArrow {
+  display: inline-flex;
+  align-items: center;
+  opacity: 0.35;
+  font-size: 0.85rem;
+  margin: 0 2px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+// ── Final Lesson ────────────────────────────────────────────────────────
+.lesson {
+  text-align: center;
+  padding: 3rem;
+  background: rgba(58, 134, 255, 0.06);
+  border: 1px solid rgba(58, 134, 255, 0.15);
+  border-radius: 24px;
+  backdrop-filter: blur(20px);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.lessonText {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.8;
+  font-style: italic;
+  margin-bottom: 1.75rem;
+}
+
+.lessonCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background: linear-gradient(135deg, #3A86FF, #00D4FF);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+
+  &:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+}

@@ -16,51 +16,51 @@ import { useEffect } from 'react';
 const features = [
   {
     icon: BarChart3,
-    title: '4-Zone Color System',
+    title: '4-Color System™',
     titleNoTranslate: true,
-    description: 'Our proprietary methodology divides market analysis into four distinct color zones, making complex patterns instantly recognizable.',
+    description: 'Our proprietary methodology uses Accumulation (Blue), Expansion (Green), Distribution (Red), and Reset (Yellow) phases — making market cycles instantly visible through 4 distinct candle colors.',
     color: '#3A86FF',
   },
   {
     icon: Target,
-    title: 'Precision Entry Points',
-    description: 'Identify optimal entry and exit points with laser-focused accuracy using our advanced zone-based algorithms.',
+    title: 'Liquidity State Reading',
+    description: 'Read who is in control of price at any moment. The 4-Color system shows whether buyers, sellers, or neither are driving the market — eliminating guesswork.',
     color: '#00F5A0',
   },
   {
     icon: Brain,
-    title: 'AI-Powered Analysis',
-    description: 'Leverage machine learning models trained on decades of market data to predict price movements before they happen.',
+    title: 'Dynamic FVG Logic',
+    description: 'Fair Value Gap tracking across its full lifecycle — from creation to validation to fill. Understand exactly where institutional imbalance sits in the market.',
     color: '#7B2CBF',
   },
   {
     icon: Shield,
     title: 'Risk Management',
-    description: 'Built-in risk assessment tools help you manage position sizes and protect your capital with smart stop-loss strategies.',
+    description: 'The Stress Test feature validates setups before you act. Know whether a move is a trap or a genuine takeover — then position accordingly.',
     color: '#FF9F1C',
   },
   {
     icon: Zap,
-    title: 'Real-Time Alerts',
-    description: 'Never miss a trading opportunity with instant notifications when price enters your target zones.',
+    title: 'FVG Execution Logic™ (CFE)',
+    description: 'The complete Accumulation → Liquidity Sweep → Structure Shift → Buyer Control → Expansion sequence — the roadmap from setup to breakout.',
     color: '#00D4FF',
   },
   {
     icon: TrendingUp,
-    title: 'Multi-Timeframe',
-    description: 'Analyze markets across multiple timeframes simultaneously for a complete picture of market structure.',
+    title: 'Multi-Timeframe Context',
+    description: 'Analyze liquidity states across multiple timeframes simultaneously. Confirm whether structure on the higher timeframe aligns with execution on the lower.',
     color: '#FF6B6B',
   },
   {
     icon: LineChart,
-    title: 'Advanced Charting',
-    description: 'Professional-grade charts with custom indicators designed specifically for the 4Color methodology.',
+    title: 'Orderflow & Delta Analysis',
+    description: 'Go beyond candles — analyze the delta between buying and selling volume to confirm whether price pressure is genuine absorption or simply noise.',
     color: '#FFD700',
   },
   {
     icon: Layers,
-    title: 'Strategy Builder',
-    description: 'Create, backtest, and automate custom trading strategies using our intuitive visual builder.',
+    title: 'FX Terminal Hub',
+    description: 'The Hubs tier provides a multi-pair Forex and crypto dashboard — monitor multiple markets simultaneously with the same 4-Color logic applied across all pairs.',
     color: '#00F5A0',
   },
 ];
@@ -139,7 +139,8 @@ const Features = () => {
             <span className={styles.gradient}>Trade Smarter</span>
           </h2>
           <p className={styles.subtitle}>
-            Our comprehensive suite of tools gives you the edge you need to succeed in today's fast-moving markets.
+            The 4Color System™ gives you the tools to read market behavior with clarity — not predictions, 
+            but real-time structural context that serious traders rely on.
           </p>
         </motion.div>
 

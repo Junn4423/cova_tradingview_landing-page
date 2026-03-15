@@ -4,10 +4,14 @@ import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
 import Features from './components/Features/Features';
 import ChartShowcase from './components/ChartShowcase/ChartShowcase';
+import HowItWorks from './components/HowItWorks/HowItWorks';
 import LiveStream from './components/LiveStream/LiveStream';
 import Education from './components/Education/Education';
 import Testimonials from './components/Testimonials/Testimonials';
 import FinalCTA from './components/FinalCTA/FinalCTA';
+import FAQ from './components/FAQ/FAQ';
+import Contact from './components/Contact/Contact';
+import Legal from './components/Legal/Legal';
 import Footer from './components/Footer/Footer';
 // ThreeBackground pulls in the entire Three.js bundle — lazy load it so it
 // never blocks the initial page paint
@@ -107,6 +111,10 @@ function App() {
         <ChartShowcase />
         <div className="section-divider" />
 
+        {/* How It Works Section */}
+        <HowItWorks />
+        <div className="section-divider" />
+
         {/* Live Stream Section */}
         <LiveStream />
         <div className="section-divider" />
@@ -121,6 +129,18 @@ function App() {
 
         {/* Final CTA / Pricing Section */}
         <FinalCTA />
+        <div className="section-divider" />
+
+        {/* FAQ Section */}
+        <FAQ />
+        <div className="section-divider" />
+
+        {/* Contact Section */}
+        <Contact />
+        <div className="section-divider" />
+
+        {/* Legal Terms Section */}
+        <Legal />
       </main>
 
       {/* Footer */}

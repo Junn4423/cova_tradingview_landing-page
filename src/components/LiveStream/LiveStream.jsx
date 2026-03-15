@@ -256,10 +256,10 @@ const LiveStream = () => {
               <ul className={styles.infoList}>
                 {[
                   'Real-time 4-color zone mapping',
-                  'Live entry & exit identification',
-                  'Market structure breakdowns',
-                  'Risk/reward analysis',
-                  'Q&A with active traders',
+                  'FVG identification & validation',
+                  'Orderflow & Delta analysis',
+                  'Stress Test confirmation signals',
+                  'Live education & Q&A',
                 ].map((item, i) => (
                   <motion.li
                     key={i}

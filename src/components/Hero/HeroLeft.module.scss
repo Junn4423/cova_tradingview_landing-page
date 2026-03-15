@@ -322,3 +322,60 @@
     font-weight: 700;
   }
 }
+
+// ── Tagline ───────────────────────────────────────────────────────────────────
+.tagline {
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+
+  em {
+    color: #00F5A0;
+    font-style: normal;
+    font-weight: 700;
+  }
+}
+
+// ── Education Link ────────────────────────────────────────────────────────────
+.educationLink {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #3A86FF;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.2s, gap 0.2s;
+  margin-top: -0.75rem;
+
+  &:hover {
+    color: #00D4FF;
+  }
+}
+
+// ── Waitlist Links ────────────────────────────────────────────────────────────
+.waitlistLinks {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: -0.5rem;
+}
+
+.waitlistLink {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  transition: color 0.2s, border-color 0.2s;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.85);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.waitlistSep {
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 0.9rem;
+}

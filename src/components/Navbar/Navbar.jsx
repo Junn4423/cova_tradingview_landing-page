@@ -2,20 +2,22 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, Globe } from 'lucide-react';
 import styles from './Navbar.module.scss';
-import { useToast } from '../Toast/Toast';
+
 
 const navLinks = [
-  { label: 'Features',     href: '#features' },
-  { label: 'Charts',       href: '#charts' },
-  { label: 'Education',    href: '#education' },
-  { label: 'Testimonials', href: '#testimonials' },
+  { label: 'Products',  href: '#cta' },
+  { label: 'Education', href: '#education' },
+  { label: 'FAQ',       href: '#faq' },
+  { label: 'Contact',   href: '#contact' },
 ];
 
-// Only 3 languages — names wrapped notranslate so GT never overwrites them
+// 5 required languages per client requirement
 const languages = [
-  { code: 'en', name: 'English',    flag: '🇺🇸' },
-  { code: 'vi', name: 'Tiếng Việt', flag: '🇻🇳' },
-  { code: 'fr', name: 'Français',   flag: '🇫🇷' },
+  { code: 'en',    name: 'English',          flag: '🇺🇸' },
+  { code: 'zh-CN', name: 'Mandarin (中文)',   flag: '🇨🇳' },
+  { code: 'zh-TW', name: 'Cantonese (粵語)', flag: '🇭🇰' },
+  { code: 'ar',    name: 'العربية',          flag: '🇸🇦' },
+  { code: 'es',    name: 'Español',          flag: '🇪🇸' },
 ];
 
 const Navbar = () => {
@@ -23,7 +25,7 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langMenuOpen, setLangMenuOpen]     = useState(false);
   const [currentLang, setCurrentLang]       = useState(languages[0]);
-  const { showToast } = useToast();
+
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -37,10 +39,7 @@ const Navbar = () => {
     window.__triggerGoogleTranslate?.(lang.code);
   };
 
-  const handleDemoClick = (e) => {
-    e.preventDefault();
-    showToast('Đây là bản demo, chức năng này chưa hoạt động', 'info');
-  };
+
 
   return (
     <motion.nav
@@ -58,12 +57,14 @@ const Navbar = () => {
           whileTap={{ scale: 0.98 }}
         >
           <div className={styles.logoIcon}>
-            <span className={styles.logoSquare} style={{ background: '#3A86FF' }} />
-            <span className={styles.logoSquare} style={{ background: '#00F5A0' }} />
-            <span className={styles.logoSquare} style={{ background: '#FF6B6B' }} />
-            <span className={styles.logoSquare} style={{ background: '#FFD700' }} />
+            <img
+              src="/images/logo-4colorsystem.png"
+              alt="4Color System™"
+              className={styles.logoImg}
+              height={36}
+            />
           </div>
-          <span className={`${styles.logoText} notranslate`}>4Color System</span>
+          <span className={`${styles.logoText} notranslate`}>4Color System™</span>
         </motion.a>
 
         {/* Desktop Navigation */}
@@ -126,14 +127,16 @@ const Navbar = () => {
           </div>
 
           {/* CTA Button */}
-          <motion.button
+          <motion.a
+            href="https://www.tradingview.com/script/dWscMbbP-Four-Color-Order-Flow-System/"
+            target="_blank"
+            rel="noopener noreferrer"
             className={styles.ctaButton}
-            onClick={handleDemoClick}
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
           >
-            Get Started
-          </motion.button>
+            Access Lite — Free
+          </motion.a>
 
           {/* Mobile Menu Toggle */}
           <motion.button
@@ -187,7 +190,7 @@ const Navbar = () => {
             <div className={styles.mobileCta}>
               <motion.button
                 className={styles.mobileCtaBtn}
-                onClick={(e) => { handleDemoClick(e); setMobileMenuOpen(false); }}
+                onClick={() => { window.location.href = '#cta'; setMobileMenuOpen(false); }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
               >

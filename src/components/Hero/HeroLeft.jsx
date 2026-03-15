@@ -1,7 +1,6 @@
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { ArrowRight, PlayCircle, TrendingUp, Shield, Zap, ChevronRight } from 'lucide-react';
 import styles from './HeroLeft.module.scss';
-import { useToast } from '../Toast/Toast';
 import { useCountUp } from '../../utils/animations';
 
 const containerVariants = {
@@ -89,14 +88,8 @@ function useMagnet(strength = 0.4) {
 }
 
 const HeroLeft = () => {
-  const { showToast } = useToast();
   const btn1 = useMagnet(0.35);
   const btn2 = useMagnet(0.35);
-
-  const handleDemo = (e) => {
-    e.preventDefault();
-    showToast('Đây là bản demo, chức năng này chưa hoạt động', 'info');
-  };
 
   return (
     <motion.div
@@ -108,40 +101,45 @@ const HeroLeft = () => {
       {/* Badge */}
       <motion.div variants={scatterLeft} className={styles.badge}>
         <span className={styles.badgePulse} />
-        <span className={styles.badgeText}>Education &amp; Trading Redefined</span>
+        <span className={styles.badgeText}>A Visual Framework for Reading Market Behavior</span>
         <ChevronRight size={14} className={styles.badgeArrow} />
       </motion.div>
 
       {/* Headline */}
       <motion.h1 variants={itemVariants} className={styles.headline}>
-        Master the Market with{' '}
-        <br className={styles.br} />
         <span
           className={`${styles.brandGradient} notranslate`}
           aria-label="4Color System"
         >
-          4Color System
+          4Color System™
         </span>
       </motion.h1>
 
-      {/* Subheadline */}
+      {/* Subheadline — exact from DOCX */}
       <motion.p variants={itemVariants} className={styles.sub}>
-        See the pressure, not just the patterns. Built for market validation —
-        the ultimate education platform for serious traders who demand an edge.
+        Understand liquidity shifts, execution context, and structural pressure
+        through a simplified 4-Color price model.
+      </motion.p>
+
+      {/* Tagline */}
+      <motion.p variants={itemVariants} className={styles.tagline}>
+        Price shows <em>where</em>. 4-Color shows <em>who</em>.
       </motion.p>
 
       {/* CTA Buttons */}
       <motion.div variants={itemVariants} className={styles.ctas}>
-        {/* Primary — magnetic */}
-        <motion.button
+        {/* Primary — links to TradingView */}
+        <motion.a
+          href="https://www.tradingview.com/script/dWscMbbP-Four-Color-Order-Flow-System/"
+          target="_blank"
+          rel="noopener noreferrer"
           className={styles.primaryBtn}
-          style={{ x: btn1.sx, y: btn1.sy }}
+          style={{ x: btn1.sx, y: btn1.sy, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
           onMouseMove={btn1.onMove}
           onMouseLeave={btn1.onLeave}
-          onClick={handleDemo}
           whileTap={{ scale: 0.96 }}
         >
-          <span>Explore Education</span>
+          <span>Access Lite version</span>
           <motion.span
             className={styles.btnArrow}
             animate={{ x: [0, 4, 0] }}
@@ -150,15 +148,17 @@ const HeroLeft = () => {
             <ArrowRight size={18} />
           </motion.span>
           <span className={styles.shimmer} />
-        </motion.button>
+        </motion.a>
 
-        {/* Secondary — magnetic */}
-        <motion.button
+        {/* Secondary — YouTube demo */}
+        <motion.a
+          href="https://www.youtube.com/watch?v=9M93_6S9TaQ"
+          target="_blank"
+          rel="noopener noreferrer"
           className={styles.secondaryBtn}
-          style={{ x: btn2.sx, y: btn2.sy }}
+          style={{ x: btn2.sx, y: btn2.sy, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
           onMouseMove={btn2.onMove}
           onMouseLeave={btn2.onLeave}
-          onClick={handleDemo}
           whileTap={{ scale: 0.96 }}
         >
           <motion.span
@@ -167,25 +167,24 @@ const HeroLeft = () => {
             transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
           />
           <PlayCircle size={20} className={styles.playIcon} />
-          <span>Watch Demo</span>
-        </motion.button>
+          <span>Watch demo on Youtube</span>
+        </motion.a>
       </motion.div>
 
-      {/* Stats */}
-      <motion.div variants={scatterRight} className={styles.stats}>
-        {stats.map((s, i) => <StatItem key={i} s={s} />)}
-      </motion.div>
+      {/* Education & Trading link */}
+      <motion.a
+        variants={itemVariants}
+        href="#education"
+        className={styles.educationLink}
+      >
+        Education &amp; Trading →
+      </motion.a>
 
-      {/* Social proof strip */}
-      <motion.div variants={itemVariants} className={styles.proof}>
-        <div className={styles.avatarStack}>
-          {['#3A86FF', '#00F5A0', '#FF6B6B', '#FFD700', '#7B2CBF'].map((c, i) => (
-            <div key={i} className={styles.avatar} style={{ background: c, zIndex: 10 - i }} />
-          ))}
-        </div>
-        <span className={styles.proofText}>
-          Joined by <strong>50,000+</strong> professional traders worldwide
-        </span>
+      {/* Waitlist links from DOCX */}
+      <motion.div variants={itemVariants} className={styles.waitlistLinks}>
+        <a href="#cta" className={styles.waitlistLink}>Join Pro Waitlist</a>
+        <span className={styles.waitlistSep}>·</span>
+        <a href="#cta" className={styles.waitlistLink}>Apply for Elite</a>
       </motion.div>
     </motion.div>
   );

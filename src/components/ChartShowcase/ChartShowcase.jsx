@@ -1,14 +1,9 @@
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { useRef, useMemo, useState, useEffect, useCallback } from 'react';
 import styles from './ChartShowcase.module.scss';
-import { useToast } from '../Toast/Toast';
+
 
 const ChartShowcase = () => {
-  const { showToast } = useToast();
-  const handleDemoClick = (e) => {
-    e.preventDefault();
-    showToast('Đây là bản demo, chức năng này chưa hoạt động', 'info');
-  };
 
   const containerRef = useRef(null);
   const svgRef       = useRef(null);
@@ -157,10 +152,10 @@ const ChartShowcase = () => {
 
   // 4 Color zones
   const zones = [
-    { color: '#3A86FF', label: 'Resistance Zone', y: 80 },
-    { color: '#00F5A0', label: 'Bullish Zone',     y: 180 },
-    { color: '#FFD700', label: 'Neutral Zone',     y: 280 },
-    { color: '#FF6B6B', label: 'Support Zone',     y: 380 },
+    { color: '#3A86FF', label: 'Accumulation Zone', y: 80 },
+    { color: '#00F5A0', label: 'Expansion Zone',     y: 180 },
+    { color: '#FFD700', label: 'Distribution Zone',  y: 280 },
+    { color: '#FF6B6B', label: 'Reset Zone',         y: 380 },
   ];
 
   return (
