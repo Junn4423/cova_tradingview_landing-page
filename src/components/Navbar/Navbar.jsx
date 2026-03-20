@@ -11,9 +11,10 @@ const navLinks = [
   { label: 'Contact',   href: '#contact' },
 ];
 
-// 5 required languages per client requirement
+// 6 languages — added Vietnamese per client V2 request
 const languages = [
   { code: 'en',    name: 'English',          flag: '🇺🇸' },
+  { code: 'vi',    name: 'Tiếng Việt',       flag: '🇻🇳' },
   { code: 'zh-CN', name: 'Mandarin (中文)',   flag: '🇨🇳' },
   { code: 'zh-TW', name: 'Cantonese (粵語)', flag: '🇭🇰' },
   { code: 'ar',    name: 'العربية',          flag: '🇸🇦' },
@@ -74,8 +75,8 @@ const Navbar = () => {
         >
           <div className={styles.logoIcon}>
             <img
-              src="/images/logo-4colorsystem.png"
-              alt="4Color System™"
+              src="/images/logo-cfe.jpg"
+              alt="4Color System™ — CFE"
               className={styles.logoImg}
               height={36}
             />

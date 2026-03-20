@@ -15,9 +15,9 @@ import styles from './Footer.module.scss';
 const footerLinks = {
   products: [
     { name: 'Lite (Free)', href: 'https://www.tradingview.com/script/dWscMbbP-Four-Color-Order-Flow-System/' },
-    { name: 'Pro',         href: 'https://mail.google.com/mail/?view=cm&fs=1&to=minhptran9@gmail.com&su=Join%20Pro%20Waitlist%20%E2%80%93%204Color%20System&body=Hi%204Color%20System%20Team%2C%0A%0AI%20am%20interested%20in%20joining%20the%20Pro%20Waitlist.%0A%0APlease%20let%20me%20know%20when%20Pro%20is%20available.%0A%0AThank%20you!' },
-    { name: 'Elite',       href: 'https://mail.google.com/mail/?view=cm&fs=1&to=minhptran9@gmail.com&su=Apply%20for%20Elite%20%E2%80%93%204Color%20System&body=Hi%204Color%20System%20Team%2C%0A%0AI%20would%20like%20to%20apply%20for%20the%20Elite%20version.%0A%0AThank%20you!' },
-    { name: 'Hubs',        href: 'https://mail.google.com/mail/?view=cm&fs=1&to=minhptran9@gmail.com&su=Inquiry%20about%20Hubs%20%E2%80%93%20FX%20Terminal%20Hub&body=Hi%204Color%20System%20Team%2C%0A%0AI%20am%20interested%20in%20the%20Hubs%20product.%0A%0AThank%20you!' },
+    { name: 'Pro',         href: 'https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com&su=Join%20Pro%20Waitlist%20%E2%80%93%204Color%20System&body=Hi%204Color%20System%20Team%2C%0A%0AI%20am%20interested%20in%20joining%20the%20Pro%20Waitlist.%0A%0APlease%20let%20me%20know%20when%20Pro%20is%20available.%0A%0AThank%20you!' },
+    { name: 'Elite',       href: 'https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com&su=Apply%20for%20Elite%20%E2%80%93%204Color%20System&body=Hi%204Color%20System%20Team%2C%0A%0AI%20would%20like%20to%20apply%20for%20the%20Elite%20version.%0A%0AThank%20you!' },
+    { name: 'Hubs',        href: 'https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com&su=Inquiry%20about%20Hubs%20%E2%80%93%20FX%20Terminal%20Hub&body=Hi%204Color%20System%20Team%2C%0A%0AI%20am%20interested%20in%20the%20Hubs%20product.%0A%0AThank%20you!' },
   ],
   education: [
     { name: 'Education Hub',   href: '#education' },
@@ -25,7 +25,7 @@ const footerLinks = {
     { name: 'Youtube Demo',    href: 'https://www.youtube.com/watch?v=9M93_6S9TaQ' },
   ],
   company: [
-    { name: 'About Us', href: 'https://mail.google.com/mail/?view=cm&fs=1&to=minhptran9@gmail.com&su=About%204Color%20System&body=Hi%204Color%20System%20Team%2C%0A%0AI%20would%20like%20to%20learn%20more%20about%204Color%20System%20and%20your%20team.%0A%0AThank%20you!' },
+    { name: 'About Us', href: 'https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com&su=About%204Color%20System&body=Hi%204Color%20System%20Team%2C%0A%0AI%20would%20like%20to%20learn%20more%20about%204Color%20System%20and%20your%20team.%0A%0AThank%20you!' },
     { name: 'Contact',  href: '#contact' },
     { name: 'FAQ',      href: '#faq' },
   ],
@@ -37,10 +37,10 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { icon: Twitter, href: 'https://mail.google.com/mail/?view=cm&fs=1&to=minhptran9@gmail.com&su=Twitter%20%2F%20Social%20Media%20Inquiry&body=Hi%204Color%20System%20Team%2C%0A%0ACould%20you%20share%20your%20official%20Twitter%20%2F%20X%20account%20link%3F%0A%0AThank%20you!', label: 'Twitter' },
+  { icon: Twitter, href: 'https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com&su=Twitter%20%2F%20Social%20Media%20Inquiry&body=Hi%204Color%20System%20Team%2C%0A%0ACould%20you%20share%20your%20official%20Twitter%20%2F%20X%20account%20link%3F%0A%0AThank%20you!', label: 'Twitter' },
   { icon: Youtube, href: 'https://www.youtube.com/watch?v=9M93_6S9TaQ', label: 'YouTube' },
-  { icon: Linkedin, href: 'https://mail.google.com/mail/?view=cm&fs=1&to=minhptran9@gmail.com&su=LinkedIn%20Inquiry&body=Hi%204Color%20System%20Team%2C%0A%0ACould%20you%20share%20your%20official%20LinkedIn%20page%3F%0A%0AThank%20you!', label: 'LinkedIn' },
-  { icon: MessageCircle, href: 'https://mail.google.com/mail/?view=cm&fs=1&to=minhptran9@gmail.com&su=Join%204Color%20System%20Community&body=Hi%204Color%20System%20Team%2C%0A%0AI%20would%20like%20to%20join%20the%204Color%20System%20community%20%2F%20Discord.%0A%0AThank%20you!', label: 'Discord' },
+  { icon: Linkedin, href: 'https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com&su=LinkedIn%20Inquiry&body=Hi%204Color%20System%20Team%2C%0A%0ACould%20you%20share%20your%20official%20LinkedIn%20page%3F%0A%0AThank%20you!', label: 'LinkedIn' },
+  { icon: MessageCircle, href: 'https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com&su=Join%204Color%20System%20Community&body=Hi%204Color%20System%20Team%2C%0A%0AI%20would%20like%20to%20join%20the%204Color%20System%20community%20%2F%20Discord.%0A%0AThank%20you!', label: 'Discord' },
 ];
 
 const Footer = () => {
@@ -62,8 +62,8 @@ const Footer = () => {
             <a href="#" className={styles.logo}>
               <div className={styles.logoIcon}>
                 <img
-                  src="/images/logo-4colorsystem.png"
-                  alt="4Color System™"
+                  src="/images/logo-cfe.jpg"
+                  alt="4Color System™ — CFE"
                   className={styles.logoImg}
                   height={36}
                 />
@@ -77,9 +77,9 @@ const Footer = () => {
             </p>
 
             <div className={styles.contactInfo}>
-              <a href="mailto:minhptran9@gmail.com" className={styles.contactItem}>
+              <a href="mailto:4colorsystem@gmail.com" className={styles.contactItem}>
                 <Mail size={18} />
-                <span className="notranslate">minhptran9@gmail.com</span>
+                <span className="notranslate">4colorsystem@gmail.com</span>
               </a>
               <a href="#" className={styles.contactItem}>
                 <MapPin size={18} />
@@ -159,7 +159,7 @@ const Footer = () => {
             e.preventDefault();
             const email = e.target.querySelector('input[type="email"]').value;
             const body = email ? `Hi 4Color System Team,%0A%0AI'd like to subscribe to your trading insights newsletter.%0A%0AMy email: ${encodeURIComponent(email)}%0A%0AThank you!` : `Hi 4Color System Team,%0A%0AI'd like to subscribe to your trading insights newsletter.%0A%0AThank you!`;
-            window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=minhptran9@gmail.com&su=Subscribe%20to%204Color%20System%20Newsletter&body=${body}`, '_blank');
+            window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com&su=Subscribe%20to%204Color%20System%20Newsletter&body=${body}`, '_blank');
           }}>
             <input
               type="email"

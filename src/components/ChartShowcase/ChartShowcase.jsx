@@ -1,12 +1,51 @@
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence, useInView } from 'framer-motion';
 import { useRef, useMemo, useState, useEffect, useCallback } from 'react';
 import styles from './ChartShowcase.module.scss';
+
+// Lazy-load YouTube embed: autoplay (muted) when scrolled into view, loop forever.
+const AutoPlayVideo = ({ id, label }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, margin: '-10%' });
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    if (isInView && !mounted) setMounted(true);
+  }, [isInView, mounted]);
+
+  const src = `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&controls=1&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1`;
+
+  return (
+    <motion.div
+      ref={ref}
+      className={styles.videoCard}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className={styles.videoEmbed}>
+        {mounted ? (
+          <iframe
+            src={src}
+            title={label}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            loading="lazy"
+          />
+        ) : (
+          <div className={styles.videoPlaceholder} />
+        )}
+      </div>
+      <span className={styles.videoLabel}>{label}</span>
+    </motion.div>
+  );
+};
 
 
 const ChartShowcase = () => {
 
   const containerRef = useRef(null);
-  const svgRef       = useRef(null);
+  const svgRef = useRef(null);
 
   // Detect mobile / touch device — disable heavy effects
   const [isMobile, setIsMobile] = useState(() =>
@@ -27,16 +66,16 @@ const ChartShowcase = () => {
   });
 
   // Parallax — disabled on mobile (too GPU-heavy)
-  const yDesktop       = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const yDesktop = useTransform(scrollYProgress, [0, 1], [100, -100]);
   const opacityDesktop = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
-  const y       = isMobile ? 0 : yDesktop;
+  const y = isMobile ? 0 : yDesktop;
   const opacity = isMobile ? 1 : opacityDesktop;
 
   // ── Real Binance OHLCV data ────────────────────────────────────────────
   const [apiCandles, setApiCandles] = useState(null);
-  const [isLive, setIsLive]         = useState(false);
-  const [livePrice, setLivePrice]   = useState(null);
-  const [activeTab, setActiveTab]   = useState('1H');
+  const [isLive, setIsLive] = useState(false);
+  const [livePrice, setLivePrice] = useState(null);
+  const [activeTab, setActiveTab] = useState('1H');
   const [hoverCandle, setHoverCandle] = useState(null); // { idx, x, y, candle }
   const [pinnedCandle, setPinnedCandle] = useState(null);
 
@@ -52,17 +91,17 @@ const ChartShowcase = () => {
       .then((data) => {
         if (!Array.isArray(data)) return;
         setApiCandles(data.map((k) => ({
-          open:   parseFloat(k[1]),
-          high:   parseFloat(k[2]),
-          low:    parseFloat(k[3]),
-          close:  parseFloat(k[4]),
+          open: parseFloat(k[1]),
+          high: parseFloat(k[2]),
+          low: parseFloat(k[3]),
+          close: parseFloat(k[4]),
           volume: parseFloat(k[5]),
           isGreen: parseFloat(k[4]) >= parseFloat(k[1]),
         })));
         setLivePrice(parseFloat(data[data.length - 1][4]));
         setIsLive(true);
       })
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   useEffect(() => { fetchData(activeTab); }, [activeTab, fetchData]);
@@ -71,8 +110,8 @@ const ChartShowcase = () => {
   useEffect(() => {
     if (isMobile) return;
     const ws = new WebSocket('wss://stream.binance.com:9443/ws/btcusdt@trade');
-    ws.onmessage = (e) => { try { setLivePrice(parseFloat(JSON.parse(e.data).p)); } catch {} };
-    ws.onerror = () => {};
+    ws.onmessage = (e) => { try { setLivePrice(parseFloat(JSON.parse(e.data).p)); } catch { } };
+    ws.onerror = () => { };
     return () => ws.close();
   }, [isMobile]);
 
@@ -86,7 +125,7 @@ const ChartShowcase = () => {
       const open = base;
       const close = base + change;
       const high = Math.max(open, close) + ((i * 3 + 5) % 7) * 60;
-      const low  = Math.min(open, close) - ((i * 5 + 2) % 5) * 40;
+      const low = Math.min(open, close) - ((i * 5 + 2) % 5) * 40;
       data.push({ open, high, low, close, volume: 1e6 + ((i * 17) % 8) * 5e5, isGreen: close > open });
       base = close;
     }
@@ -102,7 +141,7 @@ const ChartShowcase = () => {
 
   const mapped = useMemo(() => {
     const candleW = (SVG_W - PAD_LEFT - PAD_RIGHT) / Math.max(candlesticks.length, 1);
-    const prices  = candlesticks.flatMap((c) => [c.high, c.low]);
+    const prices = candlesticks.flatMap((c) => [c.high, c.low]);
     const minP = Math.min(...prices);
     const maxP = Math.max(...prices);
     const range = maxP - minP || 1;
@@ -111,7 +150,7 @@ const ChartShowcase = () => {
 
     return candlesticks.map((c, i) => {
       const cx = PAD_LEFT + i * candleW + candleW / 2;
-      const bodyTop    = py(Math.max(c.open, c.close));
+      const bodyTop = py(Math.max(c.open, c.close));
       const bodyBottom = py(Math.min(c.open, c.close));
       return {
         ...c, cx, candleW: candleW * 0.65,
@@ -141,16 +180,16 @@ const ChartShowcase = () => {
   }, [mapped, chartH]);
 
   const displayPrice = livePrice ?? candlesticks[candlesticks.length - 1]?.close ?? 0;
-  const firstPrice   = candlesticks[0]?.open ?? 1;
-  const pct          = (((displayPrice - firstPrice) / firstPrice) * 100).toFixed(2);
-  const isPosChange  = parseFloat(pct) >= 0;
+  const firstPrice = candlesticks[0]?.open ?? 1;
+  const pct = (((displayPrice - firstPrice) / firstPrice) * 100).toFixed(2);
+  const isPosChange = parseFloat(pct) >= 0;
 
   // ── 3D mouse tilt — desktop only ────────────────────────────────────
   const handleSvgMouseMove = (e) => {
     if (isMobile || !svgRef.current) return;
     const r = svgRef.current.getBoundingClientRect();
-    const rx =  ((e.clientY - r.top  - r.height / 2) / r.height) * -6;
-    const ry =  ((e.clientX - r.left - r.width  / 2) / r.width)  *  6;
+    const rx = ((e.clientY - r.top - r.height / 2) / r.height) * -6;
+    const ry = ((e.clientX - r.left - r.width / 2) / r.width) * 6;
     setTilt({ rx, ry });
   };
   const handleSvgMouseLeave = () => {
@@ -177,9 +216,9 @@ const ChartShowcase = () => {
   // 4 Color zones
   const zones = [
     { color: '#3A86FF', label: 'Accumulation Zone', y: 80 },
-    { color: '#00F5A0', label: 'Expansion Zone',     y: 180 },
-    { color: '#FFD700', label: 'Distribution Zone',  y: 280 },
-    { color: '#FF6B6B', label: 'Reset Zone',         y: 380 },
+    { color: '#00F5A0', label: 'Expansion Zone', y: 180 },
+    { color: '#FFD700', label: 'Distribution Zone', y: 280 },
+    { color: '#FF6B6B', label: 'Reset Zone', y: 380 },
   ];
 
   return (
@@ -324,8 +363,8 @@ const ChartShowcase = () => {
               {mapped.map((c, i) => {
                 const isActive = activeInfo?.idx === i;
                 const isPinned = pinnedCandle?.idx === i;
-                const color    = c.isGreen ? '#00F5A0' : '#FF6B6B';
-                const dim      = activeInfo && !isActive ? 0.25 : 1;
+                const color = c.isGreen ? '#00F5A0' : '#FF6B6B';
+                const dim = activeInfo && !isActive ? 0.25 : 1;
                 return (
                   <motion.g key={i}
                     filter={isActive ? 'url(#candleHoverGlow)' : undefined}
@@ -391,7 +430,7 @@ const ChartShowcase = () => {
                 {activeInfo && (() => {
                   const m = activeInfo.m;
                   const color = m.isGreen ? '#00F5A0' : '#FF6B6B';
-                  const fmt = (n) => n >= 1000 ? `$${(n/1000).toFixed(1)}K` : `$${n.toFixed(1)}`;
+                  const fmt = (n) => n >= 1000 ? `$${(n / 1000).toFixed(1)}K` : `$${n.toFixed(1)}`;
                   const tx = m.cx + 148 > SVG_W - PAD_RIGHT ? m.cx - 155 : m.cx + 14;
                   const ty = Math.max(PAD_Y + 4, Math.min(m.bodyY - 30, SVG_H - 155));
                   return (
@@ -406,14 +445,14 @@ const ChartShowcase = () => {
                       <rect x={tx - 2} y={ty - 2} width={148} height={4}
                         fill={color} rx="4" />
                       {[
-                        ['Open',   fmt(m.open),   color],
-                        ['High',   fmt(m.high),   '#00F5A0'],
-                        ['Low',    fmt(m.low),    '#FF6B6B'],
-                        ['Close',  fmt(m.close),  color],
-                        ['Vol',    `${(m.volume/1e6).toFixed(1)}M`, '#aaa'],
+                        ['Open', fmt(m.open), color],
+                        ['High', fmt(m.high), '#00F5A0'],
+                        ['Low', fmt(m.low), '#FF6B6B'],
+                        ['Close', fmt(m.close), color],
+                        ['Vol', `${(m.volume / 1e6).toFixed(1)}M`, '#aaa'],
                       ].map(([label, val, c], ri) => (
                         <g key={ri}>
-                          <text x={tx + 8}  y={ty + 22 + ri * 19} fill="rgba(255,255,255,0.4)"
+                          <text x={tx + 8} y={ty + 22 + ri * 19} fill="rgba(255,255,255,0.4)"
                             fontSize="10" fontWeight="600">{label}</text>
                           <text x={tx + 140} y={ty + 22 + ri * 19} fill={c}
                             fontSize="10" fontWeight="700" textAnchor="end">{val}</text>
@@ -435,9 +474,9 @@ const ChartShowcase = () => {
                 const p = maxP - (i / 4) * (maxP - minP);
                 const yPos = PAD_Y + (i / 4) * chartH;
                 return (
-                    <text key={i} x={SVG_W - 4} y={yPos + 4}
+                  <text key={i} x={SVG_W - 4} y={yPos + 4}
                     fill="rgba(255,255,255,0.3)" fontSize="10" textAnchor="end">
-                    {p >= 1000 ? `$${(p/1000).toFixed(1)}K` : `$${p.toFixed(0)}`}
+                    {p >= 1000 ? `$${(p / 1000).toFixed(1)}K` : `$${p.toFixed(0)}`}
                   </text>
                 );
               })}
@@ -447,21 +486,21 @@ const ChartShowcase = () => {
                 const prices = mapped.flatMap((c) => [c.high, c.low]);
                 const minP = Math.min(...prices), maxP = Math.max(...prices);
                 const range = maxP - minP || 1;
-                  // Clamp live price line within chart bounds (WebSocket price may be newer than candlestick range)
-                  const rawPriceY = PAD_Y + ((maxP - displayPrice) / range) * chartH;
-                  const priceY = Math.max(PAD_Y + 12, Math.min(PAD_Y + chartH - 12, rawPriceY));
-                  return (
-                    <motion.g
-                      initial={isMobile ? false : { opacity: 0 }}
-                      whileInView={isMobile ? undefined : { opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 1.5 }}>
-                      <line x1="0" y1={priceY} x2={SVG_W - PAD_RIGHT} y2={priceY}
-                        stroke="#3A86FF" strokeWidth="1" strokeDasharray="5,5" opacity="0.5" />
-                      <rect x={SVG_W - PAD_RIGHT + 2} y={priceY - 10} width={PAD_RIGHT - 8} height="20" fill="#3A86FF" rx="4" />
-                      <text x={SVG_W - PAD_RIGHT / 2 - 1} y={priceY + 4} fill="#0B132B"
+                // Clamp live price line within chart bounds (WebSocket price may be newer than candlestick range)
+                const rawPriceY = PAD_Y + ((maxP - displayPrice) / range) * chartH;
+                const priceY = Math.max(PAD_Y + 12, Math.min(PAD_Y + chartH - 12, rawPriceY));
+                return (
+                  <motion.g
+                    initial={isMobile ? false : { opacity: 0 }}
+                    whileInView={isMobile ? undefined : { opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 1.5 }}>
+                    <line x1="0" y1={priceY} x2={SVG_W - PAD_RIGHT} y2={priceY}
+                      stroke="#3A86FF" strokeWidth="1" strokeDasharray="5,5" opacity="0.5" />
+                    <rect x={SVG_W - PAD_RIGHT + 2} y={priceY - 10} width={PAD_RIGHT - 8} height="20" fill="#3A86FF" rx="4" />
+                    <text x={SVG_W - PAD_RIGHT / 2 - 1} y={priceY + 4} fill="#0B132B"
                       fontSize="10" fontWeight="700" textAnchor="middle">
-                      {displayPrice >= 1000 ? `$${(displayPrice/1000).toFixed(1)}K` : `$${displayPrice.toFixed(0)}`}
+                      {displayPrice >= 1000 ? `$${(displayPrice / 1000).toFixed(1)}K` : `$${displayPrice.toFixed(0)}`}
                     </text>
                   </motion.g>
                 );
@@ -482,7 +521,7 @@ const ChartShowcase = () => {
           </div>
         </motion.div>
 
-        {/* TradingView Interactive Chart Widget */}
+        {/* YouTube Education Videos — replaces Interactive TradingView Widget (TASK 4 + TASK 11) */}
         <motion.div
           className={styles.tvWidgetSection}
           initial={{ opacity: 0, y: 40 }}
@@ -492,38 +531,21 @@ const ChartShowcase = () => {
         >
           <div className={styles.tvWidgetHeader}>
             <h3 className={styles.tvWidgetTitle}>
-              Interactive <span className={styles.gradient}>TradingView</span> Chart
+              See the <span className={styles.gradient}>4-Color System</span> in Action
             </h3>
             <p className={styles.tvWidgetSubtitle}>
-              Explore live market data directly on TradingView. Add the{' '}
-              <a
-                href="https://www.tradingview.com/script/dWscMbbP-Four-Color-Order-Flow-System/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.tvLink}
-              >
-                4-Color System™ indicator
-              </a>{' '}
-              to see the full power.
+              Watch real trading sessions across multiple markets — Bitcoin, Forex, Metals, and Stocks — all analyzed with 4-Color Logic.
             </p>
           </div>
-          <div className={styles.tvWidgetContainer}>
-            <iframe
-              className={styles.tvWidget}
-              src={
-                isMobile
-                  // Mobile: hide sidebar + toolbars to maximise chart area
-                  ? "https://s.tradingview.com/widgetembed/?hideideas=1&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&locale=en#%7B%22symbol%22%3A%22BINANCE%3ABTCUSDT%22%2C%22frameElementId%22%3A%22tradingview_4color_m%22%2C%22interval%22%3A%22D%22%2C%22hide_side_toolbar%22%3A%221%22%2C%22allow_symbol_change%22%3A%221%22%2C%22save_image%22%3A%220%22%2C%22studies%22%3A%22%5B%5D%22%2C%22theme%22%3A%22dark%22%2C%22style%22%3A%221%22%2C%22timezone%22%3A%22Etc%2FUTC%22%2C%22studies_overrides%22%3A%22%7B%7D%22%2C%22utm_source%22%3A%224colorsystem.com%22%2C%22utm_medium%22%3A%22widget_new%22%2C%22utm_campaign%22%3A%22chart%22%2C%22utm_term%22%3A%22BINANCE%3ABTCUSDT%22%2C%22page-uri%22%3A%224colorsystem.com%22%7D"
-                  // Desktop: show sidebar
-                  : "https://s.tradingview.com/widgetembed/?hideideas=1&overrides=%7B%7D&enabled_features=%5B%5D&disabled_features=%5B%5D&locale=en#%7B%22symbol%22%3A%22BINANCE%3ABTCUSDT%22%2C%22frameElementId%22%3A%22tradingview_4color%22%2C%22interval%22%3A%22D%22%2C%22hide_side_toolbar%22%3A%220%22%2C%22allow_symbol_change%22%3A%221%22%2C%22save_image%22%3A%220%22%2C%22studies%22%3A%22%5B%5D%22%2C%22theme%22%3A%22dark%22%2C%22style%22%3A%221%22%2C%22timezone%22%3A%22Etc%2FUTC%22%2C%22studies_overrides%22%3A%22%7B%7D%22%2C%22utm_source%22%3A%224colorsystem.com%22%2C%22utm_medium%22%3A%22widget_new%22%2C%22utm_campaign%22%3A%22chart%22%2C%22utm_term%22%3A%22BINANCE%3ABTCUSDT%22%2C%22page-uri%22%3A%224colorsystem.com%22%7D"
-              }
-              title="TradingView Chart — BTC/USD"
-              frameBorder="0"
-              allowTransparency="true"
-              scrolling="no"
-              allowFullScreen
-              loading="lazy"
-            />
+          <div className={styles.videoGrid}>
+            {[
+              { id: 'xGvS9clt9Sw', label: 'BITCOIN — 1M Education' },
+              { id: '2jYU65rDRzo', label: 'FX — 1M Education' },
+              { id: '_9kUqQ25j-8', label: 'Metal — 1M Education' },
+              { id: 'feu_aThIJtU', label: 'Stock Hubs — 1M Education' },
+            ].map((v) => (
+              <AutoPlayVideo key={v.id} id={v.id} label={v.label} />
+            ))}
           </div>
         </motion.div>
       </div>

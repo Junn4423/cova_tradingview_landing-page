@@ -253,36 +253,63 @@
   margin: 0 auto;
 }
 
-.tvLink {
-  color: #3A86FF;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  transition: color 0.2s;
-
-  &:hover {
-    color: #00D4FF;
-  }
-}
-
-.tvWidgetContainer {
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid rgba(58, 134, 255, 0.15);
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
-  aspect-ratio: 16 / 9;
-  min-height: 320px;
+// Video grid (replaces TradingView widget)
+.videoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
 
   @media (max-width: 768px) {
-    aspect-ratio: 4 / 3;
-    min-height: 280px;
-    border-radius: 12px;
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }
 
-.tvWidget {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border: none;
+.videoCard {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(11, 19, 43, 0.6);
+  backdrop-filter: blur(20px);
+  transition: border-color 0.3s, box-shadow 0.3s;
+
+  &:hover {
+    border-color: rgba(58, 134, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(58, 134, 255, 0.12);
+  }
 }
+
+.videoEmbed {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+}
+
+.videoLabel {
+  display: block;
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.videoPlaceholder {
+  position: absolute;
+  inset: 0;
+  background: rgba(28, 37, 65, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+

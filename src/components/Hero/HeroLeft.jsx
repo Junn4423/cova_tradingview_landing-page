@@ -1,12 +1,12 @@
-import { motion, useMotionValue, useSpring } from 'framer-motion';
-import { ArrowRight, PlayCircle, TrendingUp, Shield, Zap, ChevronRight } from 'lucide-react';
+import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
+import { ArrowRight, PlayCircle, ChevronRight, Lightbulb } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import styles from './HeroLeft.module.scss';
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    // Reduced from 0.2/0.12 → tighter stagger so LCP text appears sooner
     transition: { staggerChildren: 0.08, delayChildren: 0.05 },
   },
 };
@@ -21,7 +21,6 @@ const itemVariants = {
   },
 };
 
-// Scatter on scroll-out, snap back on scroll-in
 const scatterLeft = {
   hidden: { opacity: 0, x: -80, rotate: -6 },
   visible: {
@@ -29,39 +28,16 @@ const scatterLeft = {
     transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
   },
 };
-const scatterRight = {
-  hidden: { opacity: 0, x: 80, rotate: 6 },
-  visible: {
-    opacity: 1, x: 0, rotate: 0,
-    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
-  },
-};
 
-const stats = [
-  { icon: TrendingUp, value: '94.7%', countEnd: 94.7, decimals: 1, suffix: '%', label: 'Win Rate', color: '#00F5A0' },
-  { icon: Shield,     value: '50K+',  countEnd: 50,   decimals: 0, suffix: 'K+',  label: 'Traders',   color: '#3A86FF' },
-  { icon: Zap,        value: '24/7',  countEnd: null,                              label: 'Live Data', color: '#FFD700' },
+// Hot tips from 4-Color Liquidity Sequence Cheat Sheet
+const hotTips = [
+  '🟡 → 🟢 → 🔵 → 🔴 → TREND',
+  '🔵 → 🔴 → 🟡 → 🟢 → TREND',
+  'Liquidity loading before expansion',
+  'Blue repeatedly = Accumulation building',
+  'Red attempts failing = Buyers absorbing',
+  'Price moves last. Liquidity moves first.',
 ];
-
-const StatItem = ({ s }) => {
-  return (
-    <motion.div
-      className={styles.stat}
-      whileHover={{ y: -6, scale: 1.04 }}
-      transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-    >
-      <div className={styles.statIcon} style={{ '--color': s.color }}>
-        <s.icon size={18} />
-      </div>
-      <div className={styles.statBody}>
-        <span className={styles.statValue} style={{ color: s.color }}>
-          {s.value}
-        </span>
-        <span className={styles.statLabel}>{s.label}</span>
-      </div>
-    </motion.div>
-  );
-};
 
 // Magnetic button hook
 function useMagnet(strength = 0.4) {
@@ -84,6 +60,15 @@ function useMagnet(strength = 0.4) {
 const HeroLeft = () => {
   const btn1 = useMagnet(0.35);
   const btn2 = useMagnet(0.35);
+
+  // Rotating hot tips
+  const [tipIndex, setTipIndex] = useState(0);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTipIndex((i) => (i + 1) % hotTips.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <motion.div
@@ -109,16 +94,48 @@ const HeroLeft = () => {
         </span>
       </motion.h1>
 
-      {/* Subheadline — exact from DOCX */}
-      <motion.p variants={itemVariants} className={styles.sub}>
-        Understand liquidity shifts, execution context, and structural pressure
-        through a simplified 4-Color price model.
-      </motion.p>
+      {/* CFE Formula — from mail 2 */}
+      <motion.div variants={itemVariants} className={styles.cfeFormula}>
+        <p className={styles.cfeIntro}>
+          <strong>Context-First Execution (CFE)</strong> analyzes market forces in real time by combining:
+        </p>
+        <p className={styles.cfeEquation}>
+          <span className="notranslate">Order Flow + AD + 4-Color Candle Logic + FVG</span>
+          <span className={styles.cfeArrow}>→</span>
+          <span className={styles.cfeResult}>Real-Time Market Context</span>
+        </p>
+        <p className={styles.cfeSub}>
+          Enhanced with AI-assisted interpretation for faster insight into liquidity, imbalances, and execution zones.
+        </p>
+      </motion.div>
 
       {/* Tagline */}
       <motion.p variants={itemVariants} className={styles.tagline}>
         Price shows <em>where</em>. 4-Color shows <em>who</em>.
       </motion.p>
+
+      {/* Hot Tips Floating Window — from cheat sheet (TASK 2 + 12) */}
+      <motion.div
+        variants={itemVariants}
+        className={styles.hotTipWindow}
+      >
+        <div className={styles.hotTipHeader}>
+          <Lightbulb size={14} />
+          <span>Liquidity Sequence Tip</span>
+        </div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={tipIndex}
+            className={styles.hotTipContent}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.3 }}
+          >
+            <span className="notranslate">{hotTips[tipIndex]}</span>
+          </motion.div>
+        </AnimatePresence>
+      </motion.div>
 
       {/* CTA Buttons */}
       <motion.div variants={itemVariants} className={styles.ctas}>
@@ -144,9 +161,9 @@ const HeroLeft = () => {
           <span className={styles.shimmer} />
         </motion.a>
 
-        {/* Secondary — YouTube demo */}
+        {/* Secondary — YouTube demo (updated to Bitcoin education video) */}
         <motion.a
-          href="https://www.youtube.com/watch?v=9M93_6S9TaQ"
+          href="https://www.youtube.com/watch?v=xGvS9clt9Sw"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.secondaryBtn}
@@ -174,11 +191,11 @@ const HeroLeft = () => {
         Education &amp; Trading →
       </motion.a>
 
-      {/* Waitlist links from DOCX */}
+      {/* Waitlist links */}
       <motion.div variants={itemVariants} className={styles.waitlistLinks}>
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=minhptran9@gmail.com&su=Join%20Pro%20Waitlist%20%E2%80%93%204Color%20System&body=Hi%204Color%20System%20Team%2C%0A%0AI%20am%20interested%20in%20joining%20the%20Pro%20Waitlist.%0A%0APlease%20let%20me%20know%20when%20Pro%20is%20available%20and%20how%20to%20get%20early%20access.%0A%0AThank%20you!" target="_blank" rel="noopener noreferrer" className={styles.waitlistLink}>Join Pro Waitlist</a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com&su=Join%20Pro%20Waitlist%20%E2%80%93%204Color%20System&body=Hi%204Color%20System%20Team%2C%0A%0AI%20am%20interested%20in%20joining%20the%20Pro%20Waitlist.%0A%0APlease%20let%20me%20know%20when%20Pro%20is%20available%20and%20how%20to%20get%20early%20access.%0A%0AThank%20you!" target="_blank" rel="noopener noreferrer" className={styles.waitlistLink}>Join Pro Waitlist</a>
         <span className={styles.waitlistSep}>·</span>
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=minhptran9@gmail.com&su=Apply%20for%20Elite%20%E2%80%93%204Color%20System&body=Hi%204Color%20System%20Team%2C%0A%0AI%20would%20like%20to%20apply%20for%20the%20Elite%20version%20with%20FVG%20Lifecycle%20tracking%20and%20execution%20context.%0A%0APlease%20send%20me%20more%20details%20about%20Elite%20access.%0A%0AThank%20you!" target="_blank" rel="noopener noreferrer" className={styles.waitlistLink}>Apply for Elite</a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com&su=Apply%20for%20Elite%20%E2%80%93%204Color%20System&body=Hi%204Color%20System%20Team%2C%0A%0AI%20would%20like%20to%20apply%20for%20the%20Elite%20version%20with%20FVG%20Lifecycle%20tracking%20and%20execution%20context.%0A%0APlease%20send%20me%20more%20details%20about%20Elite%20access.%0A%0AThank%20you!" target="_blank" rel="noopener noreferrer" className={styles.waitlistLink}>Apply for Elite</a>
       </motion.div>
     </motion.div>
   );

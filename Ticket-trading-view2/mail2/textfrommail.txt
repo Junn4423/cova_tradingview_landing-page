@@ -1,0 +1,19 @@
+Thôi hết, nhiêu đó đủ bộ học ra trường rồi
+Homepage Hero Line 
+Context-First Execution (CFE) analyzes market forces in real time by combining:
+
+Order Flow + AD + 4-Color Candle Logic + FVG → Real-Time Market Context
+
+Enhanced with AI-assisted interpretation for faster insight into 
+
+liquidity, imbalances, and execution zones.
+
+------------------
+
+Typical pattern:
+
+🟡 → 🟢 → 🔵 → 🔴 → TREND
+or
+
+🔵 → 🔴 → 🟡 → 🟢 → TREND
+That is basically liquidity loading before expansion.

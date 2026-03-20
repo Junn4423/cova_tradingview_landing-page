@@ -29,30 +29,30 @@ const plans = [
   },
   {
     name: 'Pro',
-    price: '$297',
-    priceNum: 297,
-    period: 'one-time',
-    description: 'Confirm if the pressure behind a move is real.',
+    price: null,
+    priceNum: null,
+    period: 'Early Access (Under Development)',
+    description: 'Confirm whether the pressure behind a move is real.',
     image: '/images/Pro-Sample-Chart.jpeg',
     features: [
       'All Lite features',
-      'Buying vs selling pressure confirmation',
-      'Absorption behavior detection',
-      'Filters weak market moves',
+      'Buying vs Selling pressure metrics',
+      'Absorption detection',
+      'Liquidity imbalance signals',
       'Priority Support',
     ],
     popular: true,
     cta: 'Join Pro Waitlist',
-    ctaLink: 'https://mail.google.com/mail/?view=cm&fs=1&to=minhptran9@gmail.com&su=Join%20Pro%20Waitlist%20%E2%80%93%204Color%20System&body=Hi%204Color%20System%20Team%2C%0A%0AI%20am%20interested%20in%20joining%20the%20Pro%20Waitlist.%0A%0APlease%20let%20me%20know%20when%20Pro%20is%20available%20and%20how%20to%20get%20early%20access.%0A%0AThank%20you!',
+    ctaLink: 'https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com&su=Join%20Pro%20Waitlist%20%E2%80%93%204Color%20System&body=Hi%204Color%20System%20Team%2C%0A%0AI%20am%20interested%20in%20joining%20the%20Pro%20Waitlist.%0A%0APlease%20let%20me%20know%20when%20Pro%20is%20available%20and%20how%20to%20get%20early%20access.%0A%0AThank%20you!',
     ctaExternal: true,
     badge: 'COMING SOON',
     badgeColor: '#FFD700',
   },
   {
     name: 'Elite',
-    price: '$997',
-    priceNum: 997,
-    period: 'one-time',
+    price: null,
+    priceNum: null,
+    period: 'Research Version (Under Development)',
     description: 'Full execution context with FVG Lifecycle tracking.',
     image: '/images/Elite-Sample-Chart.jpeg',
     features: [
@@ -60,20 +60,20 @@ const plans = [
       'Fair Value Gap (FVG) imbalance detection',
       'FVG Lifecycle tracking',
       'Trap vs takeover identification',
-      'FVG Execution Logic™ (CFE)',
+      'FVG Lifecycle Logic™ (CFE)',
     ],
     popular: false,
     cta: 'Apply for Elite',
-    ctaLink: 'https://mail.google.com/mail/?view=cm&fs=1&to=minhptran9@gmail.com&su=Apply%20for%20Elite%20%E2%80%93%204Color%20System&body=Hi%204Color%20System%20Team%2C%0A%0AI%20would%20like%20to%20apply%20for%20the%20Elite%20version%20with%20FVG%20Lifecycle%20tracking%20and%20execution%20context.%0A%0APlease%20send%20me%20more%20details%20about%20Elite%20access.%0A%0AThank%20you!',
+    ctaLink: 'https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com&su=Apply%20for%20Elite%20%E2%80%93%204Color%20System&body=Hi%204Color%20System%20Team%2C%0A%0AI%20would%20like%20to%20apply%20for%20the%20Elite%20version%20with%20FVG%20Lifecycle%20tracking%20and%20execution%20context.%0A%0APlease%20send%20me%20more%20details%20about%20Elite%20access.%0A%0AThank%20you!',
     ctaExternal: true,
     badge: 'COMING SOON',
     badgeColor: '#FFD700',
   },
   {
     name: 'Hubs',
-    price: 'Custom',
-    priceNum: 0,
-    period: 'contact us',
+    price: null,
+    priceNum: null,
+    period: 'Research in Progress',
     description: 'FX Terminal Hub — multi-pair Forex & crypto dashboard.',
     image: '/images/FX.jpg',
     features: [
@@ -85,7 +85,7 @@ const plans = [
     ],
     popular: false,
     cta: 'Contact for Access',
-    ctaLink: 'https://mail.google.com/mail/?view=cm&fs=1&to=minhptran9@gmail.com&su=Inquiry%20about%20Hubs%20%E2%80%93%20FX%20Terminal%20Hub&body=Hi%204Color%20System%20Team%2C%0A%0AI%20am%20interested%20in%20the%20Hubs%20(FX%20Terminal%20Hub)%20product.%0A%0ACould%20you%20please%20provide%20pricing%20details%20and%20availability%3F%0A%0AThank%20you!',
+    ctaLink: 'https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com&su=Inquiry%20about%20Hubs%20%E2%80%93%20FX%20Terminal%20Hub&body=Hi%204Color%20System%20Team%2C%0A%0AI%20am%20interested%20in%20the%20Hubs%20(FX%20Terminal%20Hub)%20product.%0A%0ACould%20you%20please%20provide%20details%20and%20availability%3F%0A%0AThank%20you!',
     ctaExternal: true,
     badge: 'COMING SOON',
     badgeColor: '#FFD700',
@@ -129,7 +129,9 @@ const PlanCard = ({ plan, index }) => {
       <div className={styles.planHeader}>
         <h3 className={`${styles.planName} notranslate`}>{plan.name}</h3>
         <div className={styles.planPrice}>
-          <span className={styles.price}>{plan.price}</span>
+          {plan.price ? (
+            <span className={styles.price}>{plan.price}</span>
+          ) : null}
           <span className={styles.period}>{plan.period}</span>
         </div>
         <p className={styles.planDescription}>{plan.description}</p>

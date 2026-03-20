@@ -167,6 +167,21 @@ const HeroRightChart = () => {
         x="calc(100% - 10px)"
         y="70%"
       />
+
+      {/* Doji — Why Upgrade? (TASK 14 — from mail 3) */}
+      <motion.div
+        className={styles.dojiSection}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 2.2, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <img
+          src="/images/Doji.jpg"
+          alt="Why You Keep Losing? — Doji comparison: Traditional vs 4-Color"
+          className={styles.dojiImg}
+          loading="lazy"
+        />
+      </motion.div>
     </motion.div>
   );
 };

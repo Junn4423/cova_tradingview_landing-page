@@ -41,7 +41,7 @@ const features = [
   },
   {
     icon: Zap,
-    title: 'FVG Execution Logic™ (CFE)',
+    title: 'FVG Lifecycle Logic™ (CFE)',
     description: 'The complete Accumulation → Liquidity Sweep → Structure Shift → Buyer Control → Expansion sequence — the roadmap from setup to breakout.',
     color: '#00D4FF',
   },

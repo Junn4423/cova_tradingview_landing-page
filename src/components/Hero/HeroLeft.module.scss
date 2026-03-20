@@ -225,102 +225,94 @@
   z-index: 1;
 }
 
-// ── Stats ─────────────────────────────────────────────────────────────────────
-.stats {
-  display: flex;
-  gap: 1.25rem;
-  flex-wrap: wrap;
-
-  @media (max-width: 1100px) {
-    justify-content: center;
-  }
-}
-
-.stat {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.875rem 1.25rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+// ── CFE Formula ──────────────────────────────────────────────────────────────
+.cfeFormula {
+  max-width: 560px;
+  padding: 1.25rem 1.5rem;
+  background: rgba(58, 134, 255, 0.06);
+  border: 1px solid rgba(58, 134, 255, 0.18);
   border-radius: 16px;
-  backdrop-filter: blur(16px);
-  cursor: default;
-  transition: border-color 0.3s ease;
-
-  &:hover {
-    border-color: rgba(255, 255, 255, 0.14);
-  }
-}
-
-.statIcon {
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: color-mix(in srgb, var(--color) 12%, transparent);
-  color: var(--color);
-  flex-shrink: 0;
-}
-
-.statBody {
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
-}
-
-.statValue {
-  font-size: 1.1rem;
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.02em;
-}
-
-.statLabel {
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.5);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-// ── Social Proof ──────────────────────────────────────────────────────────────
-.proof {
-  display: flex;
-  align-items: center;
-  gap: 0.875rem;
+  backdrop-filter: blur(12px);
 
   @media (max-width: 1100px) {
-    justify-content: center;
+    max-width: 600px;
   }
 }
 
-.avatarStack {
-  display: flex;
-}
-
-.avatar {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 2px solid rgba(11, 19, 43, 0.9);
-  margin-left: -8px;
-  flex-shrink: 0;
-  opacity: 0.85;
-
-  &:first-child { margin-left: 0; }
-}
-
-.proofText {
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.55);
+.cfeIntro {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
 
   strong {
-    color: rgba(255, 255, 255, 0.9);
+    color: #00D4FF;
     font-weight: 700;
   }
+}
+
+.cfeEquation {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.75rem;
+}
+
+.cfeArrow {
+  color: #FFD700;
+  font-size: 1.2rem;
+}
+
+.cfeResult {
+  background: linear-gradient(135deg, #00F5A0, #3A86FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+}
+
+.cfeSub {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.5;
+}
+
+// ── Hot Tips Window ──────────────────────────────────────────────────────────
+.hotTipWindow {
+  max-width: 400px;
+  padding: 0.875rem 1.25rem;
+  background: rgba(255, 215, 0, 0.06);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+
+  @media (max-width: 1100px) {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}
+
+.hotTipHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #FFD700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.5rem;
+}
+
+.hotTipContent {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  min-height: 1.5em;
 }
 
 // ── Tagline ───────────────────────────────────────────────────────────────────

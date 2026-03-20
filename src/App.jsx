@@ -7,7 +7,7 @@ import ChartShowcase from './components/ChartShowcase/ChartShowcase';
 import HowItWorks from './components/HowItWorks/HowItWorks';
 import LiveStream from './components/LiveStream/LiveStream';
 import Education from './components/Education/Education';
-import Testimonials from './components/Testimonials/Testimonials';
+// Testimonials removed per client request (Ticket V2 — TASK 8)
 import FinalCTA from './components/FinalCTA/FinalCTA';
 import FAQ from './components/FAQ/FAQ';
 import Contact from './components/Contact/Contact';
@@ -123,9 +123,7 @@ function App() {
         <Education />
         <div className="section-divider" />
 
-        {/* Testimonials Section */}
-        <Testimonials />
-        <div className="section-divider" />
+        {/* Testimonials removed — client: "Trust by 50,000: Bỏ, ko cần tới" */}
 
         {/* Final CTA / Pricing Section */}
         <FinalCTA />

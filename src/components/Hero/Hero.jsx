@@ -13,16 +13,15 @@ const Hero = () => {
 
   const leftX  = useTransform(scrollYProgress, [0, 1], [0, -80]);
   const rightX = useTransform(scrollYProgress, [0, 1], [0,  80]);
-  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
   return (
     <section ref={sectionRef} className={styles.hero}>
       <div className={styles.container}>
         <div className={styles.grid}>
-          <motion.div style={{ x: leftX, opacity }}>
+          <motion.div style={{ x: leftX }}>
             <HeroLeft />
           </motion.div>
-          <motion.div style={{ x: rightX, opacity }}>
+          <motion.div style={{ x: rightX }}>
             <HeroRightChart />
           </motion.div>
         </div>
