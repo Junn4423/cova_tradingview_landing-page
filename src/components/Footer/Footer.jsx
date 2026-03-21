@@ -83,7 +83,7 @@ const Footer = () => {
               </a>
               <a href="#" className={styles.contactItem}>
                 <MapPin size={18} />
-                <span>Singapore</span>
+                <span>Toronto, Canada</span>
               </a>
             </div>
 

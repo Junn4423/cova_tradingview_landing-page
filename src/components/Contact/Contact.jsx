@@ -29,7 +29,7 @@ const contactItems = [
   {
     icon: MapPin,
     label: 'Location',
-    value: 'Singapore',
+    value: 'Toronto, Canada',
     href: null,
     color: '#00F5A0',
   },

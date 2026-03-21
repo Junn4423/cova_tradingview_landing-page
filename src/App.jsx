@@ -3,9 +3,7 @@ import { useEffect, useState, lazy, Suspense } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
 import Features from './components/Features/Features';
-import ChartShowcase from './components/ChartShowcase/ChartShowcase';
 import HowItWorks from './components/HowItWorks/HowItWorks';
-import LiveStream from './components/LiveStream/LiveStream';
 import Education from './components/Education/Education';
 // Testimonials removed per client request (Ticket V2 — TASK 8)
 import FinalCTA from './components/FinalCTA/FinalCTA';
@@ -107,16 +105,8 @@ function App() {
         <Features />
         <div className="section-divider" />
 
-        {/* Chart Showcase Section */}
-        <ChartShowcase />
-        <div className="section-divider" />
-
         {/* How It Works Section */}
         <HowItWorks />
-        <div className="section-divider" />
-
-        {/* Live Stream Section */}
-        <LiveStream />
         <div className="section-divider" />
 
         {/* Education Section */}
