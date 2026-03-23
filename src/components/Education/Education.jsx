@@ -1,10 +1,10 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { BookOpen, ChevronRight, ExternalLink, Check, X, Info, ZoomIn, FileText, Download, Image, Send } from 'lucide-react';
-import { useToast } from '../Toast/Toast';
 import styles from './Education.module.scss';
 import { use3DTilt, useRipple, injectRippleKeyframe } from '../../utils/animations';
 
 const pdfResources = [
+  { name: 'How These Charts Work Across ETFs', file: '/docs/How These Charts Work Across ETFs.pdf', color: '#3A86FF' },
   { name: '4-Color Liquidity Sequence Cheat Sheet', file: '/docs/4-Color Liquidity Sequence Cheat Sheet.pdf', color: '#00F5A0' },
   { name: '4-Color Market Observation Framework', file: '/docs/4-Color Market Observation Framework.pdf', color: '#3A86FF' },
   { name: 'How AD Helps Confirm', file: '/docs/How AD Helps Confirm.pdf', color: '#7B2CBF' },
@@ -16,55 +16,6 @@ const pdfResources = [
   { name: 'Why Liquidity Forms Around S/R', file: '/docs/Why Liquidity Forms Around Support and Resistance.pdf', color: '#00F5A0' },
   { name: 'Why Upgrade to 4-Color', file: '/docs/Why Upgrade.pdf', color: '#7B2CBF' },
 ];
-
-const accessForms = {
-  Pro: {
-    title: 'PRO — Access Reservation Form',
-    description: 'Pro delivers execution-grade market context by tracking imbalance behavior, participation pressure, and trap conditions — all in real time.',
-    note: 'This is not built for beginners. Access is limited and released in phases.',
-    fields: [
-      { id: 'tvUsername', label: 'TradingView Username', type: 'text', required: true, placeholder: 'Your TradingView username' },
-      { id: 'email', label: 'Email', type: 'email', required: true, placeholder: 'your@email.com' },
-      { id: 'experience', label: 'Experience Level', type: 'select', required: true, options: ['', 'Beginner', 'Intermediate', 'Advanced'] },
-      { id: 'market', label: 'Primary Market', type: 'select', required: true, options: ['', 'Crypto', 'Stocks', 'Forex', 'Futures'] },
-      { id: 'interest', label: 'Why are you interested in this tool?', type: 'text', required: false, placeholder: '1 line max — keep it sharp' },
-    ],
-    checkbox: 'I understand what I am requesting access to.',
-    submit: 'Secure My Spot',
-    color: '#3A86FF',
-  },
-  Elite: {
-    title: 'ELITE — Access Reservation Form',
-    description: 'Elite extends FVG Execution Logic™ with deeper execution validation: advanced imbalance tracking, participation confirmation, and trap condition refinement.',
-    note: 'Designed for traders with existing experience. If you\'re still learning basics, this is not the right entry point.',
-    fields: [
-      { id: 'tvUsername', label: 'TradingView Username', type: 'text', required: true, placeholder: 'Your TradingView username' },
-      { id: 'email', label: 'Email', type: 'email', required: true, placeholder: 'your@email.com' },
-      { id: 'experience', label: 'Experience Level', type: 'select', required: true, options: ['', 'Intermediate', 'Advanced'] },
-      { id: 'market', label: 'Primary Market', type: 'select', required: true, options: ['', 'Crypto', 'Stocks', 'Forex', 'Futures'] },
-      { id: 'execution', label: 'Before entering a trade, what confirms your decision?', type: 'text', required: true, placeholder: '1 line max' },
-    ],
-    checkbox: 'I understand this is not a signal system.',
-    submit: 'Request Elite Access',
-    color: '#FF9F1C',
-  },
-  Hubs: {
-    title: 'HUBS — Restricted Access Form',
-    description: 'Hubs operate as a structured execution environment: multi-layer market context, real-time condition tracking, advanced trap and behavior mapping.',
-    note: 'Not for beginners. Not for exploration. Released gradually to a limited group of experienced users.',
-    fields: [
-      { id: 'tvUsername', label: 'TradingView Username', type: 'text', required: true, placeholder: 'Your TradingView username' },
-      { id: 'email', label: 'Email', type: 'email', required: true, placeholder: 'your@email.com' },
-      { id: 'level', label: 'I consider my trading level', type: 'select', required: true, options: ['', 'Advanced', 'Not there yet'] },
-      { id: 'market', label: 'Primary Market', type: 'select', required: true, options: ['', 'Crypto', 'Stocks', 'Forex', 'Futures'] },
-      { id: 'execution', label: 'What invalidates your trade idea?', type: 'text', required: true, placeholder: '1 line max — be specific' },
-      { id: 'tvProfile', label: 'TradingView Profile Link', type: 'url', required: false, placeholder: 'https://www.tradingview.com/u/...' },
-    ],
-    checkbox: 'I understand this is not a plug-and-play environment.',
-    submit: 'Request Hubs Access',
-    color: '#7B2CBF',
-  },
-};
 
 const infographics = [
   { name: 'The Liquidity Cycle', src: '/images/The Liquidity Cycle.png' },
@@ -182,7 +133,8 @@ const tiers = [
     ],
     analogy: 'Checking supplier stability and customer demand before ordering inventory.',
     cta: 'Join Pro Waitlist',
-    ctaForm: 'Pro',
+    ctaLink: 'https://form.jotform.com/260806377022050',
+    ctaExternal: true,
   },
   {
     name: 'Elite',
@@ -205,7 +157,8 @@ const tiers = [
     excluded: [],
     analogy: 'You know exactly when wholesalers stop dumping inventory and buyers start paying higher prices.',
     cta: 'Apply for Elite',
-    ctaForm: 'Elite',
+    ctaLink: 'https://form.jotform.com/260806560917057',
+    ctaExternal: true,
   },
   {
     name: 'Hubs',
@@ -227,7 +180,8 @@ const tiers = [
     excluded: [],
     analogy: 'A full operations control room — monitoring all markets simultaneously with real-time 4-Color logic.',
     cta: 'Request Hubs Access',
-    ctaForm: 'Hubs',
+    ctaLink: 'https://form.jotform.com/260806911516052',
+    ctaExternal: true,
   },
 ];
 
@@ -405,7 +359,7 @@ const AccessFormModal = ({ formKey, onClose }) => {
   );
 };
 
-const TierCard = ({ tier, index, onOpenForm }) => {
+const TierCard = ({ tier, index }) => {
   const tilt = use3DTilt({ maxTilt: 7, scale: 1.02, glare: 0.08 });
   return (
     <motion.div
@@ -446,13 +400,7 @@ const TierCard = ({ tier, index, onOpenForm }) => {
         <Info size={14} color={tier.color} style={{ flexShrink: 0, marginTop: 2 }} />
         <span><em>{tier.analogy}</em></span>
       </div>
-      {tier.ctaForm ? (
-        <button className={styles.tierCta}
-          style={{ background: tier.color + '18', borderColor: tier.border, color: tier.color }}
-          onClick={() => onOpenForm(tier.ctaForm)}>
-          {tier.cta} <ChevronRight size={14} />
-        </button>
-      ) : tier.ctaExternal ? (
+      {tier.ctaExternal ? (
         <a href={tier.ctaLink} target="_blank" rel="noopener noreferrer"
           className={styles.tierCta}
           style={{ background: tier.color + '18', borderColor: tier.border, color: tier.color }}>
@@ -473,7 +421,6 @@ const Education = () => {
   useEffect(() => { injectRippleKeyframe(); }, []);
 
   const [lightbox, setLightbox] = useState(null); // { src, title }
-  const [activeForm, setActiveForm] = useState(null); // 'Pro' | 'Elite' | 'Hubs' | null
 
   useEffect(() => {
     if (!lightbox) return;
@@ -644,7 +591,7 @@ const Education = () => {
           </p>
           <div className={styles.tiersGrid}>
             {tiers.map((tier, i) => (
-              <TierCard key={i} tier={tier} index={i} onOpenForm={setActiveForm} />
+              <TierCard key={i} tier={tier} index={i} />
             ))}
           </div>
         </motion.div>
@@ -710,10 +657,6 @@ const Education = () => {
           </div>
         </motion.div>
       </div>
-      {/* Access Form Modal */}
-      <AnimatePresence>
-        {activeForm && <AccessFormModal formKey={activeForm} onClose={() => setActiveForm(null)} />}
-      </AnimatePresence>
 
       {/* Lightbox overlay */}
       <AnimatePresence>

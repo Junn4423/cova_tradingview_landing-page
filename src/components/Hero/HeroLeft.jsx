@@ -78,11 +78,16 @@ const HeroLeft = () => {
       animate="visible"
     >
       {/* Badge */}
-      <motion.div variants={scatterLeft} className={styles.badge}>
+      <motion.a 
+        href="#education"
+        variants={scatterLeft} 
+        className={styles.badge}
+        style={{ textDecoration: 'none' }}
+      >
         <span className={styles.badgePulse} />
         <span className={styles.badgeText}>A Visual Framework for Reading Market Behavior</span>
         <ChevronRight size={14} className={styles.badgeArrow} />
-      </motion.div>
+      </motion.a>
 
       {/* Headline */}
       <motion.h1 variants={itemVariants} className={styles.headline}>
@@ -193,9 +198,9 @@ const HeroLeft = () => {
 
       {/* Waitlist links */}
       <motion.div variants={itemVariants} className={styles.waitlistLinks}>
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com&su=Join%20Pro%20Waitlist%20%E2%80%93%204Color%20System&body=Hi%204Color%20System%20Team%2C%0A%0AI%20am%20interested%20in%20joining%20the%20Pro%20Waitlist.%0A%0APlease%20let%20me%20know%20when%20Pro%20is%20available%20and%20how%20to%20get%20early%20access.%0A%0AThank%20you!" target="_blank" rel="noopener noreferrer" className={styles.waitlistLink}>Join Pro Waitlist</a>
+        <a href="https://form.jotform.com/260806377022050" target="_blank" rel="noopener noreferrer" className={styles.waitlistLink}>Join Pro Waitlist</a>
         <span className={styles.waitlistSep}>·</span>
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com&su=Apply%20for%20Elite%20%E2%80%93%204Color%20System&body=Hi%204Color%20System%20Team%2C%0A%0AI%20would%20like%20to%20apply%20for%20the%20Elite%20version%20with%20FVG%20Lifecycle%20tracking%20and%20execution%20context.%0A%0APlease%20send%20me%20more%20details%20about%20Elite%20access.%0A%0AThank%20you!" target="_blank" rel="noopener noreferrer" className={styles.waitlistLink}>Apply for Elite</a>
+        <a href="https://form.jotform.com/260806560917057" target="_blank" rel="noopener noreferrer" className={styles.waitlistLink}>Apply for Elite</a>
       </motion.div>
     </motion.div>
   );

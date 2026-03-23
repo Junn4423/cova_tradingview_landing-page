@@ -15,9 +15,9 @@ import styles from './Footer.module.scss';
 const footerLinks = {
   products: [
     { name: 'Lite (Free)', href: 'https://www.tradingview.com/script/dWscMbbP-Four-Color-Order-Flow-System/' },
-    { name: 'Pro',         href: 'https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com&su=Join%20Pro%20Waitlist%20%E2%80%93%204Color%20System&body=Hi%204Color%20System%20Team%2C%0A%0AI%20am%20interested%20in%20joining%20the%20Pro%20Waitlist.%0A%0APlease%20let%20me%20know%20when%20Pro%20is%20available.%0A%0AThank%20you!' },
-    { name: 'Elite',       href: 'https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com&su=Apply%20for%20Elite%20%E2%80%93%204Color%20System&body=Hi%204Color%20System%20Team%2C%0A%0AI%20would%20like%20to%20apply%20for%20the%20Elite%20version.%0A%0AThank%20you!' },
-    { name: 'Hubs',        href: 'https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com&su=Inquiry%20about%20Hubs%20%E2%80%93%20FX%20Terminal%20Hub&body=Hi%204Color%20System%20Team%2C%0A%0AI%20am%20interested%20in%20the%20Hubs%20product.%0A%0AThank%20you!' },
+    { name: 'Pro',         href: 'https://form.jotform.com/260806377022050' },
+    { name: 'Elite',       href: 'https://form.jotform.com/260806560917057' },
+    { name: 'Hubs',        href: 'https://form.jotform.com/260806911516052' },
   ],
   education: [
     { name: 'Education Hub',   href: '#education' },
