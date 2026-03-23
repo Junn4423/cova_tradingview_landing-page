@@ -47,6 +47,7 @@ const plans = [
     ctaExternal: true,
     badge: 'COMING SOON',
     badgeColor: '#FFD700',
+    qrCode: '/images/Pro-QR.png',
   },
   {
     name: 'Elite',
@@ -68,6 +69,7 @@ const plans = [
     ctaExternal: true,
     badge: 'COMING SOON',
     badgeColor: '#FFD700',
+    qrCode: '/images/Elite-QR.png',
   },
   {
     name: 'Hubs',
@@ -89,6 +91,7 @@ const plans = [
     ctaExternal: true,
     badge: 'COMING SOON',
     badgeColor: '#FFD700',
+    qrCode: '/images/Hubs-QR.png',
   },
 ];
 
@@ -153,6 +156,16 @@ const PlanCard = ({ plan, index }) => {
         ))}
       </ul>
 
+      {/* QR Code */}
+      {plan.qrCode && (
+        <div className={styles.qrSection}>
+          <a href={plan.ctaLink} target="_blank" rel="noopener noreferrer">
+            <img src={plan.qrCode} alt={`Scan to reserve ${plan.name}`} className={styles.qrImage} />
+          </a>
+          <span className={styles.qrLabel}>Scan to Reserve Your Spot</span>
+        </div>
+      )}
+
       {plan.ctaExternal ? (
         <a
           href={plan.ctaLink}
@@ -204,6 +217,25 @@ const FinalCTA = () => {
           </h2>
           <p className={styles.subtitle}>
             Lite is free and live now. Pro, Elite, and Hubs are in final testing — join the waitlist to get early access.
+          </p>
+        </motion.div>
+
+        {/* Upgrade Path Infographic (V4) */}
+        <motion.div
+          className={styles.upgradePath}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
+          transition={{ delay: 0.2, duration: 0.7 }}
+        >
+          <img
+            src="/images/Candles-Context.jpg"
+            alt="4Color System Upgrade Path — Lite (Visibility Layer) → Pro (Decision Layer) → Elite (Timing Layer)"
+            className={styles.upgradePathImg}
+            loading="lazy"
+          />
+          <p className={styles.upgradePathCaption}>
+            <strong>Pro</strong> shows structure. <strong>Elite</strong> now shows intent. Same chart — different level of understanding.
           </p>
         </motion.div>
 

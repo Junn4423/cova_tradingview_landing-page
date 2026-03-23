@@ -195,6 +195,7 @@ const Footer = () => {
           </p>
           <div className={styles.disclaimerFull}>
             <p><strong>Disclaimer:</strong> Trading involves substantial risk of loss and is not suitable for all investors. The content, tools, and signals provided on this website are for educational and informational purposes only and do not constitute financial advice, recommendations, or a solicitation to buy or sell any financial instruments. Past performance is not indicative of future results. Users are responsible for their own trading decisions.</p>
+            <p style={{ marginTop: '0.75rem' }}>All names and logos are property of their owners. No affiliation or endorsement. For education only.</p>
           </div>
         </div>
       </div>

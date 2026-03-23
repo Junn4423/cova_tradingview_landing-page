@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { BarChart2, TrendingUp, Activity, Layers } from 'lucide-react';
+import { BarChart2, TrendingUp, Activity, Layers, FileText } from 'lucide-react';
 import styles from './HeroRightChart.module.scss';
 
 // ─── Floating info badge ──────────────────────────────────────────────────────
@@ -168,7 +168,7 @@ const HeroRightChart = () => {
         y="70%"
       />
 
-      {/* Doji — Why Upgrade? (TASK 14 — from mail 3) */}
+      {/* Doji — Why You Keep Losing? (Updated V4 — Doji2) */}
       <motion.div
         className={styles.dojiSection}
         initial={{ opacity: 0, y: 20 }}
@@ -176,11 +176,62 @@ const HeroRightChart = () => {
         transition={{ delay: 2.2, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       >
         <img
-          src="/images/Doji.jpg"
-          alt="Why You Keep Losing? — Doji comparison: Traditional vs 4-Color"
+          src="/images/Doji2.jpg"
+          alt="Why You Keep Losing? — Stop guessing, read order flow with 4-Color Doji"
           className={styles.dojiImg}
           loading="lazy"
         />
+      </motion.div>
+
+      {/* Stop Memorizing 20+ Candle Patterns — V4 */}
+      <motion.div
+        className={styles.stopMemorizeSection}
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 2.6, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <h3 className={styles.stopMemorizeTitle}>
+          Stop Memorizing 20+ Candle Patterns
+        </h3>
+        <p className={styles.stopMemorizeSub}>
+          There are <strong>only 3</strong> candle behaviors you need:
+        </p>
+        <div className={styles.candleBehaviors}>
+          <div className={styles.behaviorCard} style={{ '--bdr': '#3A86FF' }}>
+            <span className={styles.behaviorNum}>1</span>
+            <h4>Compression</h4>
+            <p>Market is loading. No clear winner.</p>
+            <span className={styles.behaviorHint}>→ Something is coming</span>
+          </div>
+          <div className={styles.behaviorCard} style={{ '--bdr': '#FF6B6B' }}>
+            <span className={styles.behaviorNum}>2</span>
+            <h4>Rejection</h4>
+            <p>Price tried… got denied.</p>
+            <span className={styles.behaviorHint}>→ Someone stepped in HARD</span>
+          </div>
+          <div className={styles.behaviorCard} style={{ '--bdr': '#00F5A0' }}>
+            <span className={styles.behaviorNum}>3</span>
+            <h4>Expansion</h4>
+            <p>One side takes control.</p>
+            <span className={styles.behaviorHint}>→ This is where money moves</span>
+          </div>
+        </div>
+        <div className={styles.sequenceRow}>
+          <span style={{ color: '#3A86FF' }}>Compression</span>
+          <span className={styles.seqArrow}>→</span>
+          <span style={{ color: '#FF6B6B' }}>Rejection</span>
+          <span className={styles.seqArrow}>→</span>
+          <span style={{ color: '#00F5A0' }}>Expansion</span>
+        </div>
+        <a
+          href="/docs/STOP MEMORIZING 20+ CANDLE PATTERNS.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.stopMemorizeCta}
+        >
+          <FileText size={16} />
+          Read Full Guide
+        </a>
       </motion.div>
     </motion.div>
   );
