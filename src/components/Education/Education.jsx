@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
+import { createPortal } from 'react-dom';
 import { BookOpen, ChevronRight, ExternalLink, Check, X, Info, ZoomIn, FileText, Download, Image, Send } from 'lucide-react';
 import styles from './Education.module.scss';
 import { use3DTilt, useRipple, injectRippleKeyframe } from '../../utils/animations';
@@ -433,10 +434,17 @@ const Education = () => {
   const [lightbox, setLightbox] = useState(null); // { src, title }
 
   useEffect(() => {
-    if (!lightbox) return;
+    if (!lightbox) {
+      document.body.style.overflow = '';
+      return;
+    }
     const onKey = (e) => { if (e.key === 'Escape') setLightbox(null); };
     document.addEventListener('keydown', onKey);
-    return () => document.removeEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
   }, [lightbox]);
 
   return (
@@ -668,41 +676,45 @@ const Education = () => {
         </motion.div>
       </div>
 
-      {/* Lightbox overlay */}
-      <AnimatePresence>
-        {lightbox && (
-          <motion.div
-            className={styles.lightboxOverlay}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            onClick={() => setLightbox(null)}
-          >
-            <motion.img
-              src={lightbox.src}
-              alt={lightbox.title}
-              className={styles.lightboxImage}
-              initial={{ scale: 0.85, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.85, opacity: 0 }}
-              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              onClick={(e) => e.stopPropagation()}
-            />
-            <motion.button
-              className={styles.lightboxClose}
-              onClick={() => setLightbox(null)}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
+      {/* Lightbox overlay — rendered in Portal for best mobile/z-index behavior */}
+      {typeof document !== 'undefined' && createPortal(
+        <AnimatePresence>
+          {lightbox && (
+            <motion.div
+              className={styles.lightboxOverlay}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              aria-label="Close image"
+              onClick={() => setLightbox(null)}
             >
-              <X size={22} />
-            </motion.button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              <motion.img
+                src={lightbox.src}
+                alt={lightbox.title}
+                className={styles.lightboxImage}
+                initial={{ scale: 0.85, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.85, opacity: 0 }}
+                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                onClick={(e) => e.stopPropagation()}
+                loading="eager"
+              />
+              <motion.button
+                className={styles.lightboxClose}
+                onClick={() => setLightbox(null)}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.2 }}
+                aria-label="Close image"
+              >
+                <X size={22} />
+              </motion.button>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </section>
   );
 };
