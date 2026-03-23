@@ -4,13 +4,10 @@ import {
   MapPin, 
   Phone, 
   ArrowUpRight,
-  Twitter,
   Youtube,
-  Linkedin,
-  MessageCircle
+  Facebook
 } from 'lucide-react';
 import styles from './Footer.module.scss';
-
 
 const footerLinks = {
   products: [
@@ -37,10 +34,9 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { icon: Twitter, href: 'https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com&su=Twitter%20%2F%20Social%20Media%20Inquiry&body=Hi%204Color%20System%20Team%2C%0A%0ACould%20you%20share%20your%20official%20Twitter%20%2F%20X%20account%20link%3F%0A%0AThank%20you!', label: 'Twitter' },
   { icon: Youtube, href: 'https://www.youtube.com/watch?v=9M93_6S9TaQ', label: 'YouTube' },
-  { icon: Linkedin, href: 'https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com&su=LinkedIn%20Inquiry&body=Hi%204Color%20System%20Team%2C%0A%0ACould%20you%20share%20your%20official%20LinkedIn%20page%3F%0A%0AThank%20you!', label: 'LinkedIn' },
-  { icon: MessageCircle, href: 'https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com&su=Join%204Color%20System%20Community&body=Hi%204Color%20System%20Team%2C%0A%0AI%20would%20like%20to%20join%20the%204Color%20System%20community%20%2F%20Discord.%0A%0AThank%20you!', label: 'Discord' },
+  { icon: Facebook, href: 'https://www.facebook.com/people/Fvg-Execution-Logic/61576892860617/', label: 'Facebook' },
+  { icon: Mail, href: 'mailto:4colorsystem@gmail.com', label: 'Gmail' },
 ];
 
 const Footer = () => {

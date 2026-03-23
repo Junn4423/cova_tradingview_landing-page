@@ -1,5 +1,5 @@
 import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
-import { ArrowRight, PlayCircle, ChevronRight, Lightbulb } from 'lucide-react';
+import { ArrowRight, PlayCircle, ChevronRight, Lightbulb, Facebook } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import styles from './HeroLeft.module.scss';
 
@@ -60,6 +60,7 @@ function useMagnet(strength = 0.4) {
 const HeroLeft = () => {
   const btn1 = useMagnet(0.35);
   const btn2 = useMagnet(0.35);
+  const btn3 = useMagnet(0.35);
 
   // Rotating hot tips
   const [tipIndex, setTipIndex] = useState(0);
@@ -144,7 +145,46 @@ const HeroLeft = () => {
 
       {/* CTA Buttons */}
       <motion.div variants={itemVariants} className={styles.ctas}>
-        {/* Primary — links to TradingView */}
+        {/* Left Column: YouTube & Facebook */}
+        <div className={styles.secondaryColumn}>
+          {/* YouTube demo */}
+          <motion.a
+            href="https://www.youtube.com/watch?v=xGvS9clt9Sw"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.secondaryBtn}
+            style={{ x: btn2.sx, y: btn2.sy, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+            onMouseMove={btn2.onMove}
+            onMouseLeave={btn2.onLeave}
+            whileTap={{ scale: 0.96 }}
+          >
+            <motion.span
+              className={styles.playRing}
+              animate={{ scale: [1, 1.2, 1], opacity: [1, 0.4, 1] }}
+              transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
+            />
+            <PlayCircle size={20} className={styles.playIcon} />
+            <span>Watch demo on Youtube</span>
+          </motion.a>
+
+          {/* Facebook */}
+          <motion.a
+            href="https://www.facebook.com/people/Fvg-Execution-Logic/61576892860617/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.secondaryBtn}
+            style={{ x: btn3.sx, y: btn3.sy, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+            onMouseMove={btn3.onMove}
+            onMouseLeave={btn3.onLeave}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.96 }}
+          >
+            <Facebook size={20} color="#3A86FF" />
+            <span>Follow us on Facebook</span>
+          </motion.a>
+        </div>
+
+        {/* Right: Access Lite version */}
         <motion.a
           href="https://www.tradingview.com/script/dWscMbbP-Four-Color-Order-Flow-System/"
           target="_blank"
@@ -164,26 +204,6 @@ const HeroLeft = () => {
             <ArrowRight size={18} />
           </motion.span>
           <span className={styles.shimmer} />
-        </motion.a>
-
-        {/* Secondary — YouTube demo (updated to Bitcoin education video) */}
-        <motion.a
-          href="https://www.youtube.com/watch?v=xGvS9clt9Sw"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.secondaryBtn}
-          style={{ x: btn2.sx, y: btn2.sy, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
-          onMouseMove={btn2.onMove}
-          onMouseLeave={btn2.onLeave}
-          whileTap={{ scale: 0.96 }}
-        >
-          <motion.span
-            className={styles.playRing}
-            animate={{ scale: [1, 1.2, 1], opacity: [1, 0.4, 1] }}
-            transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-          />
-          <PlayCircle size={20} className={styles.playIcon} />
-          <span>Watch demo on Youtube</span>
         </motion.a>
       </motion.div>
 

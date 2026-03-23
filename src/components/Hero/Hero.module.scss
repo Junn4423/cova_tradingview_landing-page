@@ -46,6 +46,24 @@
   }
 }
 
+.v4Row {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2rem;
+  margin-top: 4rem;
+  align-items: stretch;
+
+  & > div {
+    margin-top: 0 !important;
+  }
+
+  @media (max-width: 1100px) {
+    grid-template-columns: 1fr;
+    margin-top: 3rem;
+    gap: 2rem;
+  }
+}
+
 // Left Content
 .content {
   max-width: 600px;

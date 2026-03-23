@@ -16,7 +16,7 @@ const pdfResources = [
   { name: 'Why Liquidity Forms Around S/R', file: '/docs/Why Liquidity Forms Around Support and Resistance.pdf', color: '#00F5A0' },
   { name: 'Why Upgrade to 4-Color', file: '/docs/Why Upgrade.pdf', color: '#7B2CBF' },
   { name: 'Pro & Elite Upgrade — Official Announcement', file: '/docs/Pro Elite Upgrade Official Announcement.pdf', color: '#FFD700' },
-  { name: 'Stop Memorizing 20+ Candle Patterns', file: '/docs/STOP MEMORIZING 20+ CANDLE PATTERNS.pdf', color: '#FF6B6B' },
+  { name: 'Stop Memorizing 20+ Candle Patterns', file: '/docs/STOP_MEMORIZING_20_CANDLE_PATTERNS.pdf', color: '#FF6B6B' },
   { name: 'The 3-Candle Engine', file: '/docs/THE 3-CANDLE ENGINE.pdf', color: '#FF9F1C' },
 ];
 
