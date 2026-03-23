@@ -285,7 +285,7 @@ const HowItWorks = () => {
                 </motion.div>
                 {i < cfeSteps.length - 1 && (
                   <div className={styles.cfeArrow}>
-                    <ArrowRight size={20} color="rgba(255,255,255,0.3)" />
+                    <ArrowRight size={20} />
                   </div>
                 )}
               </div>

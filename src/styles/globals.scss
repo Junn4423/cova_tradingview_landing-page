@@ -64,12 +64,21 @@ html {
   -moz-osx-font-smoothing: grayscale;
   cursor: none;
 
+  // Tablet landscape
+  @media (max-width: 1024px) {
+    font-size: 15.5px;
+  }
+
   @media (max-width: 768px) {
     font-size: 15px;
   }
 
   @media (max-width: 480px) {
     font-size: 14px;
+  }
+
+  @media (max-width: 360px) {
+    font-size: 13.5px;
   }
 
   // TASK 16: Improve display on large screens
@@ -194,8 +203,16 @@ body {
   margin: 0 auto;
   padding: 0 2rem;
 
+  @media (max-width: 1024px) {
+    padding: 0 1.5rem;
+  }
+
   @media (max-width: 768px) {
     padding: 0 1.25rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0 1rem;
   }
 }
 
@@ -205,8 +222,16 @@ body {
   z-index: var(--z-base);
   padding: 8rem 0;
 
+  @media (max-width: 1024px) {
+    padding: 6rem 0;
+  }
+
   @media (max-width: 768px) {
     padding: 5rem 0;
+  }
+
+  @media (max-width: 480px) {
+    padding: 4rem 0;
   }
 }
 
@@ -736,6 +761,61 @@ html[dir='rtl'] {
     right: 0;
     left: auto;
     transform-origin: right center;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// MOBILE PERFORMANCE OPTIMIZATIONS
+// ═══════════════════════════════════════════════════════════════
+
+// ── Prefer reduced motion: disable ALL animations for a11y ──────────────────
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// ── Mobile: disable heavy effects, improve touch targets ────────────────────
+@media (hover: none) and (pointer: coarse), (max-width: 768px) {
+  // Larger tap targets (min 44×44 per WCAG)
+  button,
+  a,
+  [role='button'] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  // Kill will-change across all components — saves GPU memory
+  * {
+    will-change: auto !important;
+  }
+
+  // Disable 3D transforms for performance
+  .gradient-border::before {
+    animation: none;
+  }
+
+  // Disable shimmer text animation
+  .shimmer-text {
+    animation: none;
+  }
+
+  // Disable floating glow on cards
+  .glow-pulse {
+    animation: none;
+  }
+}
+
+// ── Content-visibility for off-screen sections (auto-skip painting) ─────────
+@media (max-width: 768px) {
+  section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
   }
 }
 

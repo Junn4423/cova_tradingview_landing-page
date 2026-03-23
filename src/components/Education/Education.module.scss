@@ -460,6 +460,16 @@
   transition: transform 0.3s, box-shadow 0.3s;
   overflow: hidden;
 
+  @media (hover: none) and (pointer: coarse), (max-width: 768px) {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  @media (max-width: 480px) {
+    padding: 1.5rem;
+    border-radius: 18px;
+  }
+
   &:hover {
     transform: translateY(-4px);
   }

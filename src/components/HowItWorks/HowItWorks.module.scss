@@ -117,6 +117,16 @@
   -webkit-backdrop-filter: blur(20px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: default;
+
+  @media (hover: none) and (pointer: coarse), (max-width: 768px) {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  @media (max-width: 480px) {
+    padding: 1.25rem 1rem;
+    border-radius: 16px;
+  }
 }
 
 .candleEmoji {
@@ -318,14 +328,32 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; // Changed from wrap to control manually
   gap: 0.5rem;
+
+  @media (max-width: 900px) {
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+  }
 }
 
 .cfeStep {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+  }
 }
 
 .cfeBox {
@@ -340,9 +368,14 @@
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
 
-  @media (max-width: 600px) {
-    min-width: 120px;
-    padding: 1rem;
+  @media (max-width: 900px) {
+    min-width: 140px;
+  }
+
+  @media (max-width: 640px) {
+    width: 100%;
+    min-width: 0;
+    padding: 1.25rem;
   }
 }
 
@@ -368,6 +401,12 @@
 
 .cfeArrow {
   flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.3);
+
+  @media (max-width: 640px) {
+    transform: rotate(90deg);
+    padding: 0.75rem 0;
+  }
 }
 
 // ── Key Rule ────────────────────────────────────────────────────────────
@@ -451,6 +490,15 @@
   backdrop-filter: blur(20px);
   max-width: 800px;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 2rem 1.5rem;
+    border-radius: 18px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1.5rem 1rem;
+  }
 }
 
 .lessonText {

@@ -93,6 +93,11 @@
   color: rgba(255, 255, 255, 0.6);
   line-height: 1.75;
   margin-bottom: 2rem;
+
+  @media (max-width: 480px) {
+    font-size: 0.88rem;
+    margin-bottom: 1.5rem;
+  }
 }
 
 .contactInfo {
@@ -162,7 +167,7 @@
 }
 
 .linksColumn {
-  // Column styles
+  min-width: 0;
 }
 
 .columnTitle {

@@ -107,6 +107,11 @@
     -webkit-backdrop-filter: blur(10px);
   }
 
+  @media (max-width: 480px) {
+    padding: 1.5rem;
+    border-radius: 18px;
+  }
+
   &:hover {
     border-color: rgba(255, 255, 255, 0.14);
     box-shadow:

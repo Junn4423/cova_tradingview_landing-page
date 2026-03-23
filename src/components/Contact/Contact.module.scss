@@ -71,6 +71,17 @@
   backdrop-filter: blur(20px);
   transition: transform 0.25s, box-shadow 0.25s;
   cursor: default;
+
+  @media (hover: none) and (pointer: coarse), (max-width: 768px) {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  @media (max-width: 480px) {
+    padding: 1.25rem;
+    border-radius: 14px;
+    gap: 1rem;
+  }
 }
 
 .qrCard {
