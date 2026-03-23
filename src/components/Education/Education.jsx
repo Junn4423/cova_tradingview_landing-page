@@ -21,7 +21,6 @@ const pdfResources = [
 ];
 
 const infographics = [
-  { name: 'The Liquidity Cycle', src: '/images/The Liquidity Cycle.png' },
   { name: 'How Liquidity Gets Created', src: '/images/How Liquidity Gets Created.png' },
   { name: 'Where Liquidity Comes From', src: '/images/Where Liquidity Comes From.png' },
   { name: 'The Simple Rule', src: '/images/The Simple Rule.png' },
@@ -82,6 +81,14 @@ const modules = [
     level: 'Advanced',
     imgUrl: '/images/Stock.jpg',
     tag: 'Equities',
+    tagColor: '#FF6B6B',
+  },
+  {
+    title: 'The 3-Candle Engine',
+    description: 'Forget 20+ candle names. Master the only 3 behaviors that matter: Compression, Rejection, and Expansion — the sequence behind every trap and every real move.',
+    level: 'Beginner',
+    imgUrl: '/images/3Candle-behaviors.jpg',
+    tag: 'Essential',
     tagColor: '#FF6B6B',
   },
 ];
