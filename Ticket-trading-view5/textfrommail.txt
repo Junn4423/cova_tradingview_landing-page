@@ -1,0 +1,77 @@
+Caí chart hero page nó hơi bị thụt xuống 1 chút, e cho phần text này nằm trên nó luôn:
+
+FVG Execution Logic™ Notice
+
+FVG Execution Logic™ and the 4-Color Candle System are proprietary analytical frameworks developed for educational purposes.
+
+This system focuses on price behavior, liquidity flow, and execution context using a structured visual model.
+All analysis presented reflects this independent framework and is not derived from or affiliated with any third-party platform.
+
+Any platforms, charts, or tools shown are used solely as a medium to visualize the system. The methodology itself remains platform-independent.
+
+
+Trang Hero page, bên trái, 4Color System trong cái box có:
+
+Context - First Execution (CFE) analyzes market forces...........
+
+4Color Candle + AD Value Context + FVG (SAI)
+
+Structure → AD → FVG → 4Color Candle (Đúng)
+
+Phần Infographic Diagrams nhìn ớn quá, em có cách gì khác ko? Che lại .... (ý ổng là làm sao che lại click vào mới xem được hat gì ấy)
+
+Caí nữa là nó nên nằm trên FAQs hay cho nó nằm chót luôn.
+
+Trang The 4ColorSystem Product Suite cũng được lên cao hơn, quan tâm hơn
+
+
+
+E có caí QR của Lite đó sẵn đưa vô hàng 4 sản phẩm, Lite luôn cho 4 cái có QR code, đứng hàng đẹp mặt luôn
+
+Cho a thêm tiếng Indian luôn
+E cho cái hình Logic Still missing nằm dưới hàng: Why You Keep Losing & Stop Memorizing (hàng 2) .......1 mình (hàng 3).
+
+
+Get Trading Insights, thay thế bằng follow us on YouTube, FaceBook
+
+Powered by Covasol.... lấy ra nha, dính tới privacy, phiền lắm
+
+Trên tấm hình -> "Most traders don’t fail from lack of strategy.
+They fail from broken execution logic." -> Tấm hình -> The FVG Execution Logic™ framework removes guesswork
+by tracking imbalance, behavior, and real-time execution context.
+
+E clean up cái này dùm a: 4Color. Ko có gạch ngang ở giũa. Chuẩn luôn, ko rắc rối về sau. 
+Tiêu đề: Logic still missing + Text (logic still missing.pdf)
+E update hết mấy file dưới đây nha, a sửa 4-Color hết rồi đó, e sửa cái trên Web.
+4. Learn to Trade at Your Pace: có cái Infographic & Diagrams, nếu ko có cách giải quyết thì Delete phần đó hay là e cho cái label mới che lại, ai click vô thì nó mở hết ra
+Giờ làm theo quy trình như đã nêu dưới đây, cho 2 bên theo dể hơn và kết thúc sớm hơn
+
+Nhớ bỏ cái câu Disclaimer nhỏ của a lên phần đầu, bên tay phải của trang hero, dưới nó là hình chart, như vậy 2 bên trái phải có vẻ cân bằng hơn, như đã noí trong email trước
+ 
+FVG Execution Logic™ Notice
+FVG Execution Logic™ and the 4-Color Candle System are proprietary analytical frameworks developed for educational purposes.
+
+This system focuses on price behavior, liquidity flow, and execution context using a structured visual model.
+All analysis presented reflects this independent framework and is not derived from or affiliated with any third-party platform.
+
+Any platforms, charts, or tools shown are used solely as a medium to visualize the system. The methodology itself remains platform-independent.
+
+Phần Legal & Terms, e thêm cái này luôn
+
+All trademarks, company names, logos, and platform references are the property of their respective owners. We do not claim any affiliation, partnership, or endorsement with any third-party platforms, brokers, or service providers.
+
+Charts, data, and visual tools displayed are used solely for analysis illustration. Accuracy and completeness of data are not guaranteed.
+
+By using this website, you agree that you are fully responsible for your own trading decisions and outcomes.
+
+
+Final Flow:
+4Color System (hook) 4System Color
+What Your Chart Is Missing (problem) Everything you Need to Trade Smarter
+How It Works (clarity) How the 4Color System Works
+Designed for Real Execution (credibility) Learn to Trade at Your Pace (Gở bỏ mấy cái link Self-Study Module)
+Product Suite (offer) The 4Color System Product Suite
+Fix Your Execution Logic (education + mindset shift) Email 
+FAQs (remove doubt)
+Connect (engagement)
+Legal & Terms (compliance)

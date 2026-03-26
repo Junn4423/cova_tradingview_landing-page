@@ -236,7 +236,7 @@ const ChartShowcase = () => {
             See the <span className={`${styles.gradient} notranslate`}>4Color System</span> in Action
           </h2>
           <p className={styles.subtitle}>
-            Real-time BTC/USD chart overlaid with 4-Color zone logic — Accumulation, Expansion, Distribution, and Reset phases visible as they form.
+            Real-time BTC/USD chart overlaid with 4Color zone logic — Accumulation, Expansion, Distribution, and Reset phases visible as they form.
           </p>
         </motion.div>
 
@@ -531,10 +531,10 @@ const ChartShowcase = () => {
         >
           <div className={styles.tvWidgetHeader}>
             <h3 className={styles.tvWidgetTitle}>
-              See the <span className={styles.gradient}>4-Color System</span> in Action
+              See the <span className={styles.gradient}>4Color System</span> in Action
             </h3>
             <p className={styles.tvWidgetSubtitle}>
-              Watch real trading sessions across multiple markets — Bitcoin, Forex, Metals, and Stocks — all analyzed with 4-Color Logic.
+              Watch real trading sessions across multiple markets — Bitcoin, Forex, Metals, and Stocks — all analyzed with 4Color Logic.
             </p>
           </div>
           <div className={styles.videoGrid}>

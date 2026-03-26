@@ -29,7 +29,7 @@ const scatterLeft = {
   },
 };
 
-// Hot tips from 4-Color Liquidity Sequence Cheat Sheet
+// Hot tips from 4Color Liquidity Sequence Cheat Sheet
 const hotTips = [
   '🟡 → 🟢 → 🔵 → 🔴 → TREND',
   '🔵 → 🔴 → 🟡 → 🟢 → TREND',
@@ -106,7 +106,7 @@ const HeroLeft = () => {
           <strong>Context-First Execution (CFE)</strong> analyzes market forces in real time by combining:
         </p>
         <p className={styles.cfeEquation}>
-          <span className="notranslate">Order Flow + AD + 4-Color Candle Logic + FVG</span>
+          <span className="notranslate">Structure → AD → FVG → 4Color Candle</span>
           <span className={styles.cfeArrow}>→</span>
           <span className={styles.cfeResult}>Real-Time Market Context</span>
         </p>
@@ -117,7 +117,7 @@ const HeroLeft = () => {
 
       {/* Tagline */}
       <motion.p variants={itemVariants} className={styles.tagline}>
-        Price shows <em>where</em>. 4-Color shows <em>who</em>.
+        Price shows <em>where</em>. 4Color shows <em>who</em>.
       </motion.p>
 
       {/* Hot Tips Floating Window — from cheat sheet (TASK 2 + 12) */}

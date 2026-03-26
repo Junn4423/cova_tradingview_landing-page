@@ -59,7 +59,7 @@ const DotLabel = ({ color, children }) => (
   </span>
 );
 
-// 4-Color Candle Code
+// 4Color Candle Code
 const candleColors = [
   {
     color: COLORS.red,
@@ -150,10 +150,10 @@ const HowItWorks = () => {
         >
           <span className={styles.label}>System Page</span>
           <h2 className={styles.title}>
-            How the <span className={styles.gradient}>4-Color System</span> Works
+            How the <span className={styles.gradient}>4Color System</span> Works
           </h2>
           <p className={styles.subtitle}>
-            Chart Narrative — a real trade timeline that shows how the 4-Color System reads market behavior
+            Chart Narrative — a real trade timeline that shows how the 4Color System reads market behavior
             <em> before</em> the breakout happens.
           </p>
           <blockquote className={styles.quote}>
@@ -161,7 +161,7 @@ const HowItWorks = () => {
           </blockquote>
         </motion.div>
 
-        {/* 4-Color Candle Code */}
+        {/* 4Color Candle Code */}
         <motion.div
           className={styles.candleSection}
           initial={{ opacity: 0 }}
@@ -169,10 +169,10 @@ const HowItWorks = () => {
           viewport={{ once: false, margin: '-60px' }}
           transition={{ duration: 0.6 }}
         >
-          <h3 className={styles.sectionHeading}>4-Color Liquidity Candle Code</h3>
+          <h3 className={styles.sectionHeading}>4Color Liquidity Candle Code</h3>
           <p className={styles.candleIntro}>
-            The 4-Color System™ turns complex price behavior into a readable structure. 
-            <strong> Price shows <em>where</em>. 4-Color shows <em>who</em>.</strong>
+            The 4Color System™ turns complex price behavior into a readable structure. 
+            <strong> Price shows <em>where</em>. 4Color shows <em>who</em>.</strong>
           </p>
           <div className={styles.candleGrid}>
             {candleColors.map((c, i) => (
@@ -221,7 +221,7 @@ const HowItWorks = () => {
         <div className={styles.timelineSection}>
           <h3 className={styles.sectionHeading}>Chart Narrative — Real Session Timeline</h3>
           <p className={styles.timelineIntro}>
-            Here's how the 4-Color System reads a single trading session from start to breakout:
+            Here's how the 4Color System reads a single trading session from start to breakout:
           </p>
           <div className={styles.timeline}>
             {timeline.map((entry, i) => (
@@ -344,7 +344,7 @@ const HowItWorks = () => {
         >
           <p className={styles.lessonText}>
             "Price moves last. Liquidity moves first. Most traders only react to the breakout candle. 
-            The 4-Color Liquidity System shows the behaviour building <em>before</em> the breakout happens."
+            The 4Color Liquidity System shows the behaviour building <em>before</em> the breakout happens."
           </p>
           <a href="#cta" className={styles.lessonCta}>
             Explore Lite — Free Access <ArrowRight size={16} />

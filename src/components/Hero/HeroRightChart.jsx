@@ -73,7 +73,7 @@ const HeroRightChart = () => {
           <div className={styles.ticker}>
             <div className={styles.tickerIcon}><BarChart2 size={16} /></div>
             <div>
-              <span className={`${styles.tickerSymbol} notranslate`}>4-Color + FVG Lite</span>
+              <span className={`${styles.tickerSymbol} notranslate`}>4Color + FVG Lite</span>
               <span className={styles.exchange}>TradingView · Free Access</span>
             </div>
           </div>
@@ -94,7 +94,7 @@ const HeroRightChart = () => {
         <div className={styles.chartArea}>
           <motion.img
             src="/images/Lite-Sample-Chart.jpg"
-            alt="4-Color + FVG Lite — Sample Chart"
+            alt="4Color + FVG Lite — Sample Chart"
             className={styles.chartImg}
             onLoad={() => setImgLoaded(true)}
             initial={{ opacity: 0, scale: 1.03 }}
@@ -119,7 +119,7 @@ const HeroRightChart = () => {
         {/* ── Bottom metrics row ────────────────────────────────────────── */}
         <div className={styles.metrics}>
           {[
-            { icon: TrendingUp, label: '4-Color Logic',  value: 'Active',    color: '#3A86FF' },
+            { icon: TrendingUp, label: '4Color Logic',  value: 'Active',    color: '#3A86FF' },
             { icon: Activity,   label: 'FVG Zones',      value: 'Visible',   color: '#00D4FF' },
             { icon: Layers,     label: 'Access',         value: 'FREE',      color: '#00F5A0' },
           ].map(({ icon: Icon, label, value, color }, i) => (

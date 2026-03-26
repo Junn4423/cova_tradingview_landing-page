@@ -29,6 +29,14 @@ const sections = [
       'By using our services, you consent to the collection and use of information in accordance with this policy.',
     ],
   },
+  {
+    title: 'Platform & Trademark Disclaimer',
+    content: [
+      'All trademarks, company names, logos, and platform references are the property of their respective owners. We do not claim any affiliation, partnership, or endorsement with any third-party platforms, brokers, or service providers.',
+      'Charts, data, and visual tools displayed are used solely for analysis illustration. Accuracy and completeness of data are not guaranteed.',
+      'By using this website, you agree that you are fully responsible for your own trading decisions and outcomes.',
+    ],
+  },
 ];
 
 const Legal = () => (

@@ -210,7 +210,7 @@
   transition: all 0.3s ease;
 }
 
-// Newsletter
+// Newsletter / Follow Us
 .newsletter {
   display: flex;
   align-items: center;
@@ -298,6 +298,38 @@
 
   @media (max-width: 500px) {
     width: 100%;
+  }
+}
+
+// Follow Us links (replaces newsletter form)
+.followLinks {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  @media (max-width: 900px) {
+    justify-content: center;
+  }
+}
+
+.followBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.875rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+
+  &:hover {
+    background: rgba(58, 134, 255, 0.12);
+    border-color: rgba(58, 134, 255, 0.35);
+    color: #fff;
   }
 }
 

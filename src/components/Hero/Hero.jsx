@@ -23,7 +23,14 @@ const Hero = () => {
           <motion.div style={{ x: leftX }}>
             <HeroLeft />
           </motion.div>
-          <motion.div style={{ x: rightX }}>
+          <motion.div style={{ x: rightX }} className={styles.rightColumn}>
+            {/* FVG Execution Logic™ Notice — above chart */}
+            <div className={styles.fvgNotice}>
+              <h5 className={styles.fvgNoticeTitle}>FVG Execution Logic™ Notice</h5>
+              <p>FVG Execution Logic™ and the 4Color Candle System are proprietary analytical frameworks developed for educational purposes.</p>
+              <p>This system focuses on price behavior, liquidity flow, and execution context using a structured visual model. All analysis presented reflects this independent framework and is not derived from or affiliated with any third-party platform.</p>
+              <p>Any platforms, charts, or tools shown are used solely as a medium to visualize the system. The methodology itself remains platform-independent.</p>
+            </div>
             <HeroRightChart />
           </motion.div>
         </div>
@@ -38,7 +45,7 @@ const Hero = () => {
           >
             <img
               src="/images/Doji2.jpg"
-              alt="Why You Keep Losing? — Stop guessing, read order flow with 4-Color Doji"
+              alt="Why You Keep Losing? — Stop guessing, read order flow with 4Color Doji"
               className={rightStyles.dojiImg}
               loading="lazy"
             />
@@ -93,6 +100,29 @@ const Hero = () => {
               Read Full Guide
             </a>
           </motion.div>
+        </div>
+
+        {/* Row 3: Logic Still Missing — quote → image → quote */}
+        <div className={styles.missingLogicRow}>
+          <p className={styles.missingLogicQuote}>
+            “Most traders don’t fail from lack of strategy. They fail from broken execution logic.”
+          </p>
+          <motion.div
+            className={styles.missingLogicImgWrap}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 3.0, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <img
+              src="/images/Missing-Logic.jpg"
+              alt="Decades studying trader behavior — Logic still missing. The market noticed."
+              className={styles.missingLogicImg}
+              loading="lazy"
+            />
+          </motion.div>
+          <p className={styles.missingLogicSub}>
+            The FVG Execution Logic™ framework removes guesswork by tracking imbalance, behavior, and real-time execution context.
+          </p>
         </div>
       </div>
     </section>

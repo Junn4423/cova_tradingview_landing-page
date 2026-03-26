@@ -11,14 +11,15 @@ const navLinks = [
   { label: 'Contact',   href: '#contact' },
 ];
 
-// 6 languages — added Vietnamese per client V2 request
+// 7 languages — added Vietnamese per client V2 request, Hindi per V5 request
 const languages = [
   { code: 'en',    name: 'English',          flag: '🇺🇸' },
   { code: 'vi',    name: 'Tiếng Việt',       flag: '🇻🇳' },
   { code: 'zh-CN', name: 'Mandarin (中文)',   flag: '🇨🇳' },
-  { code: 'zh-TW', name: 'Cantonese (粵語)', flag: '🇭🇰' },
+  { code: 'zh-TW', name: 'Cantonese (粤語)', flag: '🇭🇰' },
   { code: 'ar',    name: 'العربية',          flag: '🇸🇦' },
   { code: 'es',    name: 'Español',          flag: '🇪🇸' },
+  { code: 'hi',    name: 'हिन्दी',           flag: '🇮🇳' },
 ];
 
 const Navbar = () => {

@@ -137,7 +137,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Newsletter */}
+        {/* Follow Us */}
         <motion.div
           className={styles.newsletter}
           initial={{ opacity: 0, y: 20 }}
@@ -146,48 +146,37 @@ const Footer = () => {
           transition={{ delay: 0.3 }}
         >
           <div className={styles.newsletterContent}>
-            <h4 className={styles.newsletterTitle}>Get Trading Insights</h4>
+            <h4 className={styles.newsletterTitle}>Follow Us</h4>
             <p className={styles.newsletterDescription}>
-              Join 50,000+ traders receiving weekly market analysis and trading tips.
+              Stay connected for the latest market insights and system updates.
             </p>
           </div>
-          <form className={styles.newsletterForm} onSubmit={(e) => {
-            e.preventDefault();
-            const email = e.target.querySelector('input[type="email"]').value;
-            const body = email ? `Hi 4Color System Team,%0A%0AI'd like to subscribe to your trading insights newsletter.%0A%0AMy email: ${encodeURIComponent(email)}%0A%0AThank you!` : `Hi 4Color System Team,%0A%0AI'd like to subscribe to your trading insights newsletter.%0A%0AThank you!`;
-            window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com&su=Subscribe%20to%204Color%20System%20Newsletter&body=${body}`, '_blank');
-          }}>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className={styles.newsletterInput}
-            />
-            <motion.button
-              type="submit"
-              className={styles.newsletterButton}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+          <div className={styles.followLinks}>
+            <a
+              href="https://www.youtube.com/watch?v=9M93_6S9TaQ"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.followBtn}
             >
-              Subscribe
-            </motion.button>
-          </form>
+              <Youtube size={20} />
+              <span>Follow us on YouTube</span>
+            </a>
+            <a
+              href="https://www.facebook.com/people/Fvg-Execution-Logic/61576892860617/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.followBtn}
+            >
+              <Facebook size={20} />
+              <span>Follow us on Facebook</span>
+            </a>
+          </div>
         </motion.div>
 
         {/* Bottom Bar */}
         <div className={styles.bottomBar}>
           <p className={styles.copyright}>
             © {currentYear} <span className="notranslate">4Color System</span>. All rights reserved.
-          </p>
-          <p className={styles.poweredBy}>
-            Powered by{' '}
-            <a
-              href="https://covasol.com.vn"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`${styles.poweredByLink} notranslate`}
-            >
-              covasol.com.vn
-            </a>
           </p>
           <div className={styles.disclaimerFull}>
             <p><strong>Disclaimer:</strong> Trading involves substantial risk of loss and is not suitable for all investors. The content, tools, and signals provided on this website are for educational and informational purposes only and do not constitute financial advice, recommendations, or a solicitation to buy or sell any financial instruments. Past performance is not indicative of future results. Users are responsible for their own trading decisions.</p>

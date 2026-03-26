@@ -16,7 +16,7 @@ import { useEffect } from 'react';
 const features = [
   {
     icon: BarChart3,
-    title: '4-Color System™',
+    title: '4Color System™',
     titleNoTranslate: true,
     description: 'Our proprietary methodology uses Accumulation (Blue), Expansion (Green), Distribution (Red), and Reset (Yellow) phases — making market cycles instantly visible through 4 distinct candle colors.',
     color: '#3A86FF',
@@ -24,7 +24,7 @@ const features = [
   {
     icon: Target,
     title: 'Liquidity State Reading',
-    description: 'Read who is in control of price at any moment. The 4-Color system shows whether buyers, sellers, or neither are driving the market — eliminating guesswork.',
+    description: 'Read who is in control of price at any moment. The 4Color system shows whether buyers, sellers, or neither are driving the market — eliminating guesswork.',
     color: '#00F5A0',
   },
   {
@@ -60,7 +60,7 @@ const features = [
   {
     icon: Layers,
     title: 'FX Terminal Hub',
-    description: 'The Hubs tier provides a multi-pair Forex and crypto dashboard — monitor multiple markets simultaneously with the same 4-Color logic applied across all pairs.',
+    description: 'The Hubs tier provides a multi-pair Forex and crypto dashboard — monitor multiple markets simultaneously with the same 4Color logic applied across all pairs.',
     color: '#00F5A0',
   },
 ];

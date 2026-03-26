@@ -116,7 +116,7 @@ const LiveStream = () => {
             Watch the Market <span className={styles.gradient}>Live</span>
           </h2>
           <p className={styles.subtitle}>
-            Watch real 4-Color zone mapping, FVG identification, and Orderflow analysis as they happen — live education directly from the chart.
+            Watch real 4Color zone mapping, FVG identification, and Orderflow analysis as they happen — live education directly from the chart.
           </p>
         </motion.div>
 
@@ -255,7 +255,7 @@ const LiveStream = () => {
               <h3 className={styles.infoTitle}>What you'll see live:</h3>
               <ul className={styles.infoList}>
                 {[
-                  'Real-time 4-color zone mapping',
+                  'Real-time 4Color zone mapping',
                   'FVG identification & validation',
                   'Orderflow & Delta analysis',
                   'Stress Test confirmation signals',

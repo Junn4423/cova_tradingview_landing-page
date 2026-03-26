@@ -399,3 +399,91 @@
   border-radius: 50%;
   filter: blur(60px);
 }
+
+// ── Right column wrapper (FVG notice + chart)
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+// FVG Notice block (above chart)
+.fvgNotice {
+  margin-bottom: 0.875rem;
+  padding: 0.875rem 1.1rem;
+  background: rgba(58, 134, 255, 0.06);
+  border: 1px solid rgba(58, 134, 255, 0.2);
+  border-radius: 12px;
+  font-size: 0.72rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.55);
+
+  p + p {
+    margin-top: 0.4rem;
+  }
+}
+
+.fvgNoticeTitle {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: rgba(100, 170, 255, 0.9);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 0.45rem;
+}
+
+// Row 3: Logic Still Missing
+.missingLogicRow {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    margin-top: 2rem;
+    gap: 1.25rem;
+  }
+}
+
+.missingLogicQuote {
+  font-size: clamp(1rem, 2.2vw, 1.3rem);
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 720px;
+  line-height: 1.65;
+  border-left: 3px solid #3A86FF;
+  padding-left: 1.25rem;
+  text-align: left;
+
+  @media (max-width: 1100px) {
+    text-align: center;
+    border-left: none;
+    padding-left: 0;
+    border-top: 2px solid rgba(58, 134, 255, 0.4);
+    padding-top: 0.75rem;
+  }
+}
+
+.missingLogicImgWrap {
+  width: 100%;
+  max-width: 960px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 60px rgba(58, 134, 255, 0.15);
+}
+
+.missingLogicImg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.missingLogicSub {
+  font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+  color: rgba(255, 255, 255, 0.62);
+  max-width: 720px;
+  line-height: 1.75;
+}

@@ -14,7 +14,7 @@ const faqs = [
   },
   {
     q: 'Does the Lite version give BUY/SELL signals?',
-    a: 'No. The Lite version is strictly an observation tool. It shows you who controls the market using 4-Color candle logic — Red for selling pressure, Green for buying pressure, Blue for accumulation/resistance, and Yellow for liquidity sweeps. There are no BUY or SELL signals — that is by design.',
+    a: 'No. The Lite version is strictly an observation tool. It shows you who controls the market using 4Color candle logic — Red for selling pressure, Green for buying pressure, Blue for accumulation/resistance, and Yellow for liquidity sweeps. There are no BUY or SELL signals — that is by design.',
   },
   {
     q: 'Is this suitable for beginners?',
@@ -30,7 +30,7 @@ const faqs = [
   },
   {
     q: 'What is the difference between Lite, Pro, and Elite?',
-    a: 'Lite answers "What\'s going on?" — it shows market context through 4-Color candle logic. Pro answers "Is this pressure real?" — it adds buying vs selling pressure confirmation and absorption detection. Elite answers "Is this the right moment?" — it adds FVG imbalance detection, lifecycle tracking, and the full FVG Execution Logic™ (CFE).',
+    a: 'Lite answers "What\'s going on?" — it shows market context through 4Color candle logic. Pro answers "Is this pressure real?" — it adds buying vs selling pressure confirmation and absorption detection. Elite answers "Is this the right moment?" — it adds FVG imbalance detection, lifecycle tracking, and the full FVG Execution Logic™ (CFE).',
   },
   {
     q: 'Is there a free trial for Pro or Elite?',

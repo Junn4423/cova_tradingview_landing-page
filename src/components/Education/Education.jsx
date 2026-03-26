@@ -1,13 +1,13 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { createPortal } from 'react-dom';
-import { BookOpen, ChevronRight, ExternalLink, Check, X, Info, ZoomIn, FileText, Download, Image, Send } from 'lucide-react';
+import { ChevronRight, ExternalLink, Check, X, Info, ZoomIn, FileText, Download, Image, Send } from 'lucide-react';
 import styles from './Education.module.scss';
 import { use3DTilt, useRipple, injectRippleKeyframe } from '../../utils/animations';
 
 const pdfResources = [
   { name: 'How These Charts Work Across ETFs', file: '/docs/How These Charts Work Across ETFs.pdf', color: '#3A86FF' },
-  { name: '4-Color Liquidity Sequence Cheat Sheet', file: '/docs/4-Color Liquidity Sequence Cheat Sheet.pdf', color: '#00F5A0' },
-  { name: '4-Color Market Observation Framework', file: '/docs/4-Color Market Observation Framework.pdf', color: '#3A86FF' },
+  { name: '4Color Liquidity Sequence Cheat Sheet', file: '/docs/4Color Liquidity Sequence Cheat Sheet.pdf', color: '#00F5A0' },
+  { name: '4Color Market Observation Framework', file: '/docs/4Color Market Observation Framework.pdf', color: '#3A86FF' },
   { name: 'How AD Helps Confirm', file: '/docs/How AD Helps Confirm.pdf', color: '#7B2CBF' },
   { name: 'Liquidity Battles', file: '/docs/Liquidity Battles.pdf', color: '#FF9F1C' },
   { name: 'The Liquidity Engine', file: '/docs/The Liquidity Engine.pdf', color: '#00D4FF' },
@@ -15,7 +15,7 @@ const pdfResources = [
   { name: 'Market Behavior Report', file: '/docs/Market Behavior Report HIMS.pdf', color: '#FF6B6B' },
   { name: 'Chart Patterns — What They Really Represent', file: '/docs/Chart Patterns, What They Really Represent in the Market.pdf', color: '#3A86FF' },
   { name: 'Why Liquidity Forms Around S/R', file: '/docs/Why Liquidity Forms Around Support and Resistance.pdf', color: '#00F5A0' },
-  { name: 'Why Upgrade to 4-Color', file: '/docs/Why Upgrade.pdf', color: '#7B2CBF' },
+  { name: 'Why Upgrade to 4Color', file: '/docs/Why Upgrade.pdf', color: '#7B2CBF' },
   { name: 'Pro & Elite Upgrade — Official Announcement', file: '/docs/Pro Elite Upgrade Official Announcement.pdf', color: '#FFD700' },
   { name: 'Stop Memorizing 20+ Candle Patterns', file: '/docs/STOP_MEMORIZING_20_CANDLE_PATTERNS.pdf', color: '#FF6B6B' },
   { name: 'The 3-Candle Engine', file: '/docs/THE 3-CANDLE ENGINE.pdf', color: '#FF9F1C' },
@@ -27,14 +27,14 @@ const infographics = [
   { name: 'The Simple Rule', src: '/images/The Simple Rule.png' },
   { name: 'The Real Rule', src: '/images/The Real Rule.png' },
   { name: 'The Real Mechanics', src: '/images/The Real Mechanics.png' },
-  { name: 'Simple Rule for 4-Color Framework', src: '/images/Simple Rule for the 4-Color Framework.png' },
+  { name: 'Simple Rule for 4Color Framework', src: '/images/Simple Rule for the 4Color Framework.png' },
   { name: 'AD Divergence', src: '/images/2. Accumulation  Distribution Divergence.png' },
   { name: 'AD Rule', src: '/images/AD Rule.png' },
   { name: 'How AD Helps Confirm', src: '/images/How AD Helps Confirm.png' },
-  { name: 'In 4-Color System', src: '/images/In 4-Color System.png' },
-  { name: 'In the 4-Color Framework', src: '/images/In the 4-Color framework.png' },
+  { name: 'In 4Color System', src: '/images/In 4Color System.png' },
+  { name: 'In the 4Color Framework', src: '/images/In the 4Color framework.png' },
   { name: 'What This Looks Like On The Chart', src: '/images/What This Look Like On The Chart.png' },
-  { name: 'What This Looks Like in 4-Color', src: '/images/What This Looks Like in the 4-Color System.png' },
+  { name: 'What This Looks Like in 4Color', src: '/images/What This Looks Like in the 4Color System.png' },
   { name: 'Why Price Sweeps Both Sides', src: '/images/Why Price Often Sweeps Both Sides.png' },
   { name: 'Sideways Range Structure', src: '/images/Sideways Range Structure.png' },
   { name: 'When Price Moves Sideways', src: '/images/When Price Moves Sideways.png' },
@@ -45,7 +45,7 @@ import { useEffect, useState } from 'react';
 const modules = [
   {
     title: 'Foundations of 4Color System',
-    description: 'Learn to read who controls the market using 4-Color Candle Logic. Stop random guessing — understand context before you trade.',
+    description: 'Learn to read who controls the market using 4Color Candle Logic. Stop random guessing — understand context before you trade.',
     level: 'Beginner',
     imgUrl: '/images/Lite-Education-Chart.jpg',
     tag: 'Start Here',
@@ -70,7 +70,7 @@ const modules = [
 
   {
     title: 'Metals & Commodities Analysis',
-    description: 'Apply 4-Color zone logic to Gold, Silver and commodity markets. Understand how macro liquidity flows affect metal pricing.',
+    description: 'Apply 4Color zone logic to Gold, Silver and commodity markets. Understand how macro liquidity flows affect metal pricing.',
     level: 'Intermediate',
     imgUrl: '/images/Metal.jpg',
     tag: 'Asset Class',
@@ -78,7 +78,7 @@ const modules = [
   },
   {
     title: 'Stock Market Structure',
-    description: 'Read institutional order flow in equities. Learn how to identify accumulation and distribution phases in stock markets using the 4-Color framework.',
+    description: 'Read institutional order flow in equities. Learn how to identify accumulation and distribution phases in stock markets using the 4Color framework.',
     level: 'Advanced',
     imgUrl: '/images/Stock.jpg',
     tag: 'Equities',
@@ -106,7 +106,7 @@ const tiers = [
     badgeBg: 'rgba(0,245,160,0.15)',
     badgeColor: '#00F5A0',
     included: [
-      'Shows who controls price using 4-Color Candle Logic',
+      'Shows who controls price using 4Color Candle Logic',
       'Helps traders stop random guessing',
       'Prevents emotional trades',
       'Real-time market state reading',
@@ -189,7 +189,7 @@ const tiers = [
       'Dedicated onboarding support',
     ],
     excluded: [],
-    analogy: 'A full operations control room — monitoring all markets simultaneously with real-time 4-Color logic.',
+    analogy: 'A full operations control room — monitoring all markets simultaneously with real-time 4Color logic.',
     cta: 'Request Hubs Access',
     ctaLink: 'https://form.jotform.com/260806911516052',
     ctaExternal: true,
@@ -230,15 +230,6 @@ const ModuleCard = ({ mod, index, onImageClick }) => {
       <div className={styles.moduleContent}>
         <h3 className={styles.moduleTitle}>{mod.title}</h3>
         <p className={styles.moduleDesc}>{mod.description}</p>
-        <a
-          href={`https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com&su=${encodeURIComponent('Education Inquiry – ' + mod.title)}&body=${encodeURIComponent(`Hi 4Color System Team,\n\nI am interested in the "${mod.title}" module (${mod.level}).\n\nPlease send me more details about this self-study content.\n\nThank you!`)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.moduleBtn}
-        >
-          <BookOpen size={15} />
-          <span>Self-Study Module</span>
-        </a>
       </div>
     </motion.div>
   );
@@ -432,6 +423,7 @@ const Education = () => {
   useEffect(() => { injectRippleKeyframe(); }, []);
 
   const [lightbox, setLightbox] = useState(null); // { src, title }
+  const [infographicsOpen, setInfographicsOpen] = useState(false);
 
   useEffect(() => {
     if (!lightbox) {
@@ -491,7 +483,7 @@ const Education = () => {
 
           <div className={styles.featuredIntro}>
             <p>
-              The CFE framework (4-Color + FVG Execution Logic™) is <strong>market-agnostic</strong> — but
+              The CFE framework (4Color + FVG Execution Logic™) is <strong>market-agnostic</strong> — but
               the data quality and behavior profile of each asset class changes how clean your reads will be.
             </p>
             <div className={styles.featuredTagline}>
@@ -605,7 +597,7 @@ const Education = () => {
         >
           <h3 className={styles.tierHeading}>Understand Each Tool</h3>
           <p className={styles.tierSubheading}>
-            The 4-Color System comes in tiers — each building on the previous, unlocking deeper market context.
+            The 4Color System comes in tiers — each building on the previous, unlocking deeper market context.
           </p>
           <div className={styles.tiersGrid}>
             {tiers.map((tier, i) => (
@@ -624,7 +616,7 @@ const Education = () => {
         >
           <h3 className={styles.tierHeading}>Resources &amp; Downloads</h3>
           <p className={styles.tierSubheading}>
-            Free PDF guides, cheat sheets, and infographics from the 4-Color System™ knowledge base.
+            Free PDF guides, cheat sheets, and infographics from the 4Color System™ knowledge base.
           </p>
 
           {/* PDF Downloads */}
@@ -652,26 +644,37 @@ const Education = () => {
             ))}
           </div>
 
-          {/* Infographics */}
-          <h4 className={styles.resourceSubtitle}>Infographics &amp; Diagrams</h4>
-          <div className={styles.infographicGrid}>
-            {infographics.map((img, i) => (
-              <motion.div
-                key={i}
-                className={styles.infographicCard}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
-                transition={{ delay: i * 0.04, duration: 0.4 }}
-                onClick={() => setLightbox({ src: img.src, title: img.name })}
-              >
-                <img src={img.src} alt={img.name} loading="lazy" />
-                <div className={styles.infographicOverlay}>
-                  <ZoomIn size={18} />
-                  <span>{img.name}</span>
-                </div>
-              </motion.div>
-            ))}
+          {/* Infographics — collapsed by default, click to expand */}
+          <div className={styles.infographicsCollapsible}>
+            <button
+              className={styles.infographicsToggle}
+              onClick={() => setInfographicsOpen((v) => !v)}
+              aria-expanded={infographicsOpen}
+            >
+              <span>Infographics &amp; Diagrams</span>
+              <span className={`${styles.toggleIcon} ${infographicsOpen ? styles.toggleOpen : ''}`}>▶</span>
+            </button>
+            {infographicsOpen && (
+              <div className={styles.infographicGrid}>
+                {infographics.map((img, i) => (
+                  <motion.div
+                    key={i}
+                    className={styles.infographicCard}
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false }}
+                    transition={{ delay: i * 0.04, duration: 0.4 }}
+                    onClick={() => setLightbox({ src: img.src, title: img.name })}
+                  >
+                    <img src={img.src} alt={img.name} loading="lazy" />
+                    <div className={styles.infographicOverlay}>
+                      <ZoomIn size={18} />
+                      <span>{img.name}</span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            )}
           </div>
         </motion.div>
       </div>
