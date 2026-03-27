@@ -122,78 +122,6 @@ const tiers = [
     ctaLink: 'https://www.tradingview.com/script/dWscMbbP-Four-Color-Order-Flow-System/',
     ctaExternal: true,
   },
-  {
-    name: 'Pro',
-    question: 'Is this pressure real?',
-    subtitle: 'Pressure Confirmation',
-    color: '#3A86FF',
-    bg: 'rgba(58,134,255,0.07)',
-    border: 'rgba(58,134,255,0.25)',
-    badge: 'Coming Soon',
-    badgeBg: 'rgba(255,215,0,0.12)',
-    badgeColor: '#FFD700',
-    included: [
-      'All Lite features',
-      'Buying vs Selling pressure metrics',
-      'Absorption detection',
-      'Liquidity imbalance signals',
-    ],
-    excluded: [
-      'No FVG imbalance tracking yet',
-      'No timing signals yet',
-    ],
-    analogy: 'Checking supplier stability and customer demand before ordering inventory.',
-    cta: 'Join Pro Waitlist',
-    ctaLink: 'https://form.jotform.com/260806377022050',
-    ctaExternal: true,
-  },
-  {
-    name: 'Elite',
-    question: 'Is this the right moment?',
-    subtitle: 'Execution Context',
-    color: '#FF9F1C',
-    bg: 'rgba(255,159,28,0.07)',
-    border: 'rgba(255,159,28,0.25)',
-    badge: 'Coming Soon',
-    badgeBg: 'rgba(255,215,0,0.12)',
-    badgeColor: '#FFD700',
-    included: [
-      'All Pro features',
-      'Fair Value Gap (FVG) imbalance detection',
-      'FVG Lifecycle tracking',
-      'Trap vs takeover identification',
-      'FVG Lifecycle Logic (CFE)',
-      'When control actually shifts',
-    ],
-    excluded: [],
-    analogy: 'You know exactly when wholesalers stop dumping inventory and buyers start paying higher prices.',
-    cta: 'Apply for Elite',
-    ctaLink: 'https://form.jotform.com/260806560917057',
-    ctaExternal: true,
-  },
-  {
-    name: 'Hubs',
-    question: 'Multi-asset dashboard?',
-    subtitle: 'FX Terminal Hub',
-    color: '#7B2CBF',
-    bg: 'rgba(123,44,191,0.07)',
-    border: 'rgba(123,44,191,0.25)',
-    badge: 'Research in Progress',
-    badgeBg: 'rgba(255,215,0,0.12)',
-    badgeColor: '#FFD700',
-    included: [
-      'All Elite features',
-      'FX Terminal Hub multi-pair dashboard',
-      'Forex & crypto asset coverage',
-      'Advanced orderflow analytics',
-      'Dedicated onboarding support',
-    ],
-    excluded: [],
-    analogy: 'A full operations control room — monitoring all markets simultaneously with real-time 4Color logic.',
-    cta: 'Request Hubs Access',
-    ctaLink: 'https://form.jotform.com/260806911516052',
-    ctaExternal: true,
-  },
 ];
 
 const ModuleCard = ({ mod, index, onImageClick }) => {
@@ -595,9 +523,9 @@ const Education = () => {
           viewport={{ once: false }}
           transition={{ duration: 0.6 }}
         >
-          <h3 className={styles.tierHeading}>Understand Each Tool</h3>
+          <h3 className={styles.tierHeading}>Start with Lite</h3>
           <p className={styles.tierSubheading}>
-            The 4Color System comes in tiers — each building on the previous, unlocking deeper market context.
+            The 4Color Lite is free and live — start reading market context today on TradingView.
           </p>
           <div className={styles.tiersGrid}>
             {tiers.map((tier, i) => (

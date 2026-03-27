@@ -216,11 +216,15 @@ const HeroLeft = () => {
         Education &amp; Trading →
       </motion.a>
 
-      {/* Waitlist links */}
-      <motion.div variants={itemVariants} className={styles.waitlistLinks}>
-        <a href="https://form.jotform.com/260806377022050" target="_blank" rel="noopener noreferrer" className={styles.waitlistLink}>Join Pro Waitlist</a>
-        <span className={styles.waitlistSep}>·</span>
-        <a href="https://form.jotform.com/260806560917057" target="_blank" rel="noopener noreferrer" className={styles.waitlistLink}>Apply for Elite</a>
+      {/* Lite Feature Highlights */}
+      <motion.div variants={itemVariants} className={styles.liteFeatures}>
+        <span className={styles.liteFeaturesLabel}>What Lite shows you:</span>
+        <ul className={styles.liteFeaturesList}>
+          <li><span className={styles.colorDot} style={{ background: '#00F5A0' }} />Who controls price — at a glance</li>
+          <li><span className={styles.colorDot} style={{ background: '#3A86FF' }} />Accumulation vs. distribution phases</li>
+          <li><span className={styles.colorDot} style={{ background: '#FFD700' }} />Compression before expansion</li>
+          <li><span className={styles.colorDot} style={{ background: '#FF6B6B' }} />No signals — pure market context</li>
+        </ul>
       </motion.div>
     </motion.div>
   );
