@@ -135,8 +135,8 @@ const Features = () => {
         >
           <span className={styles.label}>Features</span>
           <h2 className={styles.title}>
-            Everything You Need to{' '}
-            <span className={styles.gradient}>Trade Smarter</span>
+            What Your{' '}
+            <span className={styles.gradient}>Chart Is Missing</span>
           </h2>
           <p className={styles.subtitle}>
             The 4Color System™ gives you the tools to read market behavior with clarity — not predictions, 

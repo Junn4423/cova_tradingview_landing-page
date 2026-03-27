@@ -1,0 +1,311 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Fix Your Execution Logic — moved from Hero v4Row + missingLogicRow
+// ─────────────────────────────────────────────────────────────────────────────
+.section {
+  position: relative;
+  padding: 6rem 0;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    padding: 4rem 0;
+  }
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+
+  @media (max-width: 768px) {
+    padding: 0 1.25rem;
+  }
+}
+
+.header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 4rem;
+
+  @media (max-width: 768px) {
+    margin: 0 auto 2.5rem;
+  }
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  background: rgba(255, 107, 107, 0.1);
+  border: 1px solid rgba(255, 107, 107, 0.2);
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #FF6B6B;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  letter-spacing: -1px;
+}
+
+.gradient {
+  background: linear-gradient(135deg, #FF6B6B 0%, #FFD700 50%, #3A86FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
+
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+  }
+}
+
+// ── V4 Row: Doji + Stop Memorizing ───────────────────────────────────────
+.v4Row {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2rem;
+  align-items: stretch;
+
+  & > div {
+    margin-top: 0 !important;
+  }
+
+  @media (max-width: 1100px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+// ── Doji Section ─────────────────────────────────────────────────────────
+.dojiSection {
+  position: relative;
+  z-index: 2;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 215, 0, 0.15);
+  background: rgba(11, 19, 43, 0.6);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+.dojiImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+// ── Stop Memorizing Section ──────────────────────────────────────────────
+.stopMemorizeSection {
+  position: relative;
+  z-index: 2;
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(11, 19, 43, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+  }
+}
+
+.stopMemorizeTitle {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.01em;
+
+  @media (max-width: 480px) {
+    font-size: 1.05rem;
+  }
+}
+
+.stopMemorizeSub {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  margin-bottom: 1rem;
+
+  strong {
+    color: #FFD700;
+    font-weight: 700;
+  }
+}
+
+.candleBehaviors {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}
+
+.behaviorCard {
+  position: relative;
+  padding: 1rem 0.75rem 0.75rem;
+  border-radius: 12px;
+  border: 1px solid var(--bdr, rgba(255, 255, 255, 0.15));
+  background: rgba(255, 255, 255, 0.04);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--bdr, #fff);
+    margin-bottom: 0.25rem;
+  }
+
+  p {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.4;
+    margin: 0;
+  }
+}
+
+.behaviorNum {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--bdr, #3A86FF);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  margin-bottom: 0.35rem;
+}
+
+.behaviorHint {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--bdr, rgba(255, 255, 255, 0.5));
+  font-style: italic;
+}
+
+.sequenceRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.seqArrow {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.stopMemorizeCta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  background: rgba(255, 107, 107, 0.1);
+  color: #FF6B6B;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: rgba(255, 107, 107, 0.2);
+    border-color: rgba(255, 107, 107, 0.5);
+    transform: translateY(-1px);
+  }
+}
+
+// ── Missing Logic Row ────────────────────────────────────────────────────
+.missingLogicRow {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    margin-top: 2rem;
+    gap: 1.25rem;
+  }
+}
+
+.missingLogicQuote {
+  font-size: clamp(1rem, 2.2vw, 1.3rem);
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 720px;
+  line-height: 1.65;
+  border-left: 3px solid #3A86FF;
+  padding-left: 1.25rem;
+  text-align: left;
+
+  @media (max-width: 1100px) {
+    text-align: center;
+    border-left: none;
+    padding-left: 0;
+    border-top: 2px solid rgba(58, 134, 255, 0.4);
+    padding-top: 0.75rem;
+  }
+}
+
+.missingLogicImgWrap {
+  width: 100%;
+  max-width: 960px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 60px rgba(58, 134, 255, 0.15);
+}
+
+.missingLogicImg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.missingLogicSub {
+  font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+  color: rgba(255, 255, 255, 0.62);
+  max-width: 720px;
+  line-height: 1.75;
+}

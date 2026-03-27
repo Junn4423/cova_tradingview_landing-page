@@ -17,7 +17,6 @@ const sections = [
       'By accessing or using 4Color System™ products and services, you agree to be bound by these terms. All content, indicators, and educational materials are the intellectual property of 4Color System™.',
       'You may use our indicators and educational materials for personal use only. Redistribution, resale, or commercial use of 4Color System™ materials without written permission is strictly prohibited.',
       'We reserve the right to modify, suspend, or discontinue any part of our service at any time. We are not liable for any indirect, incidental, or consequential damages arising from your use of our services.',
-      'Pro, Elite, and Hubs products are currently in testing phase. Access will be provided when officially released. Waitlist placement does not guarantee access.',
     ],
   },
   {

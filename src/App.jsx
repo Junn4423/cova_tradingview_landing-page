@@ -7,6 +7,7 @@ import HowItWorks from './components/HowItWorks/HowItWorks';
 import Education from './components/Education/Education';
 // Testimonials removed per client request (Ticket V2 — TASK 8)
 import FinalCTA from './components/FinalCTA/FinalCTA';
+import FixExecutionLogic from './components/FixExecutionLogic/FixExecutionLogic';
 import FAQ from './components/FAQ/FAQ';
 import Contact from './components/Contact/Contact';
 import Legal from './components/Legal/Legal';
@@ -117,6 +118,10 @@ function App() {
 
         {/* Final CTA / Pricing Section */}
         <FinalCTA />
+        <div className="section-divider" />
+
+        {/* Fix Your Execution Logic — images moved from Hero */}
+        <FixExecutionLogic />
         <div className="section-divider" />
 
         {/* FAQ Section */}

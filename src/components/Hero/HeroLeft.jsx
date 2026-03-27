@@ -216,15 +216,11 @@ const HeroLeft = () => {
         Education &amp; Trading →
       </motion.a>
 
-      {/* Lite Feature Highlights */}
-      <motion.div variants={itemVariants} className={styles.liteFeatures}>
-        <span className={styles.liteFeaturesLabel}>What Lite shows you:</span>
-        <ul className={styles.liteFeaturesList}>
-          <li><span className={styles.colorDot} style={{ background: '#00F5A0' }} />Who controls price — at a glance</li>
-          <li><span className={styles.colorDot} style={{ background: '#3A86FF' }} />Accumulation vs. distribution phases</li>
-          <li><span className={styles.colorDot} style={{ background: '#FFD700' }} />Compression before expansion</li>
-          <li><span className={styles.colorDot} style={{ background: '#FF6B6B' }} />No signals — pure market context</li>
-        </ul>
+      {/* Follow Us links */}
+      <motion.div variants={itemVariants} className={styles.waitlistLinks}>
+        <a href="https://www.youtube.com/watch?v=xGvS9clt9Sw" target="_blank" rel="noopener noreferrer" className={styles.waitlistLink}>Follow us on YouTube</a>
+        <span className={styles.waitlistSep}>·</span>
+        <a href="https://www.facebook.com/people/Fvg-Execution-Logic/61576892860617/" target="_blank" rel="noopener noreferrer" className={styles.waitlistLink}>Follow us on Facebook</a>
       </motion.div>
     </motion.div>
   );

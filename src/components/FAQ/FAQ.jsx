@@ -20,22 +20,12 @@ const faqs = [
     q: 'Is this suitable for beginners?',
     a: 'Yes. The Lite version is specifically designed to help beginners stop guessing and start reading context. The self-paced education modules walk you through each concept step by step, from understanding the 4 colors to applying the CFE Sequence in real conditions.',
   },
-  {
-    q: 'What products are available?',
-    a: 'Currently, the Lite version is publicly available for free on TradingView. Pro, Elite, and Hubs are in final testing (coming soon). Lite provides the foundation — the other tiers unlock deeper layers of analysis including FVG tracking, pressure confirmation, and the FX Terminal Hub.',
-  },
+
   {
     q: 'How do I install the Lite indicator?',
     a: 'The Lite indicator is available directly on TradingView at no cost. Click "Access Lite — Free" to visit the TradingView script page. You can add it to any chart with a free TradingView account.',
   },
-  {
-    q: 'What is the difference between Lite, Pro, and Elite?',
-    a: 'Lite answers "What\'s going on?" — it shows market context through 4Color candle logic. Pro answers "Is this pressure real?" — it adds buying vs selling pressure confirmation and absorption detection. Elite answers "Is this the right moment?" — it adds FVG imbalance detection, lifecycle tracking, and the full FVG Execution Logic™ (CFE).',
-  },
-  {
-    q: 'Is there a free trial for Pro or Elite?',
-    a: 'Pro and Elite are currently in testing phase. You can join the Pro waitlist or apply for Elite access through the Products section. The Lite version remains free permanently.',
-  },
+
 ];
 
 const FAQItem = ({ faq, index }) => {

@@ -12,9 +12,9 @@ import styles from './Footer.module.scss';
 const footerLinks = {
   products: [
     { name: 'Lite (Free)', href: 'https://www.tradingview.com/script/dWscMbbP-Four-Color-Order-Flow-System/' },
-    { name: 'Pro',         href: 'https://form.jotform.com/260806377022050' },
-    { name: 'Elite',       href: 'https://form.jotform.com/260806560917057' },
-    { name: 'Hubs',        href: 'https://form.jotform.com/260806911516052' },
+    { name: 'Pro (Under Development)',   href: '#cta' },
+    { name: 'Elite (Under Development)', href: '#cta' },
+    { name: 'Hubs (Under Development)',  href: '#cta' },
   ],
   education: [
     { name: 'Education Hub',   href: '#education' },
