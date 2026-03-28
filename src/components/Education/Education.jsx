@@ -6,17 +6,15 @@ import { use3DTilt, useRipple, injectRippleKeyframe } from '../../utils/animatio
 
 const pdfResources = [
   { name: 'How These Charts Work Across ETFs', file: '/docs/How These Charts Work Across ETFs.pdf', color: '#3A86FF' },
-  { name: '4Color Liquidity Sequence Cheat Sheet', file: '/docs/4Color Liquidity Sequence Cheat Sheet.pdf', color: '#00F5A0' },
   { name: '4Color Market Observation Framework', file: '/docs/4Color Market Observation Framework.pdf', color: '#3A86FF' },
   { name: 'How AD Helps Confirm', file: '/docs/How AD Helps Confirm.pdf', color: '#7B2CBF' },
   { name: 'Liquidity Battles', file: '/docs/Liquidity Battles.pdf', color: '#FF9F1C' },
   { name: 'The Liquidity Engine', file: '/docs/The Liquidity Engine.pdf', color: '#00D4FF' },
   { name: 'When Price Moves Sideways', file: '/docs/When Price Moves Sideways.pdf', color: '#FFD700' },
-  { name: 'Market Behavior Report', file: '/docs/Market Behavior Report HIMS.pdf', color: '#FF6B6B' },
   { name: 'Chart Patterns — What They Really Represent', file: '/docs/Chart Patterns, What They Really Represent in the Market.pdf', color: '#3A86FF' },
   { name: 'Why Liquidity Forms Around S/R', file: '/docs/Why Liquidity Forms Around Support and Resistance.pdf', color: '#00F5A0' },
   { name: 'Why Upgrade to 4Color', file: '/docs/Why Upgrade.pdf', color: '#7B2CBF' },
-  { name: 'Pro & Elite Upgrade — Official Announcement', file: '/docs/Pro Elite Upgrade Official Announcement.pdf', color: '#FFD700' },
+  { name: '#2 WHY 4Color', file: '/docs/WHY-4Color.pdf', color: '#FFD700' },
   { name: 'Stop Memorizing 20+ Candle Patterns', file: '/docs/STOP_MEMORIZING_20_CANDLE_PATTERNS.pdf', color: '#FF6B6B' },
   { name: 'The 3-Candle Engine', file: '/docs/THE 3-CANDLE ENGINE.pdf', color: '#FF9F1C' },
 ];
@@ -47,7 +45,7 @@ const modules = [
     title: 'Foundations of 4Color System',
     description: 'Learn to read who controls the market using 4Color Candle Logic. Stop random guessing — understand context before you trade.',
     level: 'Beginner',
-    imgUrl: '/images/Lite-Education-Chart.jpg',
+    imgUrl: '/images/LITE-FX2.png',
     tag: 'Start Here',
     tagColor: '#00F5A0',
   },
@@ -55,7 +53,7 @@ const modules = [
     title: 'Understanding FVG (Fair Value Gap)',
     description: 'Discover how Fair Value Gaps represent imbalances in the market ecosystem. Learn the flow from retail to smart money to institutions.',
     level: 'Intermediate',
-    imgUrl: '/images/FVG.jpg',
+    imgUrl: '/images/PRO-FX-TIME-ZONE.png',
     tag: 'Core Concept',
     tagColor: '#3A86FF',
   },
@@ -63,16 +61,15 @@ const modules = [
     title: 'Dynamic FVG Logic & Orderflow',
     description: 'Deep dive into how orderflow and delta analysis confirm whether a move has real pressure behind it — or is just a trap.',
     level: 'Advanced',
-    imgUrl: '/images/Bitcoin.jpg',
+    imgUrl: '/images/Bitcoin-Metal.png',
     tag: 'Pro Level',
     tagColor: '#7B2CBF',
   },
-
   {
     title: 'Metals & Commodities Analysis',
     description: 'Apply 4Color zone logic to Gold, Silver and commodity markets. Understand how macro liquidity flows affect metal pricing.',
     level: 'Intermediate',
-    imgUrl: '/images/Metal.jpg',
+    imgUrl: '/images/Gold-FX.png',
     tag: 'Asset Class',
     tagColor: '#FFD700',
   },
@@ -80,7 +77,7 @@ const modules = [
     title: 'Stock Market Structure',
     description: 'Read institutional order flow in equities. Learn how to identify accumulation and distribution phases in stock markets using the 4Color framework.',
     level: 'Advanced',
-    imgUrl: '/images/Stock.jpg',
+    imgUrl: '/images/ELITE-STOCK2.png',
     tag: 'Equities',
     tagColor: '#FF6B6B',
   },
@@ -88,7 +85,7 @@ const modules = [
     title: 'The 3-Candle Engine',
     description: 'Forget 20+ candle names. Master the only 3 behaviors that matter: Compression, Rejection, and Expansion — the sequence behind every trap and every real move.',
     level: 'Beginner',
-    imgUrl: '/images/3Candle-behaviors.jpg',
+    imgUrl: '/images/ELITE-FX.png',
     tag: 'Essential',
     tagColor: '#FF6B6B',
   },
@@ -586,24 +583,6 @@ const Education = () => {
             <span>Read Full Guide (PDF)</span>
             <ExternalLink size={14} />
           </motion.a>
-        </motion.div>
-
-        <motion.div
-          className={styles.tierSection}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
-          transition={{ duration: 0.6 }}
-        >
-          <h3 className={styles.tierHeading}>Understand Each Tool</h3>
-          <p className={styles.tierSubheading}>
-            The 4Color System comes in tiers — each building on the previous, unlocking deeper market context.
-          </p>
-          <div className={styles.tiersGrid}>
-            {tiers.map((tier, i) => (
-              <TierCard key={i} tier={tier} index={i} />
-            ))}
-          </div>
         </motion.div>
 
         {/* Resources / Downloads — TASK 17 */}

@@ -23,7 +23,6 @@ const footerLinks = {
   ],
   company: [
     { name: 'About Us', href: 'https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com&su=About%204Color%20System&body=Hi%204Color%20System%20Team%2C%0A%0AI%20would%20like%20to%20learn%20more%20about%204Color%20System%20and%20your%20team.%0A%0AThank%20you!' },
-    { name: 'Contact',  href: '#contact' },
     { name: 'FAQ',      href: '#faq' },
   ],
   legal: [
@@ -179,8 +178,7 @@ const Footer = () => {
             © {currentYear} <span className="notranslate">4Color System</span>. All rights reserved.
           </p>
           <div className={styles.disclaimerFull}>
-            <p><strong>Disclaimer:</strong> Trading involves substantial risk of loss and is not suitable for all investors. The content, tools, and signals provided on this website are for educational and informational purposes only and do not constitute financial advice, recommendations, or a solicitation to buy or sell any financial instruments. Past performance is not indicative of future results. Users are responsible for their own trading decisions.</p>
-            <p style={{ marginTop: '0.75rem' }}>All names and logos are property of their owners. No affiliation or endorsement. For education only.</p>
+            <p><strong>Disclaimer:</strong> For educational purposes only. Not financial advice. Trading involves risk. Past performance does not guarantee future results.</p>
           </div>
         </div>
       </div>

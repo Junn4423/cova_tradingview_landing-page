@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { FileText, ExternalLink } from 'lucide-react';
 import HeroLeft from './HeroLeft';
 import HeroRightChart from './HeroRightChart';
 import styles from './Hero.module.scss';
@@ -41,7 +42,21 @@ const Hero = () => {
           transition={{ delay: 1.5, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <h2 className={styles.heroTaglineText}>Stop Guessing. Read the Market.</h2>
-          <h2 className={styles.heroTaglineText}>4Colors. Real Intent. This shows who's in control.</h2>
+          <h2 className={styles.heroTaglineText}>4Colors. Real Intent. This shows who’s in control.</h2>
+
+          {/* Why Upgrade CTA */}
+          <motion.a
+            href="/docs/Why Upgrade.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.whyUpgradeBtn}
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            <FileText size={15} />
+            <span>Why Upgrade to 4Color?</span>
+            <ExternalLink size={13} className={styles.whyUpgradeBtnArrow} />
+          </motion.a>
         </motion.div>
       </div>
     </section>

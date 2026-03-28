@@ -8,7 +8,6 @@ const navLinks = [
   { label: 'Products',  href: '#cta' },
   { label: 'Education', href: '#education' },
   { label: 'FAQ',       href: '#faq' },
-  { label: 'Contact',   href: '#contact' },
 ];
 
 // 7 languages — added Vietnamese per client V2 request, Hindi per V5 request

@@ -1,0 +1,261 @@
+// ── FeedbackWidget — Floating feedback button + modal ────────────────────────
+
+// Floating trigger
+.trigger {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.15rem;
+  background: rgba(58, 134, 255, 0.15);
+  border: 1px solid rgba(58, 134, 255, 0.35);
+  border-radius: 100px;
+  color: #3A86FF;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    background: rgba(58, 134, 255, 0.25);
+    border-color: rgba(58, 134, 255, 0.55);
+    box-shadow: 0 0 20px rgba(58, 134, 255, 0.2);
+  }
+
+  @media (max-width: 480px) {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.6rem 0.9rem;
+  }
+}
+
+.triggerLabel {
+  @media (max-width: 360px) {
+    display: none;
+  }
+}
+
+// Overlay
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+// Modal
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: rgba(11, 19, 43, 0.97);
+  border: 1px solid rgba(58, 134, 255, 0.25);
+  border-radius: 18px;
+  padding: 2rem;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+}
+
+.closeBtn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9px;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  padding: 0.35rem;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s, background 0.2s;
+
+  &:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.12);
+  }
+}
+
+// Header
+.header {
+  margin-bottom: 1.5rem;
+}
+
+.headerBadge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: rgba(58, 134, 255, 0.12);
+  border: 1px solid rgba(58, 134, 255, 0.25);
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #3A86FF;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.question {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.4;
+  margin-bottom: 0.4rem;
+}
+
+.sub {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+// Options
+.optionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(58, 134, 255, 0.08);
+    border-color: rgba(58, 134, 255, 0.3);
+    color: #fff;
+  }
+
+  &.selected {
+    background: rgba(58, 134, 255, 0.12);
+    border-color: rgba(58, 134, 255, 0.45);
+    color: #fff;
+
+    .optionDot {
+      background: #3A86FF;
+      box-shadow: 0 0 8px rgba(58, 134, 255, 0.6);
+    }
+  }
+}
+
+.optionDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid rgba(58, 134, 255, 0.4);
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+// Comment textarea
+.comment {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 0.85rem;
+  padding: 0.75rem 1rem;
+  resize: vertical;
+  outline: none;
+  font-family: inherit;
+  margin-bottom: 1.25rem;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  &:focus {
+    border-color: rgba(58, 134, 255, 0.4);
+  }
+}
+
+// Submit button
+.submitBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.8rem;
+  background: rgba(58, 134, 255, 0.18);
+  border: 1px solid rgba(58, 134, 255, 0.4);
+  border-radius: 10px;
+  color: #3A86FF;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background: rgba(58, 134, 255, 0.28);
+    border-color: rgba(58, 134, 255, 0.65);
+    box-shadow: 0 0 16px rgba(58, 134, 255, 0.2);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+// Success state
+.successState {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.successIcon {
+  color: #00F5A0;
+  margin-bottom: 1rem;
+}
+
+.successState h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.successState p {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 1.5rem;
+  line-height: 1.55;
+}
+
+.doneBtn {
+  padding: 0.7rem 2rem;
+  background: rgba(0, 245, 160, 0.12);
+  border: 1px solid rgba(0, 245, 160, 0.35);
+  border-radius: 100px;
+  color: #00F5A0;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: rgba(0, 245, 160, 0.2);
+  }
+}

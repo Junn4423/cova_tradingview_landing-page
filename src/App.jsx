@@ -9,7 +9,6 @@ import Education from './components/Education/Education';
 import FinalCTA from './components/FinalCTA/FinalCTA';
 import FixExecutionLogic from './components/FixExecutionLogic/FixExecutionLogic';
 import FAQ from './components/FAQ/FAQ';
-import Contact from './components/Contact/Contact';
 import Legal from './components/Legal/Legal';
 import Footer from './components/Footer/Footer';
 // ThreeBackground pulls in the entire Three.js bundle — lazy load it so it
@@ -18,6 +17,8 @@ const ThreeBackground = lazy(() => import('./components/ThreeBackground/ThreeBac
 import MouseSpotlight from './components/MouseSpotlight/MouseSpotlight';
 import { ToastProvider } from './components/Toast/Toast';
 import CustomCursor from './components/CustomCursor/CustomCursor';
+import FeedbackWidget from './components/FeedbackWidget/FeedbackWidget';
+import CookieBanner from './components/CookieBanner/CookieBanner';
 import GoogleTranslateWidget from './utils/GoogleTranslateWidget';
 import './styles/globals.scss';
 
@@ -128,16 +129,18 @@ function App() {
         <FAQ />
         <div className="section-divider" />
 
-        {/* Contact Section */}
-        <Contact />
-        <div className="section-divider" />
-
         {/* Legal Terms Section */}
         <Legal />
       </main>
 
       {/* Footer */}
       <Footer />
+
+      {/* Feedback Widget — floating button */}
+      <FeedbackWidget />
+
+      {/* Cookie Consent Banner */}
+      <CookieBanner />
     </div>
     </ToastProvider>
   );

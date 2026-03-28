@@ -3,11 +3,9 @@ import {
   BarChart3, 
   Target, 
   Brain, 
-  Shield, 
   Zap, 
   TrendingUp,
   LineChart,
-  Layers
 } from 'lucide-react';
 import styles from './Features.module.scss';
 import { use3DTilt, useRipple, injectRippleKeyframe } from '../../utils/animations';
@@ -34,12 +32,6 @@ const features = [
     color: '#7B2CBF',
   },
   {
-    icon: Shield,
-    title: 'Risk Management',
-    description: 'The Stress Test feature validates setups before you act. Know whether a move is a trap or a genuine takeover — then position accordingly.',
-    color: '#FF9F1C',
-  },
-  {
     icon: Zap,
     title: 'FVG Lifecycle Logic™ (CFE)',
     description: 'The complete Accumulation → Liquidity Sweep → Structure Shift → Buyer Control → Expansion sequence — the roadmap from setup to breakout.',
@@ -56,12 +48,6 @@ const features = [
     title: 'Orderflow & Delta Analysis',
     description: 'Go beyond candles — analyze the delta between buying and selling volume to confirm whether price pressure is genuine absorption or simply noise.',
     color: '#FFD700',
-  },
-  {
-    icon: Layers,
-    title: 'FX Terminal Hub',
-    description: 'The Hubs tier provides a multi-pair Forex and crypto dashboard — monitor multiple markets simultaneously with the same 4Color logic applied across all pairs.',
-    color: '#00F5A0',
   },
 ];
 

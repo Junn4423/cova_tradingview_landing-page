@@ -60,6 +60,60 @@
   }
 }
 
+.heroTaglineLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.85;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+// Why Upgrade CTA button — below tagline text
+.whyUpgradeBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 1.25rem;
+  padding: 0.6rem 1.4rem;
+  border-radius: 100px;
+  border: 1px solid rgba(123, 44, 191, 0.45);
+  background: rgba(123, 44, 191, 0.1);
+  color: rgba(200, 160, 255, 0.9);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: background 0.25s, border-color 0.25s, box-shadow 0.25s, color 0.2s;
+
+  &:hover {
+    background: rgba(123, 44, 191, 0.2);
+    border-color: rgba(123, 44, 191, 0.7);
+    box-shadow: 0 0 24px rgba(123, 44, 191, 0.25);
+    color: #d4a8ff;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.78rem;
+    padding: 0.55rem 1.1rem;
+  }
+}
+
+.whyUpgradeBtnArrow {
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
 .heroTaglineText {
   font-size: clamp(1.4rem, 3vw, 2.2rem);
   font-weight: 800;

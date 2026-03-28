@@ -1,5 +1,5 @@
 import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
-import { ArrowRight, PlayCircle, ChevronRight, Lightbulb, Facebook } from 'lucide-react';
+import { ArrowRight, PlayCircle, Lightbulb, Facebook, Shield } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import styles from './HeroLeft.module.scss';
 
@@ -61,6 +61,7 @@ const HeroLeft = () => {
   const btn1 = useMagnet(0.35);
   const btn2 = useMagnet(0.35);
   const btn3 = useMagnet(0.35);
+  const btn4 = useMagnet(0.35);
 
   // Rotating hot tips
   const [tipIndex, setTipIndex] = useState(0);
@@ -78,16 +79,16 @@ const HeroLeft = () => {
       initial="hidden"
       animate="visible"
     >
-      {/* Badge */}
-      <motion.a 
-        href="#education"
-        variants={scatterLeft} 
-        className={styles.badge}
-        style={{ textDecoration: 'none' }}
+      {/* IP / Patent Badge */}
+      <motion.a
+        variants={itemVariants}
+        href="/images/Patent-Filing.jpg"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.ipBadge}
       >
-        <span className={styles.badgePulse} />
-        <span className={styles.badgeText}>A Visual Framework for Reading Market Behavior</span>
-        <ChevronRight size={14} className={styles.badgeArrow} />
+        <Shield size={14} />
+        <span>IP Filed — USPTO Patent Pending</span>
       </motion.a>
 
       {/* Headline */}
@@ -143,17 +144,17 @@ const HeroLeft = () => {
         </AnimatePresence>
       </motion.div>
 
-      {/* CTA Buttons */}
-      <motion.div variants={itemVariants} className={styles.ctas}>
-        {/* Left Column: YouTube & Facebook */}
-        <div className={styles.secondaryColumn}>
+      {/* CTA Buttons + QR */}
+      <motion.div variants={itemVariants} className={styles.ctaGroup}>
+        {/* Left: 3 stacked buttons */}
+        <div className={styles.btnStack}>
           {/* YouTube demo */}
           <motion.a
             href="https://www.youtube.com/watch?v=xGvS9clt9Sw"
             target="_blank"
             rel="noopener noreferrer"
-            className={styles.secondaryBtn}
-            style={{ x: btn2.sx, y: btn2.sy, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+            className={styles.stackBtn}
+            style={{ x: btn2.sx, y: btn2.sy, textDecoration: 'none' }}
             onMouseMove={btn2.onMove}
             onMouseLeave={btn2.onLeave}
             whileTap={{ scale: 0.96 }}
@@ -163,7 +164,7 @@ const HeroLeft = () => {
               animate={{ scale: [1, 1.2, 1], opacity: [1, 0.4, 1] }}
               transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
             />
-            <PlayCircle size={20} className={styles.playIcon} />
+            <PlayCircle size={18} className={styles.playIcon} />
             <span>Watch demo on Youtube</span>
           </motion.a>
 
@@ -172,56 +173,53 @@ const HeroLeft = () => {
             href="https://www.facebook.com/people/Fvg-Execution-Logic/61576892860617/"
             target="_blank"
             rel="noopener noreferrer"
-            className={styles.secondaryBtn}
-            style={{ x: btn3.sx, y: btn3.sy, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+            className={styles.stackBtn}
+            style={{ x: btn3.sx, y: btn3.sy, textDecoration: 'none' }}
             onMouseMove={btn3.onMove}
             onMouseLeave={btn3.onLeave}
-            whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.96 }}
           >
-            <Facebook size={20} color="#3A86FF" />
+            <Facebook size={18} color="#3A86FF" />
             <span>Follow us on Facebook</span>
+          </motion.a>
+
+          {/* Access Lite */}
+          <motion.a
+            href="https://www.tradingview.com/script/dWscMbbP-Four-Color-Order-Flow-System/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${styles.stackBtn} ${styles.liteBtn}`}
+            style={{ x: btn4.sx, y: btn4.sy, textDecoration: 'none' }}
+            onMouseMove={btn4.onMove}
+            onMouseLeave={btn4.onLeave}
+            whileTap={{ scale: 0.96 }}
+          >
+            <span>Access Lite version</span>
+            <motion.span
+              className={styles.btnArrow}
+              animate={{ x: [0, 4, 0] }}
+              transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
+            >
+              <ArrowRight size={16} />
+            </motion.span>
+            <span className={styles.shimmer} />
           </motion.a>
         </div>
 
-        {/* Right: Access Lite version */}
-        <motion.a
-          href="https://www.tradingview.com/script/dWscMbbP-Four-Color-Order-Flow-System/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.primaryBtn}
-          style={{ x: btn1.sx, y: btn1.sy, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
-          onMouseMove={btn1.onMove}
-          onMouseLeave={btn1.onLeave}
-          whileTap={{ scale: 0.96 }}
-        >
-          <span>Access Lite version</span>
-          <motion.span
-            className={styles.btnArrow}
-            animate={{ x: [0, 4, 0] }}
-            transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
-          >
-            <ArrowRight size={18} />
-          </motion.span>
-          <span className={styles.shimmer} />
-        </motion.a>
+        {/* Right: QR panel */}
+        <div className={styles.qrPanel}>
+          <div className={styles.qrGlow} />
+          <img
+            src="/images/4ColorSystem_QR.jpeg"
+            alt="Scan to access 4Color Lite on TradingView"
+            className={styles.qrImg}
+            loading="lazy"
+          />
+          <span className={styles.qrLabel}>Scan to access</span>
+          <span className={styles.qrSub}>4Color Lite — Free</span>
+        </div>
       </motion.div>
 
-      {/* Education & Trading link */}
-      <motion.a
-        variants={itemVariants}
-        href="#education"
-        className={styles.educationLink}
-      >
-        Education &amp; Trading →
-      </motion.a>
-
-      {/* Follow Us links */}
-      <motion.div variants={itemVariants} className={styles.waitlistLinks}>
-        <a href="https://www.youtube.com/watch?v=xGvS9clt9Sw" target="_blank" rel="noopener noreferrer" className={styles.waitlistLink}>Follow us on YouTube</a>
-        <span className={styles.waitlistSep}>·</span>
-        <a href="https://www.facebook.com/people/Fvg-Execution-Logic/61576892860617/" target="_blank" rel="noopener noreferrer" className={styles.waitlistLink}>Follow us on Facebook</a>
-      </motion.div>
     </motion.div>
   );
 };

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Check, Sparkles, Lock, CreditCard, CheckCircle2, Globe2, ExternalLink, Youtube, Facebook } from 'lucide-react';
+import { Check, Sparkles, ExternalLink, Youtube, Facebook } from 'lucide-react';
 import styles from './FinalCTA.module.scss';
 
 import { use3DTilt, useRipple, injectRippleKeyframe } from '../../utils/animations';
@@ -9,10 +9,9 @@ const plans = [
   {
     name: 'Lite',
     price: 'FREE',
-    priceNum: 0,
     period: 'Free Forever',
     description: 'Start reading market context — free on TradingView.',
-    image: '/images/Lite-Sample-Chart.jpg',
+    image: '/images/LITE-FX2.png',
     features: [
       '4Color Candle Logic (who controls price)',
       'Prevents emotional trades',
@@ -26,35 +25,29 @@ const plans = [
     ctaExternal: true,
     badge: 'PUBLIC',
     badgeColor: '#00F5A0',
+    isShowcase: false,
   },
   {
     name: 'Pro',
-    price: null,
-    priceNum: null,
-    period: 'Early Access (Under Development)',
+    period: 'Under Development',
     description: 'Confirm whether the pressure behind a move is real.',
-    image: '/images/Pro-Sample-Chart.jpeg',
+    image: '/images/PRO-FX-TIME-ZONE.png',
     features: [
       'All Lite features',
       'Buying vs Selling pressure metrics',
       'Absorption detection',
       'Liquidity imbalance signals',
-      'Priority Support',
     ],
-    popular: true,
-    cta: 'Join Pro Waitlist',
-    ctaLink: 'https://form.jotform.com/260806377022050',
-    ctaExternal: true,
-    badge: 'UNDER DEVELOPMENT',
-    badgeColor: '#FFD700',
+    popular: false,
+    badge: 'NOT FOR SALE',
+    badgeColor: '#FF9F1C',
+    isShowcase: true,
   },
   {
     name: 'Elite',
-    price: null,
-    priceNum: null,
-    period: 'Research Version (Under Development)',
+    period: 'Under Development',
     description: 'Full execution context with FVG Lifecycle tracking.',
-    image: '/images/Elite-Sample-Chart.jpeg',
+    image: '/images/ELITE-FX.png',
     features: [
       'All Pro features',
       'Fair Value Gap (FVG) imbalance detection',
@@ -63,32 +56,25 @@ const plans = [
       'FVG Lifecycle Logic™ (CFE)',
     ],
     popular: false,
-    cta: 'Apply for Elite',
-    ctaLink: 'https://form.jotform.com/260806560917057',
-    ctaExternal: true,
-    badge: 'UNDER DEVELOPMENT',
-    badgeColor: '#FFD700',
+    badge: 'NOT FOR SALE',
+    badgeColor: '#FF9F1C',
+    isShowcase: true,
   },
   {
     name: 'Hubs',
-    price: null,
-    priceNum: null,
     period: 'Research in Progress',
     description: 'FX Terminal Hub — multi-pair Forex & crypto dashboard.',
-    image: '/images/FX.jpg',
+    image: '/images/ELITE-STOCK2.png',
     features: [
       'All Elite features',
       'FX Terminal Hub multi-pair dashboard',
       'Forex & crypto asset coverage',
       'Advanced orderflow analytics',
-      'Dedicated onboarding support',
     ],
     popular: false,
-    cta: 'Contact for Access',
-    ctaLink: 'https://form.jotform.com/260806911516052',
-    ctaExternal: true,
-    badge: 'UNDER DEVELOPMENT',
-    badgeColor: '#FFD700',
+    badge: 'NOT FOR SALE',
+    badgeColor: '#FF9F1C',
+    isShowcase: true,
   },
 ];
 
@@ -98,7 +84,7 @@ const PlanCard = ({ plan, index }) => {
 
   return (
     <motion.div
-      className={`${styles.planCard} ${plan.popular ? styles.popular : ''}`}
+      className={`${styles.planCard} ${plan.popular ? styles.popular : ''} ${plan.isShowcase ? styles.showcaseCard : ''}`}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false }}
@@ -109,7 +95,6 @@ const PlanCard = ({ plan, index }) => {
       onMouseLeave={tilt.onMouseLeave}
     >
       <div style={tilt.shineStyle} />
-      {plan.popular && <div className={styles.popularBadge}>Most Popular</div>}
 
       {/* Status Badge */}
       <div
@@ -129,15 +114,13 @@ const PlanCard = ({ plan, index }) => {
       <div className={styles.planHeader}>
         <h3 className={`${styles.planName} notranslate`}>{plan.name}</h3>
         <div className={styles.planPrice}>
-          {plan.price ? (
-            <span className={styles.price}>{plan.price}</span>
-          ) : null}
+          {plan.price && <span className={styles.price}>{plan.price}</span>}
           <span className={styles.period}>{plan.period}</span>
         </div>
         <p className={styles.planDescription}>{plan.description}</p>
       </div>
 
-      <ul className={`${styles.features} ${plan.name !== 'Lite' ? styles.featuresDimmed : ''}`}>
+      <ul className={`${styles.features} ${plan.isShowcase ? styles.featuresDimmed : ''}`}>
         {plan.features.map((feature, i) => (
           <motion.li
             key={i}
@@ -153,42 +136,37 @@ const PlanCard = ({ plan, index }) => {
         ))}
       </ul>
 
-      {/* Follow Us Links (replaces QR) */}
-      <div className={styles.followSection}>
-        <a href="https://www.youtube.com/watch?v=xGvS9clt9Sw" target="_blank" rel="noopener noreferrer" className={styles.followLink}>
-          <Youtube size={16} />
-          <span>YouTube</span>
-        </a>
-        <a href="https://www.facebook.com/people/Fvg-Execution-Logic/61576892860617/" target="_blank" rel="noopener noreferrer" className={styles.followLink}>
-          <Facebook size={16} />
-          <span>Facebook</span>
-        </a>
-      </div>
-
-      {plan.ctaExternal ? (
-        <a
-          href={plan.ctaLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`${styles.planButton} ${plan.popular ? styles.primaryButton : ''}`}
-          style={{ position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', textDecoration: 'none' }}
-        >
-          <Ripples />
-          <span>{plan.cta}</span>
-          <ExternalLink size={16} />
-        </a>
+      {/* Not-for-sale notice for Pro/Elite/Hubs */}
+      {plan.isShowcase ? (
+        <div className={styles.notForSaleNotice}>
+          <p>Currently under development. Not for Sale — No public access.</p>
+          <p>These systems are being refined for real execution — not rushed for release. Access will only be considered once the system meets internal standards.</p>
+        </div>
       ) : (
-        <motion.button
-          className={`${styles.planButton} ${plan.popular ? styles.primaryButton : ''}`}
-          onClick={(e) => { createRipple(e); }}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.97 }}
-          style={{ position: 'relative', overflow: 'hidden' }}
-        >
-          <Ripples />
-          <span>{plan.cta}</span>
-          <ArrowRight size={18} />
-        </motion.button>
+        <>
+          {/* Follow Us Links for Lite */}
+          <div className={styles.followSection}>
+            <a href="https://www.youtube.com/watch?v=xGvS9clt9Sw" target="_blank" rel="noopener noreferrer" className={styles.followLink}>
+              <Youtube size={16} />
+              <span>YouTube</span>
+            </a>
+            <a href="https://www.facebook.com/people/Fvg-Execution-Logic/61576892860617/" target="_blank" rel="noopener noreferrer" className={styles.followLink}>
+              <Facebook size={16} />
+              <span>Facebook</span>
+            </a>
+          </div>
+          <a
+            href={plan.ctaLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${styles.planButton} ${styles.primaryButton}`}
+            style={{ position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', textDecoration: 'none' }}
+          >
+            <Ripples />
+            <span>{plan.cta}</span>
+            <ExternalLink size={16} />
+          </a>
+        </>
       )}
     </motion.div>
   );
@@ -209,32 +187,13 @@ const FinalCTA = () => {
         >
           <span className={styles.label}>
             <Sparkles size={14} />
-            Choose Your Tool
+            4Color System™ Tools
           </span>
           <h2 className={styles.title}>
-            The <span className={styles.gradient}>4Color System™</span> Product Suite
+            The <span className={styles.gradient}>4Color System™</span> — What's Being Built
           </h2>
           <p className={styles.subtitle}>
-            Lite is free and live now. Pro, Elite, and Hubs are under development — follow us to stay updated.
-          </p>
-        </motion.div>
-
-        {/* Upgrade Path Infographic (V4) */}
-        <motion.div
-          className={styles.upgradePath}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
-          transition={{ delay: 0.2, duration: 0.7 }}
-        >
-          <img
-            src="/images/Candles-Context.jpg"
-            alt="4Color System Upgrade Path — Lite (Visibility Layer) → Pro (Decision Layer) → Elite (Timing Layer)"
-            className={styles.upgradePathImg}
-            loading="lazy"
-          />
-          <p className={styles.upgradePathCaption}>
-            <strong>Pro</strong> shows structure. <strong>Elite</strong> now shows intent. Same chart — different level of understanding.
+            Lite is free and live on TradingView. Pro, Elite, and Hubs are under development — showcased here so you know what's coming.
           </p>
         </motion.div>
 
@@ -244,34 +203,6 @@ const FinalCTA = () => {
             <PlanCard key={index} plan={plan} index={index} />
           ))}
         </div>
-
-        {/* Trust Badges */}
-        <motion.div
-          className={styles.trustSection}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
-          transition={{ delay: 0.6 }}
-        >
-          <div className={styles.trustBadges}>
-            <div className={styles.trustBadge}>
-              <span className={styles.trustIcon}><Lock size={18} /></span>
-              <span>256-bit SSL Secure</span>
-            </div>
-            <div className={styles.trustBadge}>
-              <span className={styles.trustIcon}><CreditCard size={18} /></span>
-              <span>All Major Cards Accepted</span>
-            </div>
-            <div className={styles.trustBadge}>
-              <span className={styles.trustIcon}><CheckCircle2 size={18} /></span>
-              <span>30-Day Money Back</span>
-            </div>
-            <div className={styles.trustBadge}>
-              <span className={styles.trustIcon}><Globe2 size={18} /></span>
-              <span>Instant Global Access</span>
-            </div>
-          </div>
-        </motion.div>
       </div>
 
       {/* Decorative Glow */}

@@ -452,3 +452,23 @@
     transform: translateY(-1px);
   }
 }
+
+// ── Showcase-only card (Pro / Elite / Hubs) ───────────────────────────────
+.showcaseCard {
+  opacity: 0.9;
+}
+
+.notForSaleNotice {
+  margin-top: auto;
+  padding: 1rem;
+  background: rgba(255, 159, 28, 0.06);
+  border: 1px solid rgba(255, 159, 28, 0.2);
+  border-radius: 10px;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.55;
+
+  p + p {
+    margin-top: 0.5rem;
+  }
+}
