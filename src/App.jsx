@@ -1,4 +1,4 @@
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { MotionConfig, motion, useScroll, useSpring } from 'framer-motion';
 import { useEffect, useState, lazy, Suspense } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
@@ -39,110 +39,112 @@ function App() {
     return () => mq.removeEventListener('change', h);
   }, []);
   return (
-    <ToastProvider>
-    <div className="app">
-      {/* Scroll Progress */}
-      <motion.div id="scroll-progress" style={{ scaleX }} />
+    <MotionConfig reducedMotion={isMobile ? 'always' : 'never'}>
+      <ToastProvider>
+        <div className="app">
+          {/* Scroll Progress */}
+          <motion.div id="scroll-progress" style={{ scaleX }} />
 
-      {/* Custom Cursor */}
-      <CustomCursor />
+          {/* Custom Cursor */}
+          <CustomCursor />
 
-      {/* Mouse Spotlight */}
-      <MouseSpotlight />
+          {/* Mouse Spotlight */}
+          <MouseSpotlight />
 
-      {/* Google Translate Progress Bar */}
-      <GoogleTranslateWidget />
+          {/* Google Translate Progress Bar */}
+          <GoogleTranslateWidget />
 
-      {/* Three.js 3D Scene — loaded after initial paint (lazy chunk) */}
-      <Suspense fallback={null}>
-        <ThreeBackground />
-      </Suspense>
+          {/* Three.js 3D Scene — loaded after initial paint (lazy chunk) */}
+          <Suspense fallback={null}>
+            <ThreeBackground />
+          </Suspense>
 
-      {/* Background Orbs — CSS-only on mobile, framer-motion on desktop */}
-      <div className="background-orbs">
-        {isMobile ? (
-          // Static orbs on mobile — no JS animation overhead
-          <>
-            <div className="orb orb-1" />
-            <div className="orb orb-2" />
-            <div className="orb orb-3" />
-            <div className="orb orb-4" />
-          </>
-        ) : (
-          <>
-            <motion.div
-              className="orb orb-1"
-              animate={{ y: [0, -50, 0], scale: [1, 1.1, 1] }}
-              transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
-            />
-            <motion.div
-              className="orb orb-2"
-              animate={{ y: [0, 40, 0], x: [0, 30, 0] }}
-              transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
-            />
-            <motion.div
-              className="orb orb-3"
-              animate={{ y: [0, -30, 0], scale: [1, 0.95, 1] }}
-              transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
-            />
-            <motion.div
-              className="orb orb-4"
-              animate={{ y: [0, 25, 0], x: [0, -20, 0] }}
-              transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }}
-            />
-          </>
-        )}
-      </div>
+          {/* Background Orbs — CSS-only on mobile, framer-motion on desktop */}
+          <div className="background-orbs">
+            {isMobile ? (
+              // Static orbs on mobile — no JS animation overhead
+              <>
+                <div className="orb orb-1" />
+                <div className="orb orb-2" />
+                <div className="orb orb-3" />
+                <div className="orb orb-4" />
+              </>
+            ) : (
+              <>
+                <motion.div
+                  className="orb orb-1"
+                  animate={{ y: [0, -50, 0], scale: [1, 1.1, 1] }}
+                  transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+                />
+                <motion.div
+                  className="orb orb-2"
+                  animate={{ y: [0, 40, 0], x: [0, 30, 0] }}
+                  transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
+                />
+                <motion.div
+                  className="orb orb-3"
+                  animate={{ y: [0, -30, 0], scale: [1, 0.95, 1] }}
+                  transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+                />
+                <motion.div
+                  className="orb orb-4"
+                  animate={{ y: [0, 25, 0], x: [0, -20, 0] }}
+                  transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }}
+                />
+              </>
+            )}
+          </div>
 
-      {/* Navigation */}
-      <Navbar />
+          {/* Navigation */}
+          <Navbar />
 
-      {/* Main Content */}
-      <main>
-        {/* Hero Section */}
-        <Hero />
-        <div className="section-divider" />
+          {/* Main Content */}
+          <main>
+            {/* Hero Section */}
+            <Hero />
+            <div className="section-divider" />
 
-        {/* Features Section */}
-        <Features />
-        <div className="section-divider" />
+            {/* Features Section */}
+            <Features />
+            <div className="section-divider" />
 
-        {/* How It Works Section */}
-        <HowItWorks />
-        <div className="section-divider" />
+            {/* How It Works Section */}
+            <HowItWorks />
+            <div className="section-divider" />
 
-        {/* Education Section */}
-        <Education />
-        <div className="section-divider" />
+            {/* Education Section */}
+            <Education />
+            <div className="section-divider" />
 
-        {/* Testimonials removed — client: "Trust by 50,000: Bỏ, ko cần tới" */}
+            {/* Testimonials removed — client: "Trust by 50,000: Bỏ, ko cần tới" */}
 
-        {/* Final CTA / Pricing Section */}
-        <FinalCTA />
-        <div className="section-divider" />
+            {/* Final CTA / Pricing Section */}
+            <FinalCTA />
+            <div className="section-divider" />
 
-        {/* Fix Your Execution Logic — images moved from Hero */}
-        <FixExecutionLogic />
-        <div className="section-divider" />
+            {/* Fix Your Execution Logic — images moved from Hero */}
+            <FixExecutionLogic />
+            <div className="section-divider" />
 
-        {/* FAQ Section */}
-        <FAQ />
-        <div className="section-divider" />
+            {/* FAQ Section */}
+            <FAQ />
+            <div className="section-divider" />
 
-        {/* Legal Terms Section */}
-        <Legal />
-      </main>
+            {/* Legal Terms Section */}
+            <Legal />
+          </main>
 
-      {/* Footer */}
-      <Footer />
+          {/* Footer */}
+          <Footer />
 
-      {/* Feedback Widget — floating button */}
-      <FeedbackWidget />
+          {/* Feedback Widget — floating button */}
+          <FeedbackWidget />
 
-      {/* Cookie Consent Banner */}
-      <CookieBanner />
-    </div>
-    </ToastProvider>
+          {/* Cookie Consent Banner */}
+          <CookieBanner />
+        </div>
+      </ToastProvider>
+    </MotionConfig>
   );
 }
 

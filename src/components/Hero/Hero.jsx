@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { FileText, ExternalLink } from 'lucide-react';
 import HeroLeft from './HeroLeft';
@@ -7,13 +7,26 @@ import styles from './Hero.module.scss';
 
 const Hero = () => {
   const sectionRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined'
+      ? window.matchMedia('(hover: none) and (pointer: coarse), (max-width: 768px)').matches
+      : false
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: none) and (pointer: coarse), (max-width: 768px)');
+    const handleChange = (e) => setIsMobile(e.matches);
+    mq.addEventListener('change', handleChange);
+    return () => mq.removeEventListener('change', handleChange);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end start'],
   });
 
-  const leftX  = useTransform(scrollYProgress, [0, 1], [0, -80]);
-  const rightX = useTransform(scrollYProgress, [0, 1], [0,  80]);
+  const leftX = useTransform(scrollYProgress, [0, 1], isMobile ? [0, 0] : [0, -80]);
+  const rightX = useTransform(scrollYProgress, [0, 1], isMobile ? [0, 0] : [0, 80]);
 
   return (
     <section ref={sectionRef} className={styles.hero}>
