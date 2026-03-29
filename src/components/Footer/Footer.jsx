@@ -19,10 +19,10 @@ const footerLinks = {
   education: [
     { name: 'Education Hub',   href: '#education' },
     { name: 'How It Works',    href: '#how-it-works' },
-    { name: 'Youtube Demo',    href: 'https://www.youtube.com/watch?v=9M93_6S9TaQ' },
+    { name: 'Youtube Demo',    href: 'https://www.youtube.com/@4colorsystem' },
   ],
   company: [
-    { name: 'About Us', href: 'https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com&su=About%204Color%20System&body=Hi%204Color%20System%20Team%2C%0A%0AI%20would%20like%20to%20learn%20more%20about%204Color%20System%20and%20your%20team.%0A%0AThank%20you!' },
+    { name: 'About Us', href: '#about-us' },
     { name: 'FAQ',      href: '#faq' },
   ],
   legal: [
@@ -33,7 +33,7 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { icon: Youtube, href: 'https://www.youtube.com/watch?v=9M93_6S9TaQ', label: 'YouTube' },
+  { icon: Youtube, href: 'https://www.youtube.com/@4colorsystem', label: 'YouTube' },
   { icon: Facebook, href: 'https://www.facebook.com/people/Fvg-Execution-Logic/61576892860617/', label: 'Facebook' },
   { icon: Mail, href: 'mailto:4colorsystem@gmail.com', label: 'Gmail' },
 ];
@@ -67,8 +67,7 @@ const Footer = () => {
             </a>
 
             <p className={styles.brandDescription}>
-              The revolutionary trading methodology that helps you identify high-probability 
-              setups with our proprietary color zone system.
+              We build observation systems for traders who want to understand market behavior, not chase predictions.
             </p>
 
             <div className={styles.contactInfo}>
@@ -152,7 +151,7 @@ const Footer = () => {
           </div>
           <div className={styles.followLinks}>
             <a
-              href="https://www.youtube.com/watch?v=9M93_6S9TaQ"
+              href="https://www.youtube.com/@4colorsystem"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.followBtn}
