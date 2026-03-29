@@ -74,7 +74,7 @@ const Hero = () => {
 
             {/* Stop Memorizing CTA */}
             <motion.a
-              href="/docs/STOP MEMORIZING 20+ CANDLE PATTERNS.pdf"
+              href="/docs/STOP%20MEMORIZING%2020%2B%20CANDLE%20PATTERNS.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.whyUpgradeBtn}
