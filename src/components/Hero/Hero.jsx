@@ -57,19 +57,35 @@ const Hero = () => {
           <h2 className={styles.heroTaglineText}>Stop Guessing. Read the Market.</h2>
           <h2 className={styles.heroTaglineText}>4Colors. Real Intent. This shows who’s in control.</h2>
 
-          {/* Why Upgrade CTA */}
-          <motion.a
-            href="/docs/Why Upgrade.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.whyUpgradeBtn}
-            whileHover={{ scale: 1.04, y: -2 }}
-            whileTap={{ scale: 0.97 }}
-          >
-            <FileText size={15} />
-            <span>Why Upgrade to 4Color?</span>
-            <ExternalLink size={13} className={styles.whyUpgradeBtnArrow} />
-          </motion.a>
+          <div className={styles.heroCtaRow}>
+            {/* Why Upgrade CTA */}
+            <motion.a
+              href="/docs/Why Upgrade.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.whyUpgradeBtn}
+              whileHover={{ scale: 1.04, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <FileText size={15} />
+              <span>Why Upgrade to 4Color?</span>
+              <ExternalLink size={13} className={styles.whyUpgradeBtnArrow} />
+            </motion.a>
+
+            {/* Stop Memorizing CTA */}
+            <motion.a
+              href="/docs/STOP MEMORIZING 20+ CANDLE PATTERNS.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.whyUpgradeBtn}
+              whileHover={{ scale: 1.04, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <FileText size={15} />
+              <span>STOP MEMORIZING 20+ CANDLE PATTERNS</span>
+              <ExternalLink size={13} className={styles.whyUpgradeBtnArrow} />
+            </motion.a>
+          </div>
         </motion.div>
       </div>
     </section>

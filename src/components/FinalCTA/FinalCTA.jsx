@@ -9,7 +9,7 @@ const plans = [
   {
     name: 'Lite',
     price: 'FREE',
-    period: 'Free Forever',
+    period: '',
     description: 'Start reading market context — free on TradingView.',
     image: '/images/LITE-FX2.png',
     features: [

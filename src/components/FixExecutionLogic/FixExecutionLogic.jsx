@@ -86,7 +86,7 @@ const FixExecutionLogic = () => {
               <span style={{ color: '#00F5A0' }}>Expansion</span>
             </div>
             <a
-              href="/docs/STOP_MEMORIZING_20_CANDLE_PATTERNS.pdf"
+              href="/docs/STOP MEMORIZING 20+ CANDLE PATTERNS.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.stopMemorizeCta}

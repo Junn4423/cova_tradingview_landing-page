@@ -104,11 +104,14 @@ const HeroLeft = () => {
       {/* CFE Formula — from mail 2 */}
       <motion.div variants={itemVariants} className={styles.cfeFormula}>
         <p className={styles.cfeIntro}>
-          <strong>Context-First Execution (CFE)</strong> analyzes market forces in real time by combining:
+          <strong>Context-First Execution (CFE)</strong> analyzes market forces in real time by
+          <br />
+          combining:
         </p>
         <p className={styles.cfeEquation}>
           <span className="notranslate">Structure → AD → FVG → 4Color Candle</span>
-          <span className={styles.cfeArrow}>→</span>
+          <br />
+          <br />
           <span className={styles.cfeResult}>Real-Time Market Context</span>
         </p>
         <p className={styles.cfeSub}>
