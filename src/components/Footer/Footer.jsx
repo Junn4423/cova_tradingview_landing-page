@@ -35,7 +35,7 @@ const footerLinks = {
 const socialLinks = [
   { icon: Youtube, href: 'https://www.youtube.com/@4colorsystem', label: 'YouTube' },
   { icon: Facebook, href: 'https://www.facebook.com/people/Fvg-Execution-Logic/61576892860617/', label: 'Facebook' },
-  { icon: Mail, href: 'mailto:4colorsystem@gmail.com', label: 'Gmail' },
+  { icon: Mail, href: 'https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com', label: 'Gmail' },
 ];
 
 const Footer = () => {
@@ -71,7 +71,7 @@ const Footer = () => {
             </p>
 
             <div className={styles.contactInfo}>
-              <a href="mailto:4colorsystem@gmail.com" className={styles.contactItem}>
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=4colorsystem@gmail.com" className={styles.contactItem} target="_blank" rel="noopener noreferrer">
                 <Mail size={18} />
                 <span className="notranslate">4colorsystem@gmail.com</span>
               </a>
@@ -88,7 +88,8 @@ const Footer = () => {
                   href={social.href}
                   className={styles.socialLink}
                   aria-label={social.label}
-
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -3 }}
                   whileTap={{ scale: 0.95 }}
                 >
